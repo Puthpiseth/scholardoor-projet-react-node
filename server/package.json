@@ -1,0 +1,32 @@
+{
+  "name": "scholardoor_projet",
+  "version": "1.0.0",
+  "description": "scholardoor_projet",
+  "main": "./src/index.js",
+  "scripts": {
+    "start": "node ./src/index.js",
+    "watch": "nodemon ./src/index.js",
+    "dev": "nodemon"
+  },
+  "author": "Piseth",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
+    "express-validators": "^1.0.4",
+    "jsonwebtoken": "^8.5.1",
+    "multer": "^1.4.2",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.6.5",
+    "sequelize-cli": "^6.2.0",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.11"
+  }
+}
