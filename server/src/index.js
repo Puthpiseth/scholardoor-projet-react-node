@@ -1,10 +1,32 @@
-require("dotenv").config();
 const express = require('express');
-const {sequelize} = require("./models");
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const { sequelize } = require('./models');
+require('dotenv').config();
 
+const routes = require('./routes/routes')
 const app = express();
 
-const port = process.env.PORT || 2000;
+app.use(cors());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+// Parse request of content-type - application/json
+app.use(bodyParser.json());
+
+// Parse request of content-type - application/x-www-form-urlencorded
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,PATCH,DELETE');
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept ")
+  next();
+});
+
+app.use('/users', routes);
+
+const port = process.env.PORT || 8000;
 const env = process.env.NODE_ENV || "development";
 
 app.listen(port, async () => {
@@ -32,3 +54,4 @@ sequelize.sync({ force: true }).then(() => {
 
 
 module.exports = sequelize;
+global.sequelize = sequelize;

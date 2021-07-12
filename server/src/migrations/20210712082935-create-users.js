@@ -4,8 +4,9 @@ module.exports = {
     await queryInterface.createTable('users', {
       id: {
         allowNull: false,
+        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.UUID,
+        type: Sequelize.INTEGER,
       },
       firstname: {
         allowNull: false,
@@ -49,11 +50,11 @@ module.exports = {
       },
       following: {
         allowNull: false,
-        type: Sequelize.UUID
+        type: Sequelize.INTEGER
       },
       followers: {
         allowNull: false,
-        type: Sequelize.UUID
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
