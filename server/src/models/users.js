@@ -10,7 +10,26 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      this.hasMany(models.posts, {
+        onDelete: 'cascade'
+      });
+      this.hasMany(models.messages, {
+        onDelete: 'cascade'
+      });
+      this.hasMany(models.comments, {
+        onDelete: 'cascade'
+      });
+      this.hasOne(models.profiles, {
+        onDelete: 'cascade'
+      });
+      this.hasMany(models.articles, {
+        onDelete: 'cascade'
+      });
+      this.hasMany(models.chats, {
+        onDelete: 'cascade'
+      });
+      
+
     }
   };
   users.init({
@@ -19,10 +38,7 @@ module.exports = (sequelize, DataTypes) => {
     username: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING,
-    verified: DataTypes.BOOLEAN,
-    verficationCode: DataTypes.STRING,
     resetPasswordToken: DataTypes.STRING,
-    resetPasswordExpireIn: DataTypes.STRING,
     avatar: DataTypes.STRING,
     following: DataTypes.INTEGER,
     followers: DataTypes.INTEGER
