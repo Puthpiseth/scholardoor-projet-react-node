@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   articles.init({
-    user_id: DataTypes.INTEGER,
+    userId: DataTypes.INTEGER,
     file_path: DataTypes.STRING,
     title: DataTypes.STRING,
     authors: DataTypes.STRING,
@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
     issue: DataTypes.STRING,
     publisher: DataTypes.STRING,
     abstract: DataTypes.STRING,
-    view_id: DataTypes.INTEGER
+    viewId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'articles',
