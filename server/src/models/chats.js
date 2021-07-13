@@ -14,12 +14,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   chats.init({
-    sender_id: DataTypes.INTEGER,
+    senderId: DataTypes.INTEGER,
     inboxHash: DataTypes.STRING,
     message: DataTypes.TEXT,
     file: DataTypes.TEXT,
     meta: DataTypes.TEXT,
-    deleted_user_id: DataTypes.INTEGER
+    deletedUserId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'chats',

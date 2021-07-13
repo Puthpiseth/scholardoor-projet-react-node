@@ -8,7 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      sender_id: {
+      senderId: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
@@ -32,7 +32,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.TEXT
       },
-      deleted_user_id: {
+      deletedUserId: {
         allowNull: false,
         type: Sequelize.INTEGER
       },

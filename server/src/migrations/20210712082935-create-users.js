@@ -28,19 +28,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
-      verified: {
-        allowNull: false,
-        type: Sequelize.BOOLEAN
-      },
-      verficationCode: {
-        allowNull: false,
-        type: Sequelize.STRING
-      },
       resetPasswordToken: {
-        allowNull: false,
-        type: Sequelize.STRING
-      },
-      resetPasswordExpireIn: {
         allowNull: false,
         type: Sequelize.STRING
       },

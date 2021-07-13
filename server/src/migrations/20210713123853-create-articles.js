@@ -48,7 +48,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
-      view_id: {
+      viewId: {
         allowNull: false,
         type: Sequelize.INTEGER
       },

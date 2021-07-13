@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   profiles.init({
-    user_id: DataTypes.INTEGER,
+    userId: DataTypes.INTEGER,
     username: DataTypes.STRING,
     position: DataTypes.STRING,
     affilation: DataTypes.STRING,
