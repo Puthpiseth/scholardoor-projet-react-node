@@ -1,5 +1,6 @@
 const { users } = require('../models');
 const jwt = require('jsonwebtoken');
+const sendEmail = require('../utils/sendEmail')
 require('dotenv').config();
 
 
@@ -26,4 +27,5 @@ exports.verifyToken = async (req, res, next) => {
     catch(err) {
         res.status(400).json({ message: "Invalid Token!"});
     }
-}
+};
+
