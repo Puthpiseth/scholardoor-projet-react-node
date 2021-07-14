@@ -1,6 +1,5 @@
 const { users } = require('../models');
 const jwt = require('jsonwebtoken');
-const sendEmail = require('../utils/sendEmail')
 require('dotenv').config();
 
 

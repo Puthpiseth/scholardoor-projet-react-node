@@ -28,6 +28,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
+      verificationCode: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
       resetPasswordToken: {
         allowNull: false,
         type: Sequelize.STRING

@@ -1,6 +1,10 @@
 const { users }  = require('../models');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const crypto = require('crypto');
+const mailgun = require("mailgun-js");
+const DOMAIN = process.env.DOMAIN;
+const mg = mailgun({apiKey: process.env.MAILGUN_APIKEY, domain: DOMAIN});
 require('dotenv').config();
 
 /**
@@ -22,6 +26,7 @@ exports.signup = async (req, res) => {
             username: username,
             email: email,
             password: hashPassword,
+            verificationCode: crypto.randomBytes(64).toString('hex'),
         }
         
         // Email Regex
@@ -67,6 +72,31 @@ exports.signup = async (req, res) => {
             return res.status(400).json({ message: "Lastname already exists!"});
         }
 
+        // Verify account
+        const token = jwt.sign({
+            email: user.email,
+            username: user.username,
+            password: user.password
+        }, 
+            process.env.SECRET_JWT, { expiresIn: "1h"})
+
+        const data = {
+            from: 'no-reply@gmail.com',
+            to: user.email,
+            subject: 'Verify account',
+            html: `
+                <h1>Hello, ${user.username}</h1>
+                <p>Please click the following link to verify your account</p>
+                <p>${process.env.Base_URL}/users/verify-account/${token}</p>
+            `
+        };
+        mg.messages().send(data, function (error, body) {
+            if(error) {
+                return res.status(400).json({error: err.message})
+            }
+            return res.json({message: 'Email has been sent and please activate your account!'})
+        });
+
         // Create a new user
         users.create(user).then(user => {
             return res.status(200).json({
@@ -76,13 +106,19 @@ exports.signup = async (req, res) => {
             return res.status(500).json({
                 message: "Something went wrong!",
             })
-        });
-        
+        });        
     } 
     catch(err) {
         res.status(500).json(err.message);
     }
 }
+
+/**
+ * @description To singin
+ * @api /users/signin
+ * @access Private
+ * @type POST
+ */
 
 // Signin
 exports.signin = async (req, res) => {
