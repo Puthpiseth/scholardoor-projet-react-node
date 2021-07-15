@@ -72,22 +72,16 @@ exports.signup = async (req, res) => {
             return res.status(400).json({ message: "Lastname already exists!"});
         }
 
-        // Verify account
-        const token = jwt.sign({
-            email: user.email,
-            username: user.username,
-            password: user.password
-        }, 
-            process.env.SECRET_JWT, { expiresIn: "1h"})
-
+        // Verify a user account
         const data = {
             from: 'no-reply@gmail.com',
             to: user.email,
-            subject: 'Verify account',
+            subject: 'Account Verification',
             html: `
                 <h1>Hello, ${user.username}</h1>
-                <p>Please click the following link to verify your account</p>
-                <p>${process.env.Base_URL}/users/verify-account/${token}</p>
+                <p>Thank you for choosing ScholarDoor! Please confirm your email address 
+                by clicking the link below</p>
+                <p>${process.env.Base_URL}/users/verify-account/${user.verificationCode}</p>
             `
         };
         mg.messages().send(data, function (error, body) {
@@ -114,13 +108,49 @@ exports.signup = async (req, res) => {
 }
 
 /**
- * @description To singin
+ * @description To create a new user account
+ * @api /users/verify-account/:verificationCode
+ * @access Public <Only via email>
+ * @type GET
+ */
+
+exports.verifyAccount = async (req, res) => {
+    
+    try {
+        const {verificationCode} = req.params;
+        const user = await users.findOne({where: {verificationCode}});
+
+            if(!user) {
+                return res.status(401).json({
+                    message: 'Unthorized access and invalid verification code!'
+                });
+            }
+            user.verified = true;
+            user.verificationCode = undefined;
+            users.create(user).then(user => {
+                return res.status(200).json({
+                    message: "User successfully registered!",
+                });
+            }).catch(err => {
+                return res.status(500).json({
+                    message: "Something went wrong!",
+                })
+            });      
+            
+    }
+    catch(err) {
+        res.status(500).json(err.message);
+    }
+}
+
+
+/**
+ * @description To authenticate a user and get an auth token
  * @api /users/signin
  * @access Private
  * @type POST
  */
 
-// Signin
 exports.signin = async (req, res) => {
     const { email, password } = req.body;
 
