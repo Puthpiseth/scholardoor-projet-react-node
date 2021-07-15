@@ -2,6 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const userController = require ('../controllers/userController');
 const auth = require('../middlewares/auth');
+const {SignupValidations} = require('../validators/users-validators');
+const {check} = require('express-validator');
 
 const router = express.Router();
 
