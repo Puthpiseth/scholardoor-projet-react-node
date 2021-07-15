@@ -41,7 +41,7 @@ exports.signup = async (req, res) => {
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
         if(!passwordRegex.test(password)) {
-            return res.status(400).json({ message: "Password is not valid!"});
+            return res.status(400).json({ message: "Please provide a valid password!"});
         }
 
         // Check if the email already exists
