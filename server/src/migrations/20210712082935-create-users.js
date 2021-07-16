@@ -40,6 +40,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
+      resetPasswordExpires: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
       avatar: {
         allowNull: false,
         type: Sequelize.STRING

@@ -41,6 +41,7 @@ module.exports = (sequelize, DataTypes) => {
     verified: DataTypes.BOOLEAN,
     verificationCode: DataTypes.STRING,
     resetPasswordToken: DataTypes.STRING,
+    resetPasswordExpires: DataTypes.DATE,
     avatar: DataTypes.STRING,
     following: DataTypes.INTEGER,
     followers: DataTypes.INTEGER
