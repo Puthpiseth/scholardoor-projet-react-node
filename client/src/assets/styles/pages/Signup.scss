@@ -1,0 +1,84 @@
+$mainColor: #0F6A7D;
+$containerColor: #F6F4F4;
+$background: #E5E5E5;
+$white: #FFFFFF;
+$black: #000000;
+
+.form {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 30%;
+    height: 48%;
+    left: 35%;
+    top: 25%;
+    background: $containerColor;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 3px;
+
+    .form-title {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 8%;
+        font-size: 0.7em;
+        font-weight: normal;
+
+        .signup {
+            background:#E5E5E5;
+            position: relative;
+            width: 130px;
+        }
+    }
+
+    .form-inputs {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        left: 12%;
+        padding-bottom: 2%; 
+        width: 75%; 
+
+        input {
+            width: 100%;
+            height: 5vh;
+            font-size: 0.7em;
+            border: none;
+
+            &:focus {
+                outline: 1px solid $mainColor;
+                box-shadow: 0 0 7px $mainColor;
+            }
+        }
+    }
+
+    .term-of-condition {
+        display: flex;
+        justify-content: space-around;
+        padding: 0 38px;
+        
+        p {
+            font-size: 0.54em;
+            text-align: center;
+            margin-top: 1.5%;
+        }
+    }
+
+    button {
+        position: relative;
+        left: 12%;
+        height: 5vh;
+        width: 76%;
+        margin-top: 4%;
+        font-size: 0.9em;
+        background: $mainColor;
+        color:$white;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+    
+        &:hover{
+            opacity: 0.9;
+        }
+    
+    }
+}
