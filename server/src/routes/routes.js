@@ -1,16 +1,16 @@
 require('dotenv').config();
 const express = require('express');
-const userController = require ('../controllers/userController');
+const {signup, activateAccount, signin, forgotPassword, resetPassword, updateUserProfile, deleteUserProfile} = require ('../controllers/userController');
 const auth = require('../middlewares/auth');
-const {SignupValidations} = require('../validators/users-validators');
-const {check} = require('express-validator');
 
 const router = express.Router();
 
-router.post('/signup', userController.signup) 
-      .get('/verify-account/:verificationCode', userController.verifyAccount)
-      .post('/signin', auth.verifyToken, userController.signin)
-      .put('/edit/:id', auth.verifyToken, userController.updateUserProfile)
-      .delete('/delete/:id', auth.verifyToken, userController.deleteUserProfile)
+router.post('/signup', signup) 
+      .get('/activate-account/:token', activateAccount)
+      .post('/signin', auth.verifyToken, signin)
+      .put('/forgot-password', forgotPassword)
+      .put('/reset-password', resetPassword)
+      .put('/edit/:id', auth.verifyToken, updateUserProfile)
+      .delete('/delete/:id', auth.verifyToken, deleteUserProfile)
 
 module.exports = router;
