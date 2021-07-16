@@ -1,12 +1,11 @@
 require('dotenv').config();
 const express = require('express');
-const {signup, activateAccount} = require ('../controllers/signup');
-const {signin} = require('../controllers/signin');
-const {forgotPassword} = require('../controllers/forgot-password');
-const {resetPassword} = require('../controllers/reset-password');
-const {updateUserProfile, deleteUserProfile} = require('../controllers/profile');
-
 const auth = require('../middlewares/auth');
+const {signup, activateAccount} = require ('../controllers/signup');
+const signin = require('../controllers/signin');
+const forgotPassword = require('../controllers/forgot-password');
+const resetPassword = require('../controllers/reset-password');
+const {updateUserProfile, deleteUserProfile} = require('../controllers/profile');
 
 const router = express.Router();
 
@@ -17,7 +16,7 @@ router.post('/signup', signup)
       .put('/forgot-password', forgotPassword)
       .put('/reset-password', resetPassword)
 
-
+// User profile
 router.put('/edit/:id', auth.verifyToken, updateUserProfile)
       .delete('/delete/:id', auth.verifyToken, deleteUserProfile)
 
