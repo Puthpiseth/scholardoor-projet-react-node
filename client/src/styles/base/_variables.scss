@@ -1,0 +1,19 @@
+$defaultfontsize: 16px;
+
+// Font weight
+$light: 300;
+$regular: 400;
+$semibold: 600;
+$bold: 700;
+$extrabold:800;
+
+// Breakpoints
+// Specify each device and their respective breakpoint.
+// Usage: $device-name (string), breakpoint (integer). 
+$mobile: 480px;
+$tablet: 768px; 
+$laptop: 992px;
+$desktop: 1200px;
+$bigscreen: 1600px;
+
+
