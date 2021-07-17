@@ -1,23 +1,22 @@
 require('dotenv').config();
 const express = require('express');
 const auth = require('../middlewares/auth');
-const {signup, activateAccount} = require ('../controllers/signup');
-const signin = require('../controllers/signin');
-const forgotPassword = require('../controllers/forgot-password');
-const resetPassword = require('../controllers/reset-password');
-const {updateUserProfile, deleteUserProfile} = require('../controllers/profile');
+const userController = require ('../controllers/userController');
+const forgotPassword = require('../controllers/forgotPassword');
+const resetPassword = require('../controllers/resetPassword');
+const profile = require('../controllers/profile');
 
 const router = express.Router();
 
 // User authentification routes
-router.post('/signup', signup) 
-      .get('/activate-account/:token', activateAccount)
-      .post('/signin', auth.verifyToken, signin)
-      .put('/forgot-password', forgotPassword)
-      .put('/reset-password', resetPassword)
+router.post('/signup', userController.createAccount) 
+router.get('/activate-account/:token', userController.activateAccount)
+router.post('/signin', auth.verifyToken, userController.signin)
+router.put('/forgot-password', forgotPassword.forgotPassword)
+router.put('/reset-password', resetPassword.resetPassword)
 
 // User profile
-router.put('/edit/:id', auth.verifyToken, updateUserProfile)
-      .delete('/delete/:id', auth.verifyToken, deleteUserProfile)
+router.put('/edit/:id', auth.verifyToken, profile.updateUserProfile)
+router.delete('/delete/:id', auth.verifyToken, profile.deleteUserProfile)
 
 module.exports = router;
