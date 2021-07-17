@@ -3,6 +3,8 @@
 // Breakpoint Mixins
 // Usage: $device-name (string), breakpoint (integer).
 
+
+/* smartphones (portrait) */
 // Usage: @include mobile{}
 @mixin mobile {
     @media only screen and (min-width: #{$mobile}) {
