@@ -4,7 +4,9 @@ const bodyParser = require('body-parser');
 const { sequelize } = require('./models');
 require('dotenv').config();
 
-const routes = require('./routes/routes')
+const profileRoute = require('./routes/profile')
+const userRoute = require('./routes/user')
+
 const app = express();
 
 app.use(cors());
@@ -24,7 +26,7 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use('/users', routes);
+app.use('/users', profileRoute, userRoute);
 
 const port = process.env.PORT || 8000;
 const env = process.env.NODE_ENV || "development";
@@ -32,11 +34,6 @@ const env = process.env.NODE_ENV || "development";
 app.listen(port, async () => {
     console.debug(`Server is listening on port ${port}`);
     console.debug(`Current environment is ${env}`);
-});
-
-app.get('/', (req, res) => {
-
-    res.send("Hello Paris");
 });
 
 sequelize
