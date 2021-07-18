@@ -1,13 +1,12 @@
 import React from 'react';
-import '../styles/pages/signup.scss';
+import '../styles/pages/signin.scss';
 import { Link } from 'react-router-dom'
-import PermIdentityIcon from '@material-ui/icons/PermIdentity';
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import HttpsOutlinedIcon from '@material-ui/icons/HttpsOutlined';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 
-function signup() {
+function signin() {
     return (
         <div>
             <div className="title">
@@ -19,33 +18,6 @@ function signup() {
                     <h2><Link to={'/signin'}> Sign in</Link></h2>
                 </div>        
                             
-                <div className="form-inputs">
-                    <PermIdentityIcon className="icons"/>
-                    <input
-                    type="text"
-                    name="firstname"
-                    className="form-input"
-                    placeholder="Enter your firstname"
-                    />
-                </div>
-                <div className="form-inputs">
-                    <PermIdentityIcon className="icons"/>
-                    <input
-                    type="text"
-                    name="lastname"
-                    className="form-input"
-                    placeholder="Enter your lastname"
-                    />
-                </div>
-                <div className="form-inputs">
-                    <PermIdentityIcon className="icons"/>
-                    <input
-                    type="text"
-                    name="username"
-                    className="form-input"
-                    placeholder="Enter your username"
-                    />
-                </div>
                 <div className="form-inputs">
                     <MailOutlineIcon className="icons"/>
                     <input
@@ -68,14 +40,19 @@ function signup() {
                     placeholder="Enter your password"
                     />
                 </div>
-                <div className="term-of-condition">
-                    <input type="checkbox"/>
-                    <p>I agree to the term of service and acknowledge the Privacy Policy</p>
+                <div className="forgot-password">
+                    <p><Link to={'/forgot-password'}> forgot password?</Link></p>
                 </div>
-                <button type="submit" className="signup-btn">Signup</button>     
+                <div className="remember-me">
+                    <input type="checkbox"/>
+                    <p>Remember me</p>
+                </div>
+            
+                <button type="submit" className="signin-btn" >Signin</button>     
             </form>
         </div>
     )
 }
 
-export default signup
+export default signin;
+
