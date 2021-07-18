@@ -98,7 +98,7 @@ exports.createAccount = async (req, res) => {
                 <h1>Hello, ${user.username}</h1>
                 <p>Thank you for choosing ScholarDoor! Please confirm your email address 
                 by clicking the link below</p>
-                <a>${process.env.Base_URL}/users/activate-account/${token}</a>
+                <p>${process.env.Base_URL}/users/activate-account/${token}</p>
             `
         };
         mg.messages().send(data, function (error, body) {
