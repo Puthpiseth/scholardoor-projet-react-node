@@ -6,7 +6,7 @@ import MailOutlineIcon from '@material-ui/icons/MailOutline';
 function ForgotPassword() {
     return (
         <div>
-            <form className="forgot-password-form">
+            <form className="forgot-password-container">
                 <div className="forgot-password-wrapper">
                     <div className="forgot-password-title">
                         <h2>Forgot Password</h2>
