@@ -115,9 +115,9 @@ body {
 }
 
 .form .form-inputs input:focus {
-  outline: 1px solid #0F6A7D;
-  -webkit-box-shadow: 0 0 7px #0F6A7D;
-          box-shadow: 0 0 7px #0F6A7D;
+  outline: 1px solid #2794f2;
+  -webkit-box-shadow: 0 0 7px #2794f2;
+          box-shadow: 0 0 7px #2794f2;
   padding-left: 10px;
 }
 
