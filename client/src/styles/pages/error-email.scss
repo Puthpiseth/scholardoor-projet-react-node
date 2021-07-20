@@ -44,7 +44,16 @@
 
         .back-to-forgot-password {
             position: absolute;
-            top: 70%;
+            top: 75%;
+
+            a {
+                text-decoration: none;
+                color: $midblue;
+    
+                &:hover {
+                    color: $darkblue;
+                }
+            }
         }
     }
 }

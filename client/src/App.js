@@ -3,6 +3,7 @@ import Signin from './pages/Signin';
 import ForgotPassword from './pages/Forgot-password';
 import ResetPassword from './pages/Reset-password';
 import ErrorEmail from './pages/Error-email';
+import Profile from './pages/Profile';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 
@@ -15,6 +16,7 @@ function App() {
         <Route exact path='/forgot-password' component={ForgotPassword}></Route>
         <Route exact path='/reset-password' component={ResetPassword}></Route>
         <Route exact path='/error-email' component={ErrorEmail}></Route>
+        <Route exact path='/profile' component={Profile}></Route>
       </Switch>
     </Router>
   );

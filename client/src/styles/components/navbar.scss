@@ -1,0 +1,120 @@
+@import '../app.scss';
+@import '../theme/resetbg';
+
+.navbar-container {
+    background: $mainColor;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 10vh;
+
+    .leftNav {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        right: 5%;
+
+        .logo {
+            color: $white;
+            cursor: pointer;
+            h1 {
+                font-size: $big;
+            }      
+        }
+
+        .search {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            position: relative;
+            left: 5%;
+
+            .searchIcon {
+                position: absolute;
+                left: 2%;
+                height: 25px;
+                width: 25px;
+                z-index: 5;
+            }
+        
+            ::-webkit-input-placeholder{
+                color: $darkgrey;
+                padding: 28px;
+                font-size: $medium;
+            }
+
+            .input {
+                height: 5vh;
+                border: none;
+                border-radius: 3px;
+        
+                &:focus {
+                    outline: 1px $midblue;
+                    box-shadow: 0 0 5px $midblue;
+                }
+            }
+    
+        }
+        
+    }
+
+    .rightNav {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: 1%;
+
+        .rightNav-icons {
+            position: relative;
+            color: $lightgrey;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+
+            &:hover {
+                color: $lightblue;
+            }
+        };
+        p {
+            position: absolute;
+            top: 55%;
+            font-size: $medium;
+            color: $lightergrey;
+        }
+
+        .homeIcon {
+            position: absolute;
+            left: 53%;
+
+            .home {
+                left: -15%;
+            }
+        } 
+        .mailIcon {
+            position: absolute;
+            left: 62%;
+            // padding-right: 20px !important;
+            .message {
+                left: -35%;
+            }
+
+        }
+        .notificationIcon {
+            position: absolute;
+            left: 72%;
+            
+            .notification {
+                left: -65%;
+            }
+        }
+        .accountCircleIcon{
+            position: absolute;
+
+            .profile {
+                left: -15%;
+            }
+        }
+    }
+}

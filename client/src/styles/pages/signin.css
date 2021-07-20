@@ -138,6 +138,15 @@ body {
   right: 10%;
 }
 
+.form .forgot-password a {
+  text-decoration: none;
+  color: #2794f2;
+}
+
+.form .forgot-password a:hover {
+  color: #2D6597;
+}
+
 .form .remember-me {
   display: -webkit-box;
   display: -ms-flexbox;
