@@ -1,0 +1,185 @@
+* {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 12px;
+}
+
+/* smartphones (portrait) */
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #0F6A7D;
+}
+
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #E5E5E5;
+}
+
+.navbar-container {
+  background: #0F6A7D;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 12vh;
+}
+
+.navbar-container .leftNav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: relative;
+  right: 10%;
+}
+
+.navbar-container .leftNav .logo {
+  color: #fff;
+  cursor: pointer;
+}
+
+.navbar-container .leftNav .logo h1 {
+  font-size: 20px;
+}
+
+.navbar-container .leftNav .search {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  left: 5%;
+}
+
+.navbar-container .leftNav .search .searchIcon {
+  position: absolute;
+  left: 2%;
+  height: 25px;
+  width: 25px;
+  z-index: 5;
+}
+
+.navbar-container .leftNav .search ::-webkit-input-placeholder {
+  color: #999999;
+  padding: 28px;
+  font-size: 15px;
+}
+
+.navbar-container .leftNav .search .input {
+  height: 5vh;
+  border: none;
+  border-radius: 3px;
+}
+
+.navbar-container .leftNav .search .input:focus {
+  outline: 1px #2794f2;
+  -webkit-box-shadow: 0 0 5px #2794f2;
+          box-shadow: 0 0 5px #2794f2;
+}
+
+.navbar-container .rightNav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.navbar-container .rightNav .rightNav-icons {
+  position: relative;
+  left: 50%;
+  color: #E5E5E5;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
+
+.navbar-container .rightNav .rightNav-icons:hover {
+  color: #54C0EB;
+}
+
+.navbar-container .rightNav p {
+  position: absolute;
+  top: 55%;
+  font-size: 15px;
+  color: #F6f4f4;
+}
+
+.navbar-container .rightNav .homeIcon {
+  position: absolute;
+  left: 53%;
+}
+
+.navbar-container .rightNav .homeIcon .home {
+  left: 80%;
+}
+
+.navbar-container .rightNav .mailIcon {
+  position: absolute;
+  left: 62%;
+}
+
+.navbar-container .rightNav .mailIcon .message {
+  left: 160%;
+}
+
+.navbar-container .rightNav .notificationIcon {
+  position: absolute;
+  left: 71%;
+}
+
+.navbar-container .rightNav .notificationIcon .notification {
+  left: 120%;
+}
+
+.navbar-container .rightNav .accountCircleIcon {
+  position: absolute;
+}
+
+.navbar-container .rightNav .accountCircleIcon .profile {
+  left: 180%;
+}
+/*# sourceMappingURL=navbar.css.map */

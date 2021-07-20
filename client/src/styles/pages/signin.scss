@@ -93,6 +93,15 @@
     .forgot-password {
         position: absolute;
         right: 10%;
+
+        a {
+            text-decoration: none;
+            color: $midblue;
+
+            &:hover {
+                color: $darkblue;
+            }
+        }
     }
 
     .remember-me {

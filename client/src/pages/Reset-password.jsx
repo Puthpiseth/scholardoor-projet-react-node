@@ -46,7 +46,7 @@ function ResetPassword() {
 
             <div className="reset-password-submit">
                 <button type="submit" className="reset-password-btn">submit</button>
-                <p className="back-to-link"><Link to='/signin'>Back to sign in</Link></p>
+                <p className="back-to-signin"><Link to='/signin'>Back to sign in</Link></p>
             </div>
         </div>
         

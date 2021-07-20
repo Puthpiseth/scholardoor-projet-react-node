@@ -87,6 +87,15 @@ body {
 
 .error-email-container .error-email-wrapper .back-to-forgot-password {
   position: absolute;
-  top: 70%;
+  top: 75%;
+}
+
+.error-email-container .error-email-wrapper .back-to-forgot-password a {
+  text-decoration: none;
+  color: #2794f2;
+}
+
+.error-email-container .error-email-wrapper .back-to-forgot-password a:hover {
+  color: #2D6597;
 }
 /*# sourceMappingURL=error-email.css.map */
