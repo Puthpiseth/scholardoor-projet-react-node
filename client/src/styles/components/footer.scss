@@ -1,0 +1,18 @@
+@import '../app.scss';
+@import '../theme/resetbg';
+
+.copyright {
+    position: absolute ;
+    top: 93%;
+    left: 40%;
+
+    p {
+        font-size: $medium;
+        color: $darkgrey;
+        .private-policy {
+            font-size: $medium;
+        }
+    }
+    
+    
+}
