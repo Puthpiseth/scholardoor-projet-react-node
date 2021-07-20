@@ -28,7 +28,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
-      content: {
+      researchInterest: {
         allowNull: false,
         type: Sequelize.STRING
       },
