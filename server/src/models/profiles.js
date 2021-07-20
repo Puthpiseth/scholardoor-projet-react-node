@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     username: DataTypes.STRING,
     position: DataTypes.STRING,
     affilation: DataTypes.STRING,
-    content: DataTypes.STRING,
+    researchInterest: DataTypes.STRING,
     location: DataTypes.STRING
   }, {
     sequelize,

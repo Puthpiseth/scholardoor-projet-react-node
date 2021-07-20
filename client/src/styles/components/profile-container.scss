@@ -1,0 +1,77 @@
+@import '../app.scss';
+@import '../theme/resetbg';
+
+.profile-container {
+    position: absolute;
+    top: 20%;
+    left: 15%;
+    width: 30%;
+    height: 43%;
+    background: $lightergrey;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 3px;
+
+    .profile-background-top {
+        background: $mainColor;
+        height: 10vh;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+    }
+
+    .profile-wrapper {
+        position: relative;
+        left: 10%;
+
+        .profile-avatar {
+            position: absolute;
+            top: -44%;
+
+            .profile-avatar-icon {
+                height: 70px;
+                width: 70px;
+                color: $midgrey;
+            }
+        }
+
+        .profile-info {
+            p {
+                line-height: 0.7;
+                font-size: $medium;
+            }
+            .username {
+                font-weight: $semibold;
+            }
+        }
+        .followers-following {
+            display: flex;
+
+            .number-of-followers {
+                display: flex;
+                flex-direction: row;
+                margin-right: 15px;
+    
+                p {
+                    font-size: $medium;
+                    margin-right: 5px;
+                }
+                .follower {
+                    color: $darkgrey;
+                }
+            }
+            .number-of-following {
+                display: flex;
+                flex-direction: row;
+    
+                p {
+                    font-size: $medium;
+                    margin-right: 5px;
+                }
+                .follower {
+                    color: $darkgrey;
+                }
+            }
+        }
+       
+    }
+
+}
