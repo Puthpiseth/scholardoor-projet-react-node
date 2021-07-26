@@ -5,6 +5,8 @@ import Button from '@material-ui/core/Button';
 
 function ProfileContainer() {
     return (
+        <>
+        <main>
         <div className="profile-container">
             <div className="profile-background-top"></div>
             <div className="profile-wrapper">
@@ -47,6 +49,8 @@ function ProfileContainer() {
                 </div>
             </div>
         </div>
+        </main>
+        </>
     )
 }
 

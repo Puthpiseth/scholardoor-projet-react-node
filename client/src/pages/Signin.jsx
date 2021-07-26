@@ -6,9 +6,9 @@ import HttpsOutlinedIcon from '@material-ui/icons/HttpsOutlined';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 
-function signin() {
+function Signin() {
     return (
-        <div>
+        <>
             <div className="title">
                 <h1>Welcome to ScholarDoor</h1>
             </div>
@@ -50,9 +50,9 @@ function signin() {
             
                 <button type="submit" className="signin-btn" >Signin</button>     
             </form>
-        </div>
+        </>
     )
 }
 
-export default signin;
+export default Signin;
 
