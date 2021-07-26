@@ -1,0 +1,110 @@
+* {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 12px;
+}
+
+/* smartphones (portrait) */
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #0F6A7D;
+}
+
+.profile-container {
+  position: absolute;
+  top: 20%;
+  left: 15%;
+  width: 30%;
+  height: 43%;
+  background: #F6f4f4;
+  -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+}
+
+.profile-container .profile-background-top {
+  background: #0F6A7D;
+  height: 10vh;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+.profile-container .profile-wrapper {
+  position: relative;
+  left: 10%;
+}
+
+.profile-container .profile-wrapper .profile-avatar {
+  position: absolute;
+  top: -44%;
+}
+
+.profile-container .profile-wrapper .profile-avatar .profile-avatar-icon {
+  height: 70px;
+  width: 70px;
+  color: #C4C4C4;
+}
+
+.profile-container .profile-wrapper .profile-info p {
+  line-height: 0.7;
+  font-size: 15px;
+}
+
+.profile-container .profile-wrapper .profile-info .username {
+  font-weight: 600;
+}
+
+.profile-container .profile-wrapper .followers-following {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.profile-container .profile-wrapper .followers-following .number-of-followers {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin-right: 15px;
+}
+
+.profile-container .profile-wrapper .followers-following .number-of-followers p {
+  font-size: 15px;
+  margin-right: 5px;
+}
+
+.profile-container .profile-wrapper .followers-following .number-of-followers .follower {
+  color: #999999;
+}
+
+.profile-container .profile-wrapper .followers-following .number-of-following {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.profile-container .profile-wrapper .followers-following .number-of-following p {
+  font-size: 15px;
+  margin-right: 5px;
+}
+
+.profile-container .profile-wrapper .followers-following .number-of-following .follower {
+  color: #999999;
+}
+/*# sourceMappingURL=profile-container.css.map */

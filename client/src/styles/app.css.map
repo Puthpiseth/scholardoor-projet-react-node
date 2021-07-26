@@ -1,6 +1,6 @@
 {
     "version": 3,
-    "mappings": "AGCA,AAAA,CAAC,CAAC;EACE,WAAW,EAAE,2HAA2H;EACxI,SAAS,EDFK,IAAI;CCGrB;;ACED,4BAA4B;AEN5B,AAAA,CAAC,EAAE,CAAC,AAAA,OAAO,EAAE,CAAC,AAAA,MAAM,CAAC;EACjB,UAAU,EAAE,UAAU;CACzB;;AAED,AAAA,IAAI,CAAC;EACD,SAAS,EAAE,KAAK;CACnB;;AAED,AAAA,IAAI,CAAC;EACD,MAAM,EAAE,CAAC;EACT,OAAO,EAAE,CAAC;EACV,UAAU,ELTF,OAAO;CKUlB",
+    "mappings": "AGCA,AAAA,CAAC,CAAC;EACE,WAAW,EAAE,2HAA2H;EACxI,SAAS,EDFK,IAAI;CCGrB;;ACED,4BAA4B;AEN5B,AAAA,CAAC,EAAE,CAAC,AAAA,OAAO,EAAE,CAAC,AAAA,MAAM,CAAC;EACjB,UAAU,EAAE,UAAU;CACzB;;AAED,AAAA,IAAI,CAAC;EACD,SAAS,EAAE,KAAK;CACnB;;AAED,AAAA,IAAI,CAAC;EACD,MAAM,EAAE,CAAC;EACT,OAAO,EAAE,CAAC;EACV,gBAAgB,ELTR,OAAO;CKUlB",
     "sources": [
         "app.scss",
         "base/_color.scss",
@@ -8,8 +8,7 @@
         "base/_typography.scss",
         "base/_breakpoints.scss",
         "helpers/_mixins.scss",
-        "theme/_reset.scss",
-        "theme/_buttons.scss"
+        "theme/_reset.scss"
     ],
     "names": [],
     "file": "app.css"

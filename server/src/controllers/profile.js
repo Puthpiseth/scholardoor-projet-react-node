@@ -2,7 +2,7 @@ const { users }  = require('../models');
 require('dotenv').config();
 
 /**
- * @description To update a user profile
+ * @description To update a user profile's infos
  * @api /users/edit/:id
  * @access Private 
  * @type PUT
@@ -28,7 +28,6 @@ exports.updateUserProfile = async (req, res) => {
     catch(err) {
         res.status(500).json({message: "Cannot update user!"});
     }
-    
 };
 
 /**
