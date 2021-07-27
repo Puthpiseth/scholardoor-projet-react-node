@@ -5,7 +5,6 @@ const { sequelize } = require('./models');
 require('dotenv').config();
 
 // Routes
-const profileRoute = require('./routes/profile')
 const userRoute = require('./routes/user')
 
 const app = express();
@@ -27,7 +26,7 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use('/users', profileRoute, userRoute);
+app.use('/users', userRoute);
 
 const port = process.env.PORT || 8000;
 const env = process.env.NODE_ENV || "development";

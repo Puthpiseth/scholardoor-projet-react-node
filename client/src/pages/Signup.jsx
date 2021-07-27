@@ -5,8 +5,6 @@ import { Link } from 'react-router-dom'
 import PermIdentityIcon from '@material-ui/icons/PermIdentity';
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import HttpsOutlinedIcon from '@material-ui/icons/HttpsOutlined';
-// import VisibilityIcon from '@material-ui/icons/Visibility';
-// import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 
 function Signup() {
@@ -43,7 +41,6 @@ function Signup() {
                                 {errors.firstname.message}
                                 <ErrorOutlineIcon style={{position: 'absolute', top: '15%', right: '3%', fontSize: '20px'}}/>
                             </span>}
-                       
                     </div>
                     <div className="form-inputs">
                         <PermIdentityIcon className="icons"/>
@@ -84,7 +81,7 @@ function Signup() {
                         className="form-input"
                         placeholder="Enter your email"
                         {...register('email', {required: "Email is required", 
-                            pattern: {value: /^([a-z A-Z 0-9](\.)?)+@\w+\.(\w){2,4}$/, message: "Email is not valid"}})}
+                            pattern: {value: /^([a-z A-Z 0-9](\.)?)+@\w+\.(\w){2,4}$/, message: "Email is invalid"}})}
                         />
                         {errors.email && 
                             <span style={{color: 'red', marginTop: '5px'}}>
@@ -94,10 +91,6 @@ function Signup() {
                     </div>
                     <div className="form-inputs">
                         <HttpsOutlinedIcon className="icons"/> 
-                        <div className="visibility-icons">
-                            {/* <VisibilityIcon className="show-icons"/>
-                            <VisibilityOffIcon className="hide-icons"/> */}
-                        </div>
                         <input
                         type="password"
                         name="password"
@@ -115,7 +108,7 @@ function Signup() {
                     </div>
                     <div className="term-of-condition">
                         <input type="checkbox"/>
-                        <p>I agree to the term of service and acknowledge the Privacy Policy</p>
+                        <p>I agree to the term of service and acknowledge the <Link to="/private-policy">Privacy Policy</Link></p>
                     </div>
                     <button type="submit" className="signup-btn">Signup</button>     
                 </form>

@@ -29,37 +29,6 @@ exports.createAccount = async (req, res) => {
             verificationCode: crypto.randomBytes(64).toString('hex'),
         }
         
-        // User infos are required
-
-        if(firstname === '') {
-            return res.status(400).json({message: "Firstname is required!"});
-        }
-
-        if(lastname === '') {
-            return res.status(400).json({message: "Lastname is required!"});
-        }
-
-        if(username === '') {
-            return res.status(400).json({message: "Username is required!"});
-        }
-
-        if(username.length < 5) {
-            return res.status(400).json({message: "Username must be greater than 5 characters!"});
-        }
-        
-        // User's email regex is required
-        const emailRegex = /^([a-z A-Z 0-9](\.)?)+@\w+\.(\w){2,4}$/;
-        if(!emailRegex.test(email)) {
-            return res.status(400).json({message: "Email is not valid!"});
-        }
-
-        // User's password regex is required
-        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-        if(!passwordRegex.test(password)) {
-            return res.status(400).json({ 
-                message: "Password must be greater than 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character"});
-        }
-
         // Check if the email already exists
         const alreadyExistEmail = await users.findOne({where: {email: email}})
 
@@ -189,5 +158,56 @@ exports.activateAccount = async (req, res, next) => {
     } 
     catch(err) {
         return res.status(500).json(err.message);
+    }
+};
+
+/**
+ * @description To update a user profile's infos
+ * @api /users/edit/:id
+ * @access Private 
+ * @type PUT
+ */
+
+ exports.updateUserProfile = async (req, res) => {
+
+    const {firstname, lastname, username, email} = req.body;
+
+    try {
+        const user = await users.update({
+            firstname: firstname, lastname: 
+            lastname, username: username, 
+            email: email
+        }, {where: {id: req.params.id}});
+        
+        if(user) {
+            res.status(200).json({message: "Successfully update user!"});
+        } else {
+            res.status(404).json({message: "User not found!"});
+        }
+    } 
+    catch(err) {
+        res.status(500).json({message: "Cannot update user!"});
+    }
+};
+
+/**
+ * @description To delete a user profile
+ * @api /users/delete/:id
+ * @access Private 
+ * @type DELETE
+ */
+
+exports.deleteUserProfile = async (req, res) => {
+
+    try {
+        const user = await users.destroy({where: {id: req.params.id}});
+        if(user) {
+            res.status(200).json({message: "Successfully delete user!"});
+        } else {
+            res.status(404).json({message: "User not found!"});
+        }
+    } 
+    catch(err) {
+        res.status(500).json({message: "Cannot delete user!"});
     }
 };

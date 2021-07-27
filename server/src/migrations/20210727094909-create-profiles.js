@@ -1,40 +1,35 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('chats', {
+    await queryInterface.createTable('profiles', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      senderId: {
+      userId: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
           model: 'users',
           key: 'id',
-        },
+        }
       },
-      inboxHash: {
-        allowNull: false,
+      username: {
         type: Sequelize.STRING
       },
-      message: {
-        allowNull: false,
-        type: Sequelize.TEXT
+      position: {
+        type: Sequelize.STRING
       },
-      file: {
-        allowNull: false,
-        type: Sequelize.TEXT
+      affiliation: {
+        type: Sequelize.STRING
       },
-      meta: {
-        allowNull: false,
-        type: Sequelize.TEXT
+      content: {
+        type: Sequelize.STRING
       },
-      deletedUserId: {
-        allowNull: false,
-        type: Sequelize.INTEGER
+      location: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
@@ -47,6 +42,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('chats');
+    await queryInterface.dropTable('profiles');
   }
 };

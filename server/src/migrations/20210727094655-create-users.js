@@ -1,56 +1,52 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('articles', {
+    await queryInterface.createTable('users', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      user_id: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'users',
-          key: 'id',
-        },
-      },
-      file_path: {
+      firstname: {
         allowNull: false,
         type: Sequelize.STRING
       },
-      title: {
+      lastname: {
         allowNull: false,
         type: Sequelize.STRING
       },
-      authors: {
+      username: {
         allowNull: false,
         type: Sequelize.STRING
       },
-      publiationDate: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      journal: {
+      email: {
         allowNull: false,
         type: Sequelize.STRING
       },
-      issue: {
+      password: {
         allowNull: false,
         type: Sequelize.STRING
       },
-      publisher: {
+      verificationCode: {
         allowNull: false,
         type: Sequelize.STRING
       },
-      abstract: {
+      resetPasswordToken: {
         allowNull: false,
         type: Sequelize.STRING
       },
-      viewId: {
+      avatar: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
+      },
+      following: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      followers: {
+        allowNull: false,
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
@@ -63,6 +59,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('articles');
+    await queryInterface.dropTable('users');
   }
 };
