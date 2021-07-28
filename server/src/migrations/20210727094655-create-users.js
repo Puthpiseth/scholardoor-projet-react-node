@@ -28,6 +28,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
+      termsAccepted: {
+        allowNull: false,
+        type: Sequelize.BOOLEAN
+      },
       verificationCode: {
         allowNull: false,
         type: Sequelize.STRING

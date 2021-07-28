@@ -1,26 +1,11 @@
 import api from '../services/api';
 
-async function Signup(arr) {
-
-    const user = {
-        firstname: arr[0].value,
-        lastname: arr[1].value,
-        username: arr[2].value,
-        email: arr[3].value,
-        password: arr[4].value
-    }
-    const response = await api.post('/signup', user);
-    return response;
+const Register = async (firstname, lastname, username, email, password) => {
+    return await api.post('/signup', firstname, lastname, username, email, password);
 }
 
-async function Signin(arr) {
-
-    const user = {
-        email: arr[3].value,
-        password: arr[4].value,
-    }
-    const response = await api.post('/signin', user);
-    return response;
+const Login = async (email, password) => {
+    return await api.post('/signin', email, password);
 }
 
-export {Signup, Signin};
+export {Register, Login};
