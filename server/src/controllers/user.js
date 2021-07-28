@@ -57,25 +57,25 @@ exports.createAccount = async (req, res) => {
             return res.status(400).json({ message: "Lastname already exists!"});
         }
 
-        // Verify a user account
-        const token = jwt.sign({email: user.email,}, process.env.SECRET_JWT, { expiresIn: "1h"});
-        const data = {
-            from: 'no-reply@gmail.com',
-            to: user.email,
-            subject: 'Account Verification',
-            html: `
-                <h1>Hello, ${user.username}</h1>
-                <p>Thank you for choosing ScholarDoor! Please confirm your email address 
-                by clicking the link below</p>
-                <p>${process.env.Base_URL}/users/activate-account/${token}</p>
-            `
-        };
-        mg.messages().send(data, function (error, body) {
-            if(error) {
-                return res.status(400).json({errors: err.message})
-            }
-            return res.json({errors: 'Email has been sent and please activate your account!'})
-        });
+        // // Verify a user account
+        // const token = jwt.sign({email: user.email,}, process.env.SECRET_JWT, { expiresIn: "1h"});
+        // const data = {
+        //     from: 'no-reply@gmail.com',
+        //     to: user.email,
+        //     subject: 'Account Verification',
+        //     html: `
+        //         <h1>Hello, ${user.username}</h1>
+        //         <p>Thank you for choosing ScholarDoor! Please confirm your email address 
+        //         by clicking the link below</p>
+        //         <p>${process.env.Base_URL}/users/activate-account/${token}</p>
+        //     `
+        // };
+        // mg.messages().send(data, function (error, body) {
+        //     if(error) {
+        //         return res.status(400).json({error})
+        //     }
+        //     return res.json({errors: 'Email has been sent and please activate your account!'})
+        // });
 
         // Create a new user
         users.create(user).then(user => {
@@ -93,37 +93,37 @@ exports.createAccount = async (req, res) => {
     }
 }
 
-/**
- * @description To create a new user account
- * @api /users/verify-account/:verificationCode
- * @access Public <Only via email>
- * @type GET
- */
+// /**
+//  * @description To create a new user account
+//  * @api /users/verify-account/:verificationCode
+//  * @access Public <Only via email>
+//  * @type GET
+//  */
 
-exports.activateAccount = async (req, res, next) => {
+// exports.activateAccount = async (req, res, next) => {
     
-    try {
-        const {token} = req.body
+//     try {
+//         const {token} = req.body
 
-        await jwt.verify(token, process.env.SECRET_JWT);
-        const user = await users.findOne({where: {_id: token}});
+//         await jwt.verify(token, process.env.SECRET_JWT);
+//         const user = await users.findOne({where: {_id: token}});
         
-            if(!user) {
-                res.status(403).json({ 
-                    message: 'User with this email already exists'})
-            } else {
-                next();
-            }
+//             if(!user) {
+//                 res.status(403).json({ 
+//                     message: 'User with this email already exists'})
+//             } else {
+//                 next();
+//             }
             
-            const newUser = new user({...user.data});
-            await newUser.save();
-            await user.remove();
-            res.json({message: `User with this ${token} has been activated.`})
-    }
-    catch(err) {
-        return res.status(500).json(err.message);
-    }
-}
+//             const newUser = new user({...user.data});
+//             await newUser.save();
+//             await user.remove();
+//             res.json({message: `User with this ${token} has been activated.`})
+//     }
+//     catch(err) {
+//         return res.status(500).json(err.message);
+//     }
+// }
 
 /**
  * @description To authenticate a user and get an auth token
@@ -134,7 +134,7 @@ exports.activateAccount = async (req, res, next) => {
 
  exports.signin = async (req, res) => {
     const { email, password } = req.body;
-
+    console.log(email, password)
     try {
         const user = await users.findOne({where: {email: email}});
     
