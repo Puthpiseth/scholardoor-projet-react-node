@@ -8,7 +8,6 @@ import HttpsOutlinedIcon from '@material-ui/icons/HttpsOutlined';
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import { Register } from '../services/user';
 
-
 function Signup() {
     const {register, handleSubmit, formState: {errors}} = useForm();
     const [firstname, setFirstname] = useState('');
@@ -19,10 +18,7 @@ function Signup() {
     const [error, setError] = useState('');
     const [redirect, setRedirect] = useState(false);
 
-
-
-    const onSubmit = async (e) => {
-        
+    const onSubmit = async (e) => {        
         const user = {
             firstname: firstname,
             lastname: lastname,
@@ -37,10 +33,16 @@ function Signup() {
             console.log(response)
         }
         catch(error) {
-            console.log(error)
-            // if (!user.email) {
-            //     setError(error.data.message)
-            // }
+            setError(error)
+            // Check if the username is already taken
+            if(user.username) {
+                setError(error.response.data.message)
+            } 
+            // Check if the email is already taken
+            if(user.email) {
+                setError(error.response.data.message)
+            }
+            
         }        
     }
 
@@ -74,7 +76,7 @@ function Signup() {
                     {errors.firstname && 
                         <span style={{color: 'red', marginTop: '5px'}}>
                             {errors.firstname.message}
-                            <ErrorOutlineIcon style={{position: 'absolute', top: '15%', right: '3%', fontSize: '20px'}}/>
+                            <ErrorOutlineIcon style={{position: 'absolute', top: '10%', right: '3%', fontSize: '20px'}}/>
                         </span>}
                 </div>
                 <div className="form-inputs">
@@ -92,7 +94,7 @@ function Signup() {
                     {errors.lastname && 
                         <span style={{color: 'red', marginTop: '5px'}}>
                             {errors.lastname.message}
-                            <ErrorOutlineIcon style={{position: 'absolute', top: '15%', right: '3%', fontSize: '20px'}}/>
+                            <ErrorOutlineIcon style={{position: 'absolute', top: '10%', right: '3%', fontSize: '20px'}}/>
                         </span>}
                 </div>
                 <div className="form-inputs">
@@ -109,10 +111,17 @@ function Signup() {
                     }})}
                     onChange={e => setUsername(e.target.value)}
                     />
+                    {error &&
+                        <span style={{color: 'red', marginTop: '5px'}}>
+                            Username is already taken!
+                            <ErrorOutlineIcon style={{position: 'absolute', top: '10%', right: '3%', fontSize: '20px'}}/>
+                        </span>
+                    } 
+
                     {errors.username && 
                         <span style={{color: 'red', marginTop: '5px'}}>
                             {errors.username.message}
-                            <ErrorOutlineIcon style={{position: 'absolute', top: '15%', right: '3%', fontSize: '20px'}}/>
+                            <ErrorOutlineIcon style={{position: 'absolute', top: '10%', right: '3%', fontSize: '20px'}}/>
                         </span>}
                 </div>
                 <div className="form-inputs">
@@ -129,15 +138,16 @@ function Signup() {
                     }})}
                     onChange={e => setEmail(e.target.value)}
                     />
-                    {error.email && (
+                    {error && (
                         <span style={{color: 'red', marginTop: '5px'}}>
-                            {error.email}
+                            Email is already taken!
+                            <ErrorOutlineIcon style={{position: 'absolute', top: '10%', right: '3%', fontSize: '20px'}}/>
                         </span>
                     )}
                     {errors.email && 
                         <span style={{color: 'red', marginTop: '5px'}}>
                             {errors.email.message}
-                            <ErrorOutlineIcon style={{position: 'absolute', top: '15%', right: '3%', fontSize: '20px'}}/>
+                            <ErrorOutlineIcon style={{position: 'absolute', top: '10%', right: '3%', fontSize: '20px'}}/>
                         </span>}
                 </div>
                 <div className="form-inputs">
@@ -156,7 +166,7 @@ function Signup() {
                     {errors.password && 
                         <span style={{color: 'red', marginTop: '5px'}}>
                             {errors.password.message}
-                            <ErrorOutlineIcon style={{position: 'absolute', top: '15%', right: '3%', fontSize: '20px'}}/>
+                            <ErrorOutlineIcon style={{position: 'absolute', top: '10%', right: '3%', fontSize: '20px'}}/>
                         </span>}
                 </div>
                 <div className="term-of-condition">
@@ -166,13 +176,7 @@ function Signup() {
                     />
                     <p>I agree to the term of service and acknowledge the <Link to="/private-policy">Privacy Policy</Link></p>
                 </div>
-                <button 
-                    type="submit" 
-                    className="signup-btn" 
-                    >
-                        Signup
-                    
-                </button>     
+                <button type="submit" className="signup-btn">Signup</button>     
             </form>
         </>
     )
