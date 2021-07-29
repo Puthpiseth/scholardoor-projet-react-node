@@ -3,12 +3,10 @@ import '../styles/pages/signin.scss';
 import { Link, Redirect } from 'react-router-dom'
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import HttpsOutlinedIcon from '@material-ui/icons/HttpsOutlined';
-import VisibilityIcon from '@material-ui/icons/Visibility';
-import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import { Login } from '../services/user';
 
 
-function Signin(props) {
+function Signin() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [redirect, setRedirect] = useState(false);
@@ -24,15 +22,15 @@ function Signin(props) {
         try {
             const response = await Login(user);
             localStorage.setItem('token', response.data.token);
+            console.log(response.data)
             setRedirect(true);
         }
-
         catch(error) {
                 console.log(error)
         }
     }
     if (redirect) {
-        return <Redirect to ="/forgot-password"/>;
+        return <Redirect to ="/profile"/>;
     }
 
     return (
@@ -58,10 +56,6 @@ function Signin(props) {
                 </div>
                 <div className="form-inputs">
                     <HttpsOutlinedIcon className="icons"/> 
-                    <div className="visibility-icons">
-                        <VisibilityIcon className="show-icons"/>
-                        <VisibilityOffIcon className="hide-icons"/>
-                    </div>
                     <input
                     type="password"
                     name="password"
