@@ -16,14 +16,12 @@ function Signup() {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
     const [redirect, setRedirect] = useState(false);
 
-    // const onSubmit = data => {
-    //     console.log(data);
-    // }
+
 
     const onSubmit = async (e) => {
-        // e.preventDefault();
         
         const user = {
             firstname: firstname,
@@ -33,9 +31,17 @@ function Signup() {
             password: password
         }
         
-        await Register(user);
-
-        setRedirect(true);
+        try {
+            const response = await Register(user);
+            setRedirect(true);
+            console.log(response)
+        }
+        catch(error) {
+            console.log(error)
+            // if (!user.email) {
+            //     setError(error.data.message)
+            // }
+        }        
     }
 
     if (redirect) {
@@ -60,7 +66,9 @@ function Signup() {
                     name="firstname"
                     className="form-input"
                     placeholder="Enter your firstname"
-                    {...register('firstname', {required: "Firstname is required"})}
+                    {...register('firstname', {
+                        required: "Firstname is required"
+                    })}
                     onChange={e => setFirstname(e.target.value)}
                     />
                     {errors.firstname && 
@@ -76,14 +84,16 @@ function Signup() {
                     name="lastname"
                     className="form-input"
                     placeholder="Enter your lastname"
-                    {...register('lastname', {required: "Lastname is required"})}
+                    {...register('lastname', {
+                        required: "Lastname is required"
+                    })}
                     onChange={e => setLastname(e.target.value)}
                     />
                     {errors.lastname && 
-                    <span style={{color: 'red', marginTop: '5px'}}>
-                        {errors.lastname.message}
-                        <ErrorOutlineIcon style={{position: 'absolute', top: '15%', right: '3%', fontSize: '20px'}}/>
-                    </span>}
+                        <span style={{color: 'red', marginTop: '5px'}}>
+                            {errors.lastname.message}
+                            <ErrorOutlineIcon style={{position: 'absolute', top: '15%', right: '3%', fontSize: '20px'}}/>
+                        </span>}
                 </div>
                 <div className="form-inputs">
                     <PermIdentityIcon className="icons"/>
@@ -92,8 +102,11 @@ function Signup() {
                     name="username"
                     className="form-input"
                     placeholder="Enter your username"
-                    {...register('username', {required: "Username is required", 
-                        minLength: {value: 5, message: "Username must be greater than 5 charactors"}})}
+                    {...register('username', {
+                        required: "Username is required", 
+                        minLength: {value: 5, 
+                        message: "Username must be greater than 5 charactors"
+                    }})}
                     onChange={e => setUsername(e.target.value)}
                     />
                     {errors.username && 
@@ -109,10 +122,18 @@ function Signup() {
                     name="email"
                     className="form-input"
                     placeholder="Enter your email"
-                    {...register('email', {required: "Email is required", 
-                        pattern: {value: /^([a-z A-Z 0-9](\.)?)+@\w+\.(\w){2,4}$/, message: "Email is invalid"}})}
+                    {...register('email', {
+                        required: "Email is required", 
+                        pattern: {value: /^([a-z A-Z 0-9](\.)?)+@\w+\.(\w){2,4}$/, 
+                        message: "Email is invalid"
+                    }})}
                     onChange={e => setEmail(e.target.value)}
                     />
+                    {error.email && (
+                        <span style={{color: 'red', marginTop: '5px'}}>
+                            {error.email}
+                        </span>
+                    )}
                     {errors.email && 
                         <span style={{color: 'red', marginTop: '5px'}}>
                             {errors.email.message}
@@ -128,7 +149,8 @@ function Signup() {
                     placeholder="Enter your password"
                     {...register('password', {required: "Password is required", 
                         pattern: {value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/, 
-                        message: "Password must be greater than 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character"}})}
+                        message: "Password must be greater than 8 characters, at least one uppercase letter, one lowercase letter, one number and one special character"
+                    }})}
                     onChange={e => setPassword(e.target.value)}
                     />
                     {errors.password && 

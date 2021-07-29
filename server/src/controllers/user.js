@@ -43,20 +43,6 @@ exports.createAccount = async (req, res) => {
             return res.status(400).json({ message: "username already exists!"});
         }
 
-        // Check if the firstname already exists
-        const alreadyExistFirstname = await users.findOne({where: {firstname: firstname}})
-
-        if (alreadyExistFirstname) {
-            return res.status(400).json({ message: "Firstname already exists!"});
-        }
-
-        // Check if the lastname already exists
-        const alreadyExistLastname = await users.findOne({where: {lastname: lastname}})
-
-        if (alreadyExistLastname) {
-            return res.status(400).json({ message: "Lastname already exists!"});
-        }
-
         // // Verify a user account
         // const token = jwt.sign({email: user.email,}, process.env.SECRET_JWT, { expiresIn: "1h"});
         // const data = {

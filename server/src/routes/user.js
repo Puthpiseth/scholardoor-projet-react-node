@@ -9,10 +9,10 @@ const router = express.Router();
 
 router.post('/signup', userController.createAccount) 
 // router.get('/activate-account', userController.activateAccount)
-router.post('/signin', userController.signin)
+router.post('/signin', userController.signin, auth.verifyToken)
 router.put('/forgot-password', forgotPassword.forgotPassword)
 router.put('/reset-password', resetPassword.resetPassword)
-router.put('/edit/:id', auth.verifyToken, userController.updateUserProfile)
-router.delete('/delete/:id', auth.verifyToken, userController.deleteUserProfile)
+router.put('/edit/:id', userController.updateUserProfile,auth.verifyToken,)
+router.delete('/delete/:id', userController.deleteUserProfile, auth.verifyToken)
 
 module.exports = router;
