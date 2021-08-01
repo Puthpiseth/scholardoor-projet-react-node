@@ -8,4 +8,11 @@ const Login = async (email, password) => {
     return await api.post('/signin', email, password);
 }
 
-export {Register, Login};
+const UpdateUserProfile = async (avatar, position, affiliation, researchInterest, location) =>{
+    return await api.patch(
+        '/create-profile', 
+        avatar, position, affiliation, researchInterest, location
+    );
+}
+
+export {Register, Login, UpdateUserProfile};
