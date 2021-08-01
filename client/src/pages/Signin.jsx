@@ -12,6 +12,7 @@ function Signin() {
     const {register, handleSubmit, formState: {errors}} = useForm();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
     const [redirect, setRedirect] = useState(false);
 
     const onSubmit = async (e) => {
@@ -28,12 +29,16 @@ function Signin() {
             setRedirect(true);
         }
         catch(error) {
-                console.log(error)
+            setError(error)
+            if(!user.email || user.password) {
+                setError(error.response.data.message);
+            }        
         }
     }
-    if (redirect) {
-        return <Redirect to ="/profile"/>;
-    }
+
+        if (redirect) {
+            return <Redirect to ="/profile/:username"/>;
+        }
 
     return (
         <>
@@ -42,10 +47,15 @@ function Signin() {
             </div>
             <form className="form" onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-title">
-                    <h2><Link to={'/signup'}> Sign up</Link></h2>
-                    <h2><Link to={'/signin'}> Sign in</Link></h2>
+                    <h2><Link to={'/signup'}>Sign up</Link></h2>
+                    <h2><Link to={'/signin'}>Sign in</Link></h2>
                 </div>        
-                            
+                {error && (
+                        <span style={{color: 'red', marginTop: '5px'}}>
+                            <ErrorOutlineIcon style={{display: 'flex', position: 'absolute', left: '8%', fontSize: '15px'}}/>
+                            <p style={{position: 'relative', left: '16%',}}>Invalid email or password.</p>
+                        </span>
+                    )}
                 <div className="form-inputs">
                     <MailOutlineIcon className="icons"/>
                     <input
@@ -58,6 +68,7 @@ function Signin() {
                     })}
                     onChange={e => setEmail(e.target.value)}
                     />
+
                     {errors.email && 
                         <span style={{color: 'red', marginTop: '5px'}}>
                             {errors.email.message}

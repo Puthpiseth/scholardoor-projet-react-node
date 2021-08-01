@@ -1,4 +1,4 @@
-const { users }  = require('../models');
+const { Users }  = require('../models');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
@@ -26,18 +26,18 @@ exports.createAccount = async (req, res) => {
             username: username,
             email: email,
             password: hashPassword,
-            verificationCode: crypto.randomBytes(64).toString('hex'),
+            // verificationCode: crypto.randomBytes(64).toString('hex'),
         }
         
         // Check if the email already exists
-        const alreadyExistEmail = await users.findOne({where: {email: email}})
+        const alreadyExistEmail = await Users.findOne({where: {email: email}})
 
         if (alreadyExistEmail) {
             return res.status(400).json({ message: "Email already exists!"});
         }
 
         // Check if the username already exists
-        const alreadyExistUsername = await users.findOne({where: {username: username}})
+        const alreadyExistUsername = await Users.findOne({where: {username: username}})
 
         if (alreadyExistUsername) {
             return res.status(400).json({ message: "username already exists!"});
@@ -64,7 +64,7 @@ exports.createAccount = async (req, res) => {
         // });
 
         // Create a new user
-        users.create(user).then(user => {
+        Users.create(user).then(user => {
             return res.status(200).json({
                 message: "User successfully registered!",
             });
@@ -80,7 +80,7 @@ exports.createAccount = async (req, res) => {
 }
 
 // /**
-//  * @description To create a new user account
+//  * @description To activate a user account
 //  * @api /users/verify-account/:verificationCode
 //  * @access Public <Only via email>
 //  * @type GET
@@ -120,19 +120,25 @@ exports.createAccount = async (req, res) => {
 
  exports.signin = async (req, res) => {
     const { email, password } = req.body;
-    console.log(email, password)
+    // console.log(email, password)
+
     try {
-        const user = await users.findOne({where: {email: email}});
+        const user = await Users.findOne({where: {email: email}});
     
         if(user === null){
-            res.status(401).json({
+            res.status(404).json({
                 message: " User doesn't exits!"
             }); 
         } else {
             await bcrypt.compare(password, user.password, (err, result) =>{
                 if(result) {
                     // Create token
-                    const token = jwt.sign({email: user.email,}, process.env.SECRET_JWT, { expiresIn: "1h"})
+                    const exp_date = new Date(Date.now() + 60 * 60 * 1000)
+                    const token = jwt.sign({id: user.id}, process.env.SECRET_JWT, {expiresIn: exp_date.getTime()})
+                    // res.cookie('acces_token', token, {
+                    //     httpOnly: true,
+                    //     maxAge: 24 * 60 * 60 * 1000,
+                    // })
                     return res.status(200).json({message: " Authentication success!", token}); 
                 } else {
                     res.status(401).json({
@@ -147,53 +153,91 @@ exports.createAccount = async (req, res) => {
     }
 };
 
-/**
- * @description To update a user profile's infos
- * @api /users/edit/:id
- * @access Private 
- * @type PUT
- */
 
+/**
+ * @description To create a user profile of the authenticated user
+ * @api /profiles/create-profile
+ * @access Private 
+ * @type POST <multipart form> request
+ */
  exports.updateUserProfile = async (req, res) => {
-
-    const {firstname, lastname, username, email} = req.body;
-
+    
     try {
-        const user = await users.update({
-            firstname: firstname, lastname: 
-            lastname, username: username, 
-            email: email
-        }, {where: {id: req.params.id}});
+        const {position, affiliation, researchInterest, location} = req.body;
+        let avatar = null;
         
-        if(user) {
-            res.status(200).json({message: "Successfully update user!"});
-        } else {
-            res.status(404).json({message: "User not found!"});
+        const profile = {
+            avatar,
+            position,
+            affiliation,
+            researchInterest,
+            location,
         }
-    } 
-    catch(err) {
-        res.status(500).json({message: "Cannot update user!"});
-    }
-};
-
-/**
- * @description To delete a user profile
- * @api /users/delete/:id
- * @access Private 
- * @type DELETE
- */
-
-exports.deleteUserProfile = async (req, res) => {
-
-    try {
-        const user = await users.destroy({where: {id: req.params.id}});
-        if(user) {
-            res.status(200).json({message: "Successfully delete user!"});
-        } else {
-            res.status(404).json({message: "User not found!"});
+        if(req.files) {
+            avatar = req.files.avatar.data.toString(`base64`);
+            profile.avatar = avatar;
         }
-    } 
-    catch(err) {
-        res.status(500).json({message: "Cannot delete user!"});
+        
+        // console.log(profile);
+        const response = await Users.update(profile, {where: {id: req.userId}});
+            res.status(200).json(response);
+        // console.log(response)
     }
-};
+    catch(err) {
+        console.log(err);
+        
+    }
+}
+
+
+// /**
+//  * @description To update a user profile of the authenticated user
+//  * @api /profiles/edit/:id
+//  * @access Private 
+//  * @type PUT
+//  */
+
+//  exports.updateUserProfile = async (req, res) => {
+
+//     const {firstname, lastname, username, email } = req.body;
+
+//     try {
+//         const user = await Users.update({
+//             firstname: firstname,
+//             lastname: lastname,
+//             username: username,
+//             email: email,            
+//         }, {where: {id: req.params.id}});
+        
+//         if(user) {
+//             res.status(200).json({message: "Successfully update user!"});
+//         } else {
+//             res.status(404).json({message: "User not found!"});
+//         }
+//     } 
+//     catch(err) {
+//         res.status(500).json({message: "Cannot update user!"});
+//     }
+// };
+
+// /**
+//  * @description To delete a user profile
+//  * @api /users/delete/:id
+//  * @access Private 
+//  * @type DELETE
+//  */
+
+// exports.deleteUserProfile = async (req, res) => {
+
+//     try {
+//         const user = await Users.destroy({where: {id: req.params.id}});
+//         if(user) {
+//             res.status(200).json({message: "Successfully delete user!"});
+//         } else {
+//             res.status(404).json({message: "User not found!"});
+//         }
+//     } 
+//     catch(err) {
+//         res.status(500).json({message: "Cannot delete user!"});
+//     }
+// };
