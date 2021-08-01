@@ -1,32 +1,34 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser')
+const fileUpload = require('express-fileupload')
 const { sequelize } = require('./models');
 require('dotenv').config();
 
 // Routes
-const userRoute = require('./routes/user')
+const users = require('./routes/user');
+// const posts = require('./routes/posts');
 
 const app = express();
 
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+// app.use(express.static(path.join(__dirname, './uploads')));
 
 // Parse request of content-type - application/json
 app.use(bodyParser.json());
 
 // Parse request of content-type - application/x-www-form-urlencorded
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(fileUpload());
+app.use(cookieParser());
 
-app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*')
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,PATCH,DELETE');
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept ")
-  next();
-});
+// 
 
-app.use('/users', userRoute);
+app.use('/users', users);
+// app.use('/posts', posts);
 
 const port = process.env.PORT || 8000;
 const env = process.env.NODE_ENV || "development";
@@ -45,7 +47,7 @@ sequelize
     console.error("Unable to connect to the database:", error);
 });
 
-sequelize.sync({ force: true }).then(() => {
+sequelize.sync({ alter: true  }).then(() => {
     console.log("Database & tables created!")
 });
 

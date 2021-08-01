@@ -35,14 +35,9 @@ function Signup() {
         catch(error) {
             setError(error)
             // Check if the username is already taken
-            if(user.username) {
+            if(user.username || user.email) {
                 setError(error.response.data.message)
-            } 
-            // Check if the email is already taken
-            if(user.email) {
-                setError(error.response.data.message)
-            }
-            
+            }        
         }        
     }
 

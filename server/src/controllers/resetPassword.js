@@ -23,7 +23,7 @@ exports.resetPassword = async (req, res) => {
         });
         const user = await users.findOne({where: {resetPasswordToken: resetPasswordToken}});    
             if(!user) {
-                res.status(403).json({ 
+                res.status(404).json({ 
                     message: 'User with this token does not exists.'})
             }
             const obj = {

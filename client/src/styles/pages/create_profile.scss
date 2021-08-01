@@ -1,0 +1,111 @@
+@import '../app.scss';
+
+
+.form-signup-container {
+    position: absolute;
+    top: 25%;
+    left: 35%;
+    width: 30%;
+    padding: 2% 1%;
+    background-color: $lightergrey;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 3px;
+
+        .icons {
+            position: absolute;
+            top: 0%;
+            right: 100%;
+            width: 10%;
+            height: 5vh;
+            color: $midgrey;
+            background: $lightgrey;
+
+        }
+        
+    .form-title {
+        display: flex;
+        justify-content: space-around;
+
+        h2 {
+            font-weight: $bold;
+
+            a {
+                text-decoration: none;
+                color: $black;
+                font-size: $big;
+                &:hover {
+                    color: $midblue;
+                }
+            }
+        }
+    }
+
+    .form-inputs {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        left: 16.5%;
+        margin-bottom: 2%; 
+        width: 75%; 
+
+        ::-webkit-input-placeholder{
+            color: $midgrey;
+            padding: 10px;
+        }
+
+        input {
+            width: 100%;
+            height: 5vh;
+            font-size: $medium;
+            border: none;
+
+            &:focus {
+                outline: 1px solid $midblue;
+                box-shadow: 0 0 7px $midblue;
+                padding-left: 10px;
+            }
+        }
+
+        .visibility-icons {
+            position: absolute;
+            top: 25%;
+            right: 5%;
+            color: $midgrey;  
+            .show-icons {
+                position: relative;
+                left: 50%;
+            }
+        }
+    }
+
+    .term-of-condition {
+        display: flex;
+        justify-content: space-around;
+        padding: 0 38px;
+        
+        p {
+            font-size: $small;
+            text-align: center;
+            margin-top: 1.5%;
+        }
+    }
+
+    .signup-btn {
+        position: relative;
+        left: 9.5%;
+        height: 5vh;
+        width: 82%;
+        top: 5%;
+        font-size: $medium;
+        background: $mainColor;
+        color:$white;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+    
+        &:hover{
+            opacity: 0.9;
+        }
+    
+    }
+}

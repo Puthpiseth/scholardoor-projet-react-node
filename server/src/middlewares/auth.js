@@ -1,4 +1,3 @@
-const { users } = require('../models');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
@@ -10,21 +9,22 @@ exports.verifyToken = async (req, res, next) => {
         const bearer = bearerHeader.split(' ');
 
         if (typeof bearer !== 'undefined') {        
-            req.token = bearer[1];
+            token = bearer[1];
         }
-
-        const data = await jwt.verify(req.token, process.env.SECRET_JWT);
-        const email = data.email;
-        const user = await users.findOne({where: {email: email}});
         
-        if(!user) {
-            res.status(403).json({ message: 'User not authenticated!'})
-        } else {
-            next();
+        const decoded = await jwt.verify(token, process.env.SECRET_JWT);
+        console.log(decoded);
+        const current_date = new Date(Date.now()).getTime();
+
+        if (decoded.exp_date < current_date) {
+            throw new Error()
         }
+        const { id } = decoded;
+        req.userId = id;
+        next();
     }
     catch(err) {
-        res.status(400).json({ message: "Invalid Token!"});
+        res.status(401).json({ message: "Authentication failed"});
     }
 };
 
