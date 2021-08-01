@@ -1,42 +1,40 @@
 @import '../app.scss';
 
 
-.form-signup-container {
+.form-create-profile-container {
     position: absolute;
     top: 25%;
     left: 35%;
-    width: 30%;
-    padding: 2% 1%;
+    width: 28%;
+    padding: 2.7% 0.5%;
     background-color: $lightergrey;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 3px;
 
-        .icons {
-            position: absolute;
-            top: 0%;
-            right: 100%;
-            width: 10%;
-            height: 5vh;
-            color: $midgrey;
-            background: $lightgrey;
-
+    ::-webkit-file-upload-button {
+        padding: 5px;
+        opacity: 0;
+        width: 25%;
+        font-size: $medium;
+        &:hover{
+            cursor: pointer;
         }
-        
-    .form-title {
-        display: flex;
-        justify-content: space-around;
+    }
 
-        h2 {
-            font-weight: $bold;
+    .browse-btn {
+        position: absolute;
+        text-align: center;
+        padding: 5px;
+        background: $lightgrey;
+        width: 20%;
+        height: 5vh;
+        border-radius: 2px;
+        color: $darkergrey;
+        font-size: 10px;
 
-            a {
-                text-decoration: none;
-                color: $black;
-                font-size: $big;
-                &:hover {
-                    color: $midblue;
-                }
-            }
+        &:hover{
+            background: $midgrey;
+
         }
     }
 
@@ -44,7 +42,7 @@
         display: flex;
         flex-direction: column;
         position: relative;
-        left: 16.5%;
+        left: 13%;
         margin-bottom: 2%; 
         width: 75%; 
 
@@ -56,7 +54,7 @@
         input {
             width: 100%;
             height: 5vh;
-            font-size: $medium;
+            font-size: $small;
             border: none;
 
             &:focus {
@@ -65,38 +63,20 @@
                 padding-left: 10px;
             }
         }
-
-        .visibility-icons {
-            position: absolute;
-            top: 25%;
-            right: 5%;
-            color: $midgrey;  
-            .show-icons {
-                position: relative;
-                left: 50%;
-            }
-        }
-    }
-
-    .term-of-condition {
-        display: flex;
-        justify-content: space-around;
-        padding: 0 38px;
-        
-        p {
+        .file-input {
             font-size: $small;
-            text-align: center;
-            margin-top: 1.5%;
+            background: $white;
+            
         }
     }
 
-    .signup-btn {
+    .create-profile-btn {
         position: relative;
-        left: 9.5%;
+        left: 13%;
         height: 5vh;
-        width: 82%;
+        width: 75.5%;
         top: 5%;
-        font-size: $medium;
+        font-size: $small;
         background: $mainColor;
         color:$white;
         border: none;
