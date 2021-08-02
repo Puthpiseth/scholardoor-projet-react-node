@@ -3,18 +3,18 @@ require('dotenv').config();
 
 
 exports.verifyToken = async (req, res, next) => {
-    
+    // console.log(req)
+  
     try {
-        const bearerHeader = req.headers['authorization'];
+        console.log(req.headers)
+        const bearerHeader = req.headers.authorization;
         const bearer = bearerHeader.split(' ');
+        const token = bearer[1];
 
-        if (typeof bearer !== 'undefined') {        
-            token = bearer[1];
-        }
         
         const decoded = await jwt.verify(token, process.env.SECRET_JWT);
         console.log(decoded);
-        const current_date = new Date(Date.now()).getTime();
+        const current_date = new Date().getTime();
 
         if (decoded.exp_date < current_date) {
             throw new Error()

@@ -133,8 +133,8 @@ exports.createAccount = async (req, res) => {
             await bcrypt.compare(password, user.password, (err, result) =>{
                 if(result) {
                     // Create token
-                    const exp_date = new Date(Date.now() + 60 * 60 * 1000)
-                    const token = jwt.sign({id: user.id}, process.env.SECRET_JWT, {expiresIn: exp_date.getTime()})
+                    const exp_date = new Date().getTime() + 60 * 60 * 1000
+                    const token = jwt.sign({id: user.id, exp_date}, process.env.SECRET_JWT)
                     // res.cookie('acces_token', token, {
                     //     httpOnly: true,
                     //     maxAge: 24 * 60 * 60 * 1000,
@@ -161,13 +161,12 @@ exports.createAccount = async (req, res) => {
  * @type POST <multipart form> request
  */
  exports.updateUserProfile = async (req, res) => {
-    
+    console.log(req)
     try {
-        const {position, affiliation, researchInterest, location} = req.body;
+        const {position, affiliation, researchInterest, location} = JSON.parse(req.body.profile);
         let avatar = null;
         
         const profile = {
-            avatar,
             position,
             affiliation,
             researchInterest,

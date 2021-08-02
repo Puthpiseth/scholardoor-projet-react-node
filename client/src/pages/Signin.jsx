@@ -31,7 +31,7 @@ function Signin() {
         catch(error) {
             setError(error)
             if(!user.email || user.password) {
-                setError(error.response.data.message);
+                setError(error.message);
             }        
         }
     }

@@ -9,10 +9,12 @@ const Login = async (email, password) => {
 }
 
 const UpdateUserProfile = async (avatar, position, affiliation, researchInterest, location) =>{
-    return await api.patch(
-        '/create-profile', 
+    return await api.patch('/create-profile',
         avatar, position, affiliation, researchInterest, location
     );
 }
+
+
+
 
 export {Register, Login, UpdateUserProfile};
