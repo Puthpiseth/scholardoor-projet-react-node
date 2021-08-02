@@ -1,62 +1,61 @@
-import React from 'react';
-// import {useForm} from 'react-hook-form';
+import React, { useState } from 'react';
 import '../styles/pages/create_profile.scss';
-// import { Link, Redirect } from 'react-router-dom'
-
+import { Redirect } from 'react-router-dom'
+import { UpdateUserProfile } from '../services/user'
+import { useForm } from 'react-hook-form';
 
 function CreateProfile() {
-//     const {register, handleSubmit, formState: {errors}} = useForm();
-//     const [firstname, setFirstname] = useState('');
-//     const [lastname, setLastname] = useState('');
-//     const [username, setUsername] = useState('');
-//     const [email, setEmail] = useState('');
-//     const [password, setPassword] = useState('');
-//     const [error, setError] = useState('');
-//     const [redirect, setRedirect] = useState(false);
+    const {register, handleSubmit} = useForm('');
+    const [file, setFile] = useState('null');
+    const [position, setPosition] = useState('');
+    const [affiliation, setAffiliation] = useState('');
+    const [researchInterest, setResearchInterest] = useState('');
+    const [location, setLocation] = useState('');
+    const [redirect, setRedirect] = useState(false);
 
-//     const onSubmit = async (e) => {        
-//         const user = {
-//             firstname: firstname,
-//             lastname: lastname,
-//             username: username,
-//             email: email,
-//             password: password
-//         }
+    const onChange = (e) => {
+        console.log(e.target.files)
+        setFile(e.target.files[0]);
+    }
+
+    const onSubmit = async (e) => {        
         
-//         try {
-//             const response = await Register(user);
-//             setRedirect(true);
-//             console.log(response)
-//         }
-//         catch(error) {
-//             setError(error)
-//             // Check if the username is already taken
-//             if(user.username || user.email) {
-//                 setError(error.response.data.message)
-//             }        
-//         }        
-//     }
+        let formData = new FormData();
+        formData.append('avatar', file);
 
-//     if (redirect) {
-//         return <Redirect to ="/profile/:username"/>;
-//     }
+        try {
+            const profile = {
+                position: position,
+                affiliation: affiliation,
+                researchInterest: researchInterest,
+                location: location
+            }
+            formData.append('profile', JSON.stringify(profile))
+            const response = await UpdateUserProfile(formData);
+            console.log(response.data)
+            setRedirect(true);
+        }
+        catch(error) {
+            console.log(error)    
+        }        
 
+    if (redirect) {
+        return <Redirect to ="/profile/:username"/>;
+    }
+}
     return (
         <>
             <div className="title">
                 <h1>Create your profile</h1>
             </div>
-            <form className="form-create-profile-container" >
+            <form className="form-create-profile-container" onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-inputs">
-                    <label className="browse-btn">Upload avatar</label>
+                    <label className="browse-btn">Browse</label>
                     <input
                     type="file"
                     name="avatar"
                     className="file-input"
-                    // {...register('firstname', {
-                    //     required: "Firstname is required"
-                    // })}
-                    // onChange={e => setFirstname(e.target.value)}
+                    onChange={onChange}
                     />
                 </div>
                 <div className="form-inputs">
@@ -65,10 +64,10 @@ function CreateProfile() {
                     name="position"
                     className="form-input"
                     placeholder="Enter your position"
-                    // {...register('lastname', {
-                    //     required: "Lastname is required"
-                    // })}
-                    // onChange={e => setLastname(e.target.value)}
+                    {...register('position', {
+                        required: "position is required", 
+                    })}
+                    onChange={e => setPosition(e.target.value)}
                     />
                 </div>
                 <div className="form-inputs">
@@ -77,23 +76,12 @@ function CreateProfile() {
                     name="affiliation"
                     className="form-input"
                     placeholder="Enter your affiliation"
-                    // {...register('username', {
-                    //     required: "Username is required", 
-                    //     minLength: {value: 5, 
-                    //     message: "Username must be greater than 5 charactors"
-                    // }})}
-                    // onChange={e => setUsername(e.target.value)}
+                    {...register('affiliation', {
+                        required: "Affiliation is required", 
+                    })}
+                    onChange={e => setAffiliation(e.target.value)}
                     />
-                    {/* {error &&
-                        <span style={{color: 'red', marginTop: '5px'}}>
-                            Username is already taken!
-                        </span>
-                    }  */}
 
-                    {/* {errors.username && 
-                        <span style={{color: 'red', marginTop: '5px'}}>
-                            {errors.username.message}
-                        </span>} */}
                 </div>
                 <div className="form-inputs">
                     <input
@@ -101,7 +89,10 @@ function CreateProfile() {
                     name="researchInterest"
                     className="form-input"
                     placeholder="Enter your research interest"
-                    // onChange={e => setEmail(e.target.value)}
+                    {...register('researchInterest', {
+                        required: "Research Interest is required", 
+                    })}
+                    onChange={e => setResearchInterest(e.target.value)}
                     />
                 </div>
                 <div className="form-inputs"> 
@@ -110,7 +101,10 @@ function CreateProfile() {
                     name="location"
                     className="form-input"
                     placeholder="Enter your location"
-                    // onChange={e => setPassword(e.target.value)}
+                    {...register('location', {
+                        required: "location is required", 
+                    })}
+                    onChange={e => setLocation(e.target.value)}
                     />
                     {/* {errors.password && 
                         <span style={{color: 'red', marginTop: '5px'}}>
