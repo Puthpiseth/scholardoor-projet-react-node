@@ -3,9 +3,11 @@ import '../styles/pages/create_profile.scss';
 import { Redirect } from 'react-router-dom'
 import { UpdateUserProfile } from '../services/user'
 import { useForm } from 'react-hook-form';
+import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
+import Navbar from "../components/Navbar";
 
 function CreateProfile() {
-    const {register, handleSubmit} = useForm('');
+    const {register, handleSubmit, formState: {errors}} = useForm('');
     const [file, setFile] = useState('null');
     const [position, setPosition] = useState('');
     const [affiliation, setAffiliation] = useState('');
@@ -36,7 +38,7 @@ function CreateProfile() {
             setRedirect(true);
         }
         catch(error) {
-            console.log(error)    
+            console.log(error);
         }        
 
     if (redirect) {
@@ -45,16 +47,23 @@ function CreateProfile() {
 }
     return (
         <>
-            <div className="title">
-                <h1>Create your profile</h1>
-            </div>
+            <Navbar />
             <form className="form-create-profile-container" onSubmit={handleSubmit(onSubmit)}>
+                <p className="form-info">
+                    Click "Browse" to choose your profile photo and  
+                </p>
+                <p className="form-info">
+                    "submit" to submit your profile information
+                </p>
                 <div className="form-inputs">
                     <label className="browse-btn">Browse</label>
                     <input
                     type="file"
                     name="avatar"
                     className="file-input"
+                    {...register('file', {
+                        required: "No file uploaded", 
+                    })}
                     onChange={onChange}
                     />
                 </div>
@@ -65,10 +74,15 @@ function CreateProfile() {
                     className="form-input"
                     placeholder="Enter your position"
                     {...register('position', {
-                        required: "position is required", 
+                        required: "Position is required", 
                     })}
                     onChange={e => setPosition(e.target.value)}
                     />
+                    {errors.position && 
+                        <span style={{color: 'red', marginTop: '5px', fontSize: '8px'}}>
+                            <ErrorOutlineIcon style={{position: 'absolute', top: '15%', right: '3%', fontSize: '14px'}}/>
+                            {errors.position.message}
+                        </span>}
                 </div>
                 <div className="form-inputs">
                     <input
@@ -81,6 +95,11 @@ function CreateProfile() {
                     })}
                     onChange={e => setAffiliation(e.target.value)}
                     />
+                    {errors.affiliation && 
+                        <span style={{color: 'red', marginTop: '5px', fontSize: '8px'}}>
+                            <ErrorOutlineIcon style={{position: 'absolute', top: '15%', right: '3%', fontSize: '14px'}}/>
+                            {errors.affiliation.message}
+                        </span>}
 
                 </div>
                 <div className="form-inputs">
@@ -94,6 +113,11 @@ function CreateProfile() {
                     })}
                     onChange={e => setResearchInterest(e.target.value)}
                     />
+                    {errors.researchInterest && 
+                        <span style={{color: 'red', marginTop: '5px', fontSize: '8px'}}>
+                            <ErrorOutlineIcon style={{position: 'absolute', top: '15%', right: '3%', fontSize: '14px'}}/>
+                            {errors.researchInterest.message}
+                        </span>}
                 </div>
                 <div className="form-inputs"> 
                     <input
@@ -106,10 +130,11 @@ function CreateProfile() {
                     })}
                     onChange={e => setLocation(e.target.value)}
                     />
-                    {/* {errors.password && 
-                        <span style={{color: 'red', marginTop: '5px'}}>
-                            {errors.password.message}
-                        </span>} */}
+                    {errors.location && 
+                        <span style={{color: 'red', marginTop: '5px', fontSize: '8px'}}>
+                            <ErrorOutlineIcon style={{position: 'absolute', top: '15%', right: '3%', fontSize: '14px'}}/>
+                            {errors.location.message}
+                        </span>}
                 </div>
                 <button type="submit" className="create-profile-btn">Submit</button>     
             </form>
