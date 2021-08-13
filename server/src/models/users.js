@@ -42,6 +42,7 @@ module.exports = (sequelize, DataTypes) => {
     username: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING,
+    termsAccepted: DataTypes.BOOLEAN,
     resetPasswordToken: DataTypes.STRING,
     avatar: DataTypes.TEXT('long'),
     position: DataTypes.STRING,

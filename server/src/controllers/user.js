@@ -1,10 +1,6 @@
 const { Users }  = require('../models');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const crypto = require('crypto');
-const mailgun = require("mailgun-js");
-const DOMAIN = process.env.DOMAIN;
-const mg = mailgun({apiKey: process.env.MAILGUN_APIKEY, domain: DOMAIN});
 require('dotenv').config();
 
 /**
@@ -26,7 +22,6 @@ exports.createAccount = async (req, res) => {
             username: username,
             email: email,
             password: hashPassword,
-            // verificationCode: crypto.randomBytes(64).toString('hex'),
         }
         
         // Check if the email already exists
@@ -43,27 +38,7 @@ exports.createAccount = async (req, res) => {
             return res.status(400).json({ message: "username already exists!"});
         }
 
-        // // Verify a user account
-        // const token = jwt.sign({email: user.email,}, process.env.SECRET_JWT, { expiresIn: "1h"});
-        // const data = {
-        //     from: 'no-reply@gmail.com',
-        //     to: user.email,
-        //     subject: 'Account Verification',
-        //     html: `
-        //         <h1>Hello, ${user.username}</h1>
-        //         <p>Thank you for choosing ScholarDoor! Please confirm your email address 
-        //         by clicking the link below</p>
-        //         <p>${process.env.Base_URL}/users/activate-account/${token}</p>
-        //     `
-        // };
-        // mg.messages().send(data, function (error, body) {
-        //     if(error) {
-        //         return res.status(400).json({error})
-        //     }
-        //     return res.json({errors: 'Email has been sent and please activate your account!'})
-        // });
-
-        // Create a new user
+         // Create a new user
         Users.create(user).then(user => {
             return res.status(200).json({
                 message: "User successfully registered!",
@@ -72,7 +47,8 @@ exports.createAccount = async (req, res) => {
             return res.status(500).json({
                 message: "Something went wrong!",
             })
-        });        
+        });       
+
     } 
     catch(err) {
         return res.status(500).json(err.message);
@@ -120,12 +96,12 @@ exports.createAccount = async (req, res) => {
 
  exports.signin = async (req, res) => {
     const { email, password } = req.body;
-    // console.log(email, password)
-
+    console.log(req.body)
     try {
-        const user = await Users.findOne({where: {email: email}});
-    
-        if(user === null){
+        console.log("User found")
+        const user = await Users.findOne({where: {email}});
+        
+        if(!user){
             res.status(404).json({
                 message: " User doesn't exits!"
             }); 
@@ -155,10 +131,10 @@ exports.createAccount = async (req, res) => {
 
 
 /**
- * @description To create a user profile of the authenticated user
- * @api /profiles/create-profile
+ * @description To update profile info of the authenticated user
+ * @api /users/update-profile
  * @access Private 
- * @type POST <multipart form> request
+ * @type PATCH <multipart form> request
  */
  exports.updateUserProfile = async (req, res) => {
     console.log(req)

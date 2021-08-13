@@ -17,10 +17,8 @@ function Signin() {
 
     const onSubmit = async (e) => {
         
-        const user = {
-            email: email,
-            password: password
-        }
+        const user = { email, password }
+        console.log(user)
         
         try {
             const response = await Login(user);
@@ -37,7 +35,7 @@ function Signin() {
     }
 
         if (redirect) {
-            return <Redirect to ="/create-profile"/>;
+            return <Redirect to ="/update-profile"/>;
         }
 
     return (
