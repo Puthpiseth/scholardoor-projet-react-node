@@ -27,6 +27,10 @@ module.exports = {
       password: {
         allowNull: false,
         type: Sequelize.STRING
+      },
+      termsAccepted: {
+        allowNull: false,
+        type: Sequelize.BOOLEAN
       },      
       resetPasswordToken: {
         allowNull: false,

@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
-import '../styles/pages/create_profile.scss';
+import '../styles/pages/update_profile.scss';
 import { Redirect } from 'react-router-dom'
 import { UpdateUserProfile } from '../services/user'
-import { useForm } from 'react-hook-form';
-import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import Navbar from "../components/Navbar";
 
-function CreateProfile() {
-    const {register, handleSubmit, formState: {errors}} = useForm('');
+function UpdateProfile() {
     const [file, setFile] = useState('null');
     const [position, setPosition] = useState('');
     const [affiliation, setAffiliation] = useState('');
@@ -48,7 +45,7 @@ function CreateProfile() {
     return (
         <>
             <Navbar />
-            <form className="form-create-profile-container" onSubmit={handleSubmit(onSubmit)}>
+            <form className="form-create-profile-container" onSubmit={onSubmit}>
                 <p className="form-info">
                     Click "Browse" to choose your profile photo and  
                 </p>
@@ -61,9 +58,6 @@ function CreateProfile() {
                     type="file"
                     name="avatar"
                     className="file-input"
-                    {...register('file', {
-                        required: "No file uploaded", 
-                    })}
                     onChange={onChange}
                     />
                 </div>
@@ -73,16 +67,8 @@ function CreateProfile() {
                     name="position"
                     className="form-input"
                     placeholder="Enter your position"
-                    {...register('position', {
-                        required: "Position is required", 
-                    })}
                     onChange={e => setPosition(e.target.value)}
                     />
-                    {errors.position && 
-                        <span style={{color: 'red', marginTop: '5px', fontSize: '8px'}}>
-                            <ErrorOutlineIcon style={{position: 'absolute', top: '15%', right: '3%', fontSize: '14px'}}/>
-                            {errors.position.message}
-                        </span>}
                 </div>
                 <div className="form-inputs">
                     <input
@@ -90,16 +76,8 @@ function CreateProfile() {
                     name="affiliation"
                     className="form-input"
                     placeholder="Enter your affiliation"
-                    {...register('affiliation', {
-                        required: "Affiliation is required", 
-                    })}
                     onChange={e => setAffiliation(e.target.value)}
                     />
-                    {errors.affiliation && 
-                        <span style={{color: 'red', marginTop: '5px', fontSize: '8px'}}>
-                            <ErrorOutlineIcon style={{position: 'absolute', top: '15%', right: '3%', fontSize: '14px'}}/>
-                            {errors.affiliation.message}
-                        </span>}
 
                 </div>
                 <div className="form-inputs">
@@ -108,16 +86,8 @@ function CreateProfile() {
                     name="researchInterest"
                     className="form-input"
                     placeholder="Enter your research interest"
-                    {...register('researchInterest', {
-                        required: "Research Interest is required", 
-                    })}
                     onChange={e => setResearchInterest(e.target.value)}
                     />
-                    {errors.researchInterest && 
-                        <span style={{color: 'red', marginTop: '5px', fontSize: '8px'}}>
-                            <ErrorOutlineIcon style={{position: 'absolute', top: '15%', right: '3%', fontSize: '14px'}}/>
-                            {errors.researchInterest.message}
-                        </span>}
                 </div>
                 <div className="form-inputs"> 
                     <input
@@ -125,16 +95,8 @@ function CreateProfile() {
                     name="location"
                     className="form-input"
                     placeholder="Enter your location"
-                    {...register('location', {
-                        required: "location is required", 
-                    })}
                     onChange={e => setLocation(e.target.value)}
                     />
-                    {errors.location && 
-                        <span style={{color: 'red', marginTop: '5px', fontSize: '8px'}}>
-                            <ErrorOutlineIcon style={{position: 'absolute', top: '15%', right: '3%', fontSize: '14px'}}/>
-                            {errors.location.message}
-                        </span>}
                 </div>
                 <button type="submit" className="create-profile-btn">Submit</button>     
             </form>
@@ -143,4 +105,4 @@ function CreateProfile() {
 }
 
 
-export default CreateProfile;
+export default UpdateProfile;

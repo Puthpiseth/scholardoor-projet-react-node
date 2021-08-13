@@ -15,16 +15,20 @@ function Signup() {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    // const [termsAccepted, setTermsAccepted] = useState(false);
     const [error, setError] = useState('');
     const [redirect, setRedirect] = useState(false);
 
-    const onSubmit = async (e) => {        
+    const onSubmit = async (data) => {
+        console.log(data);
+                
         const user = {
             firstname: firstname,
             lastname: lastname,
             username: username,
             email: email,
-            password: password
+            password: password,
+            // termsAccepted: termsAccepted
         }
         
         try {
@@ -34,9 +38,9 @@ function Signup() {
         }
         catch(error) {
             setError(error)
-            // Check if the username is already taken
+            // Check if the username or the email is already taken
             if(user.username || user.email) {
-                setError(error.response.data.message)
+                setError(error.message)
             }        
         }        
     }
@@ -71,9 +75,12 @@ function Signup() {
                     {errors.firstname && 
                         <span style={{color: 'red', marginTop: '5px'}}>
                             {errors.firstname.message}
-                            <ErrorOutlineIcon style={{position: 'absolute', top: '10%', right: '3%', fontSize: '20px'}}/>
+                            <ErrorOutlineIcon style={{position: 'absolute', 
+                                top: '10%', right: '3%', fontSize: '20px'}}
+                            />
                         </span>}
                 </div>
+                
                 <div className="form-inputs">
                     <PermIdentityIcon className="icons"/>
                     <input
@@ -89,9 +96,12 @@ function Signup() {
                     {errors.lastname && 
                         <span style={{color: 'red', marginTop: '5px'}}>
                             {errors.lastname.message}
-                            <ErrorOutlineIcon style={{position: 'absolute', top: '10%', right: '3%', fontSize: '20px'}}/>
+                            <ErrorOutlineIcon style={{position: 'absolute', 
+                                top: '10%', right: '3%', fontSize: '20px'}}
+                            />
                         </span>}
                 </div>
+
                 <div className="form-inputs">
                     <PermIdentityIcon className="icons"/>
                     <input
@@ -119,6 +129,7 @@ function Signup() {
                             <ErrorOutlineIcon style={{position: 'absolute', top: '10%', right: '3%', fontSize: '20px'}}/>
                         </span>}
                 </div>
+
                 <div className="form-inputs">
                     <MailOutlineIcon className="icons"/>
                     <input
@@ -136,15 +147,20 @@ function Signup() {
                     {error && (
                         <span style={{color: 'red', marginTop: '5px'}}>
                             Email is already taken!
-                            <ErrorOutlineIcon style={{position: 'absolute', top: '10%', right: '3%', fontSize: '20px'}}/>
+                            <ErrorOutlineIcon style={{position: 'absolute', 
+                                top: '10%', right: '3%', fontSize: '20px'}}
+                            />
                         </span>
                     )}
                     {errors.email && 
                         <span style={{color: 'red', marginTop: '5px'}}>
                             {errors.email.message}
-                            <ErrorOutlineIcon style={{position: 'absolute', top: '10%', right: '3%', fontSize: '20px'}}/>
+                            <ErrorOutlineIcon style={{position: 'absolute', 
+                                top: '10%', right: '3%', fontSize: '20px'}}
+                            />
                         </span>}
                 </div>
+
                 <div className="form-inputs">
                     <HttpsOutlinedIcon className="icons"/> 
                     <input
@@ -161,15 +177,27 @@ function Signup() {
                     {errors.password && 
                         <span style={{color: 'red', marginTop: '5px'}}>
                             {errors.password.message}
-                            <ErrorOutlineIcon style={{position: 'absolute', top: '10%', right: '3%', fontSize: '20px'}}/>
+                            <ErrorOutlineIcon style={{position: 'absolute', 
+                                top: '10%', right: '3%', fontSize: '20px'}}
+                            />
                         </span>}
                 </div>
                 <div className="term-of-condition">
                     <input 
                     type="checkbox"
-                    name="termsAccepted"                    
+                    name="termsAccepted"
+                    // onChange={e => setTermsAccepted(e.target.value)}                    
                     />
-                    <p>I agree to the term of service and acknowledge the <Link to="/private-policy">Privacy Policy</Link></p>
+                    <p>I agree to the term of service and acknowledge the 
+                        <Link to="/private-policy">Privacy Policy</Link>
+                    </p>
+                    {/* {errors.termsAccepted && 
+                        <span style={{color: 'red', marginTop: '5px'}}>
+                            {errors.termsAccepted.message}
+                            <ErrorOutlineIcon style={{position: 'absolute', 
+                                top: '10%', right: '3%', fontSize: '20px'}}
+                            />
+                        </span>} */}
                 </div>
                 <button type="submit" className="signup-btn">Signup</button>     
             </form>

@@ -1,7 +1,11 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: `http://localhost:8000/users`,
+  baseURL: `http://localhost:9000/users`,
+  // headers: {
+  //   'Accept': 'application/json',
+  //   'Content-Type':'application/x-www-form-urlencorded',
+  // },
 });
 
 api.interceptors.request.use((config) => {

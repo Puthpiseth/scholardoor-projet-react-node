@@ -5,7 +5,7 @@ import ResetPassword from './pages/Reset-password';
 import ErrorEmail from './pages/Error-email';
 import Profile from './pages/Profile';
 import PrivatePolicy from './pages/Private-policy'
-import CreateProfile from './pages/create_profile';
+import UpdateProfile from './pages/update_profile';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 
@@ -18,8 +18,8 @@ function App() {
         <Route exact path='/forgot-password' component={ForgotPassword}></Route>
         <Route exact path='/reset-password' component={ResetPassword}></Route>
         <Route exact path='/error-email' component={ErrorEmail}></Route>
-        <Route exact path='/create-profile' component={CreateProfile}></Route>
-        <Route exact path='/profile/:username' component={Profile}></Route>
+        <Route exact path='/update-profile' component={UpdateProfile}></Route>
+        <Route exact path='/profile/:id' component={Profile}></Route>
         <Route exact path='/private-policy' component={PrivatePolicy}></Route>
         
       </Switch>
