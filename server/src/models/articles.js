@@ -16,10 +16,10 @@ module.exports = (sequelize, DataTypes) => {
   };
   Articles.init({
     id: {
-      type:DataTypes.INTEGER,
-      autoIncrement: true,
+      type:DataTypes.UUID,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      defaultValue: DataTypes.UUIDV4,
     },
     filePath: DataTypes.STRING,
     title: DataTypes.STRING,
@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
     issue: DataTypes.STRING,
     publisher: DataTypes.STRING,
     abstract: DataTypes.STRING,
-    viewId: DataTypes.INTEGER
+    viewId: DataTypes.UUID
   }, {
     sequelize,
     modelName: 'Articles',

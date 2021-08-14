@@ -39,7 +39,7 @@ function UpdateProfile() {
         }        
 
     if (redirect) {
-        return <Redirect to ="/profile/:username"/>;
+        return <Redirect to ="/profile/:id"/>;
     }
 }
     return (

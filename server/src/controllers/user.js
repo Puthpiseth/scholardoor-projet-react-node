@@ -12,30 +12,30 @@ require('dotenv').config();
 
 exports.createAccount = async (req, res) => {
     const {firstname, lastname, username, email, password} = req.body;
-    
+    console.log(req.body)
     try {
         const hashPassword = await bcrypt.hash(password, 10);
         
         const user = {
-            firstname: firstname,
-            lastname: lastname,
-            username: username,
-            email: email,
+            firstname,
+            lastname,
+            username,
+            email,
             password: hashPassword,
         }
         
         // Check if the email already exists
-        const alreadyExistEmail = await Users.findOne({where: {email: email}})
+        const alreadyExistEmail = await Users.findOne({where: {email}})
 
         if (alreadyExistEmail) {
             return res.status(400).json({ message: "Email already exists!"});
         }
 
         // Check if the username already exists
-        const alreadyExistUsername = await Users.findOne({where: {username: username}})
+        const alreadyExistUsername = await Users.findOne({where: {username}})
 
         if (alreadyExistUsername) {
-            return res.status(400).json({ message: "username already exists!"});
+            return res.status(400).json({ message: "Username already exists!"});
         }
 
          // Create a new user
@@ -94,16 +94,15 @@ exports.createAccount = async (req, res) => {
  * @type POST
  */
 
- exports.signin = async (req, res) => {
+exports.signin = async (req, res) => {
     const { email, password } = req.body;
     console.log(req.body)
     try {
-        console.log("User found")
         const user = await Users.findOne({where: {email}});
         
         if(!user){
-            res.status(404).json({
-                message: " User doesn't exits!"
+            res.status(401).json({
+                message: " User doesn't exist!"
             }); 
         } else {
             await bcrypt.compare(password, user.password, (err, result) =>{
@@ -111,11 +110,7 @@ exports.createAccount = async (req, res) => {
                     // Create token
                     const exp_date = new Date().getTime() + 60 * 60 * 1000
                     const token = jwt.sign({id: user.id, exp_date}, process.env.SECRET_JWT)
-                    // res.cookie('acces_token', token, {
-                    //     httpOnly: true,
-                    //     maxAge: 24 * 60 * 60 * 1000,
-                    // })
-                    return res.status(200).json({message: " Authentication success!", token}); 
+                        return res.status(200).json({message: "Authentication success!", token}); 
                 } else {
                     res.status(401).json({
                         message: " Incorrect password!"
@@ -157,6 +152,11 @@ exports.createAccount = async (req, res) => {
         const response = await Users.update(profile, {where: {id: req.userId}});
             res.status(200).json(response);
         // console.log(response)
+        if(profile) {
+            res.status(200).json({message: "Successfully update user!"});
+            } else {
+                res.status(404).json({message: "User not found!"});
+            }
     }
     catch(err) {
         console.log(err);
@@ -164,36 +164,6 @@ exports.createAccount = async (req, res) => {
     }
 }
 
-
-// /**
-//  * @description To update a user profile of the authenticated user
-//  * @api /profiles/edit/:id
-//  * @access Private 
-//  * @type PUT
-//  */
-
-//  exports.updateUserProfile = async (req, res) => {
-
-//     const {firstname, lastname, username, email } = req.body;
-
-//     try {
-//         const user = await Users.update({
-//             firstname: firstname,
-//             lastname: lastname,
-//             username: username,
-//             email: email,            
-//         }, {where: {id: req.params.id}});
-        
-//         if(user) {
-//             res.status(200).json({message: "Successfully update user!"});
-//         } else {
-//             res.status(404).json({message: "User not found!"});
-//         }
-//     } 
-//     catch(err) {
-//         res.status(500).json({message: "Cannot update user!"});
-//     }
-// };
 
 // /**
 //  * @description To delete a user profile

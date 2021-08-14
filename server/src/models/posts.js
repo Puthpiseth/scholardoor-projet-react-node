@@ -16,15 +16,15 @@ module.exports = (sequelize, DataTypes) => {
   };
  Posts.init({
   id: {
-    type:DataTypes.INTEGER,
-    autoIncrement: true,
+    type:DataTypes.UUID,
     allowNull: false,
-    primaryKey: true
+    primaryKey: true,
+    defaultValue: DataTypes.UUIDV4,
   },
     postArticle: DataTypes.STRING,
     title: DataTypes.STRING,
     content: DataTypes.STRING,
-    likes: DataTypes.INTEGER
+    likes: DataTypes.UUID
   }, {
     sequelize,
     modelName: 'Posts',

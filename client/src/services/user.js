@@ -5,18 +5,11 @@ const Register = async (data) => {
 }
 
 const Login = async (data) => {
-    console.log(data)
     return await api.post('/signin', data);
-   
 }
 
-const UpdateUserProfile = async (
-    avatar, position, affiliation, researchInterest, location
-) =>
-{
-    return await api.patch('/update-profile',
-        avatar, position, affiliation, researchInterest, location
-    );
+const UpdateUserProfile = async (data) => {
+    return await api.patch('/update-profile', data);
 }
 
 export {Register, Login, UpdateUserProfile};

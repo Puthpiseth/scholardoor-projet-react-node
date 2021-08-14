@@ -16,10 +16,10 @@ module.exports = (sequelize, DataTypes) => {
   };
   Comments.init({
     id: {
-      type:DataTypes.INTEGER,
-      autoIncrement: true,
+      type:DataTypes.UUID,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      defaultValue: DataTypes.UUIDV4,
     },
     content: DataTypes.STRING
   }, {

@@ -15,26 +15,26 @@ function Signup() {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    // const [termsAccepted, setTermsAccepted] = useState(false);
+    const [termsAccepted, setTermsAccepted] = useState(false);
     const [error, setError] = useState('');
     const [redirect, setRedirect] = useState(false);
 
     const onSubmit = async (data) => {
-        console.log(data);
+        // console.log(data);
                 
         const user = {
-            firstname: firstname,
-            lastname: lastname,
-            username: username,
-            email: email,
-            password: password,
-            // termsAccepted: termsAccepted
+            firstname,
+            lastname,
+            username,
+            email,
+            password,
+            termsAccepted
         }
         
         try {
             const response = await Register(user);
             setRedirect(true);
-            console.log(response)
+            console.log(response.data)
         }
         catch(error) {
             setError(error)
@@ -186,18 +186,18 @@ function Signup() {
                     <input 
                     type="checkbox"
                     name="termsAccepted"
-                    // onChange={e => setTermsAccepted(e.target.value)}                    
+                    onChange={e => setTermsAccepted(e.target.value)}                    
                     />
                     <p>I agree to the term of service and acknowledge the 
                         <Link to="/private-policy">Privacy Policy</Link>
                     </p>
-                    {/* {errors.termsAccepted && 
+                    {errors.termsAccepted && 
                         <span style={{color: 'red', marginTop: '5px'}}>
                             {errors.termsAccepted.message}
                             <ErrorOutlineIcon style={{position: 'absolute', 
                                 top: '10%', right: '3%', fontSize: '20px'}}
                             />
-                        </span>} */}
+                        </span>}
                 </div>
                 <button type="submit" className="signup-btn">Signup</button>     
             </form>

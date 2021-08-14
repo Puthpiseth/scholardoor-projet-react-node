@@ -15,13 +15,13 @@ module.exports = (sequelize, DataTypes) => {
   };
   Follows.init({
     id: {
-      type:DataTypes.INTEGER,
-      autoIncrement: true,
+      type:DataTypes.UUID,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      defaultValue: DataTypes.UUIDV4,
     },
-    following: DataTypes.INTEGER,
-    followers: DataTypes.INTEGER
+    following: DataTypes.UUID,
+    followers: DataTypes.UUID
   }, {
     sequelize,
     modelName: 'Follows',

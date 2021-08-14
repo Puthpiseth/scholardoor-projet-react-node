@@ -16,10 +16,7 @@ function Signin() {
     const [redirect, setRedirect] = useState(false);
 
     const onSubmit = async (e) => {
-        
         const user = { email, password }
-        console.log(user)
-        
         try {
             const response = await Login(user);
             localStorage.setItem('token', response.data.token);
@@ -33,10 +30,9 @@ function Signin() {
             }        
         }
     }
-
-        if (redirect) {
-            return <Redirect to ="/update-profile"/>;
-        }
+    if (redirect) {
+        return <Redirect to ="/create-profile"/>;
+    }
 
     return (
         <>
@@ -48,10 +44,14 @@ function Signin() {
                     <h2><Link to={'/signup'}>Sign up</Link></h2>
                     <h2><Link to={'/signin'}>Sign in</Link></h2>
                 </div>        
-                {error && (
+                    {error && (
                         <span style={{color: 'red', marginTop: '5px'}}>
-                            <ErrorOutlineIcon style={{display: 'flex', position: 'absolute', left: '8%', fontSize: '15px'}}/>
-                            <p style={{position: 'relative', left: '16%',}}>Invalid email or password.</p>
+                            <ErrorOutlineIcon style={{display: 'flex', 
+                                position: 'absolute', left: '8%', fontSize: '15px'}}
+                            />
+                            <p style={{position: 'relative', left: '16%',}}>
+                                Invalid email or password.
+                            </p>
                         </span>
                     )}
                 <div className="form-inputs">
@@ -66,13 +66,15 @@ function Signin() {
                     })}
                     onChange={e => setEmail(e.target.value)}
                     />
-
                     {errors.email && 
                         <span style={{color: 'red', marginTop: '5px'}}>
                             {errors.email.message}
-                            <ErrorOutlineIcon style={{position: 'absolute', top: '10%', right: '3%', fontSize: '20px'}}/>
+                            <ErrorOutlineIcon style={{position: 'absolute', 
+                                top: '10%', right: '3%', fontSize: '20px'}}
+                            />
                         </span>}
                 </div>
+
                 <div className="form-inputs">
                     <HttpsOutlinedIcon className="icons"/> 
                     <input
