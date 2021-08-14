@@ -11,6 +11,7 @@ const app = express();
   // Routes
 const users = require('./routes/user');
   // const posts = require('./routes/posts');
+const profile = require('./routes/profile')
 
 app.use(cors());
 app.use(express.urlencoded());
@@ -21,6 +22,7 @@ app.use(cookieParser());
 app.use(fileUpload());
 
 app.use(users);
+app.use(profile);
   // app.use('/posts', posts);
 
 const port = process.env.PORT || 9000;
