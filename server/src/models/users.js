@@ -1,3 +1,4 @@
+
 'use strict';
 const {
   Model
@@ -32,10 +33,10 @@ module.exports = (sequelize, DataTypes) => {
   };
   Users.init({
     id: {
-      type:DataTypes.INTEGER,
-      autoIncrement: true,
+      type:DataTypes.UUID,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      defaultValue: DataTypes.UUIDV4,
     },
     firstname: DataTypes.STRING,
     lastname: DataTypes.STRING,
