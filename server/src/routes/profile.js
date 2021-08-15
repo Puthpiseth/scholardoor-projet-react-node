@@ -5,7 +5,7 @@ const profileController = require('../controllers/profile')
 
 const router = express.Router();
 
-router.post('/create-profile', auth.verifyToken, profileController.createUserProfile)
+router.patch('/create-profile', auth.verifyToken, profileController.createUserProfile)
 router.get('/my-profile/:id', auth.verifyToken, profileController.getUserProfile)
 router.patch('/update-profile', auth.verifyToken, profileController.updateUserProfile)
 router.delete('/delete-profile/:id', auth.verifyToken, profileController.deleteUserProfile)

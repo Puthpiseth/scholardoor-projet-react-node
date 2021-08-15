@@ -11,10 +11,11 @@ require('dotenv').config();
  exports.createUserProfile = async (req, res) => {
     console.log(req)
     try {
-        const {position, affiliation, researchInterest, location} = req.body;
+        const {username, position, affiliation, researchInterest, location} = JSON.parse(req.body.profile);
         let avatar = null;
         
         const profile = {
+            username,
             position,
             affiliation,
             researchInterest,
@@ -26,9 +27,9 @@ require('dotenv').config();
         }
         
         // console.log(profile);
-        const response = await Users.findOne(profile, {where: {id: req.userId}});
+        const response = await Users.update(profile, {where: {id: req.userId}});
             res.status(200).json(response);
-        // console.log(response)
+        console.log(response)
         if(profile) {
             res.status(200).json({message: "Successfully create user!"});
             } else {
@@ -43,9 +44,9 @@ require('dotenv').config();
 
 /**
  * @description To get profile of the authenticated user
- * @api /update-profile
+ * @api /my-profile
  * @access Private 
- * @type PATCH <multipart form> request
+ * @type GET <multipart form> request
  */
  exports.getUserProfile = async (req, res) => {
     console.log(req)
@@ -121,7 +122,7 @@ require('dotenv').config();
 
 /**
  * @description To delete a user profile
- * @api /users/delete/:id
+ * @api /delete-profile/:id
  * @access Private 
  * @type DELETE
  */

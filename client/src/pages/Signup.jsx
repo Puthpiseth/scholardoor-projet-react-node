@@ -12,7 +12,6 @@ function Signup() {
     const {register, handleSubmit, formState: {errors}} = useForm();
     const [firstname, setFirstname] = useState('');
     const [lastname, setLastname] = useState('');
-    const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [termsAccepted, setTermsAccepted] = useState(false);
@@ -25,7 +24,6 @@ function Signup() {
         const user = {
             firstname,
             lastname,
-            username,
             email,
             password,
             termsAccepted
@@ -39,7 +37,7 @@ function Signup() {
         catch(error) {
             setError(error)
             // Check if the username or the email is already taken
-            if(user.username || user.email) {
+            if(user.email) {
                 setError(error.message)
             }        
         }        
@@ -99,34 +97,6 @@ function Signup() {
                             <ErrorOutlineIcon style={{position: 'absolute', 
                                 top: '10%', right: '3%', fontSize: '20px'}}
                             />
-                        </span>}
-                </div>
-
-                <div className="form-inputs">
-                    <PermIdentityIcon className="icons"/>
-                    <input
-                    type="text"
-                    name="username"
-                    className="form-input"
-                    placeholder="Enter your username"
-                    {...register('username', {
-                        required: "Username is required", 
-                        minLength: {value: 5, 
-                        message: "Username must be greater than 5 charactors"
-                    }})}
-                    onChange={e => setUsername(e.target.value)}
-                    />
-                    {error &&
-                        <span style={{color: 'red', marginTop: '5px'}}>
-                            Username is already taken!
-                            <ErrorOutlineIcon style={{position: 'absolute', top: '10%', right: '3%', fontSize: '20px'}}/>
-                        </span>
-                    } 
-
-                    {errors.username && 
-                        <span style={{color: 'red', marginTop: '5px'}}>
-                            {errors.username.message}
-                            <ErrorOutlineIcon style={{position: 'absolute', top: '10%', right: '3%', fontSize: '20px'}}/>
                         </span>}
                 </div>
 
