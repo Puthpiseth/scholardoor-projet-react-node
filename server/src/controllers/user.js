@@ -11,7 +11,7 @@ require('dotenv').config();
  */
 
 exports.createAccount = async (req, res) => {
-    const {firstname, lastname, username, email, password} = req.body;
+    const {firstname, lastname, email, password} = req.body;
     console.log(req.body)
     try {
         const hashPassword = await bcrypt.hash(password, 10);
@@ -19,7 +19,6 @@ exports.createAccount = async (req, res) => {
         const user = {
             firstname,
             lastname,
-            username,
             email,
             password: hashPassword,
         }
@@ -29,13 +28,6 @@ exports.createAccount = async (req, res) => {
 
         if (alreadyExistEmail) {
             return res.status(400).json({ message: "Email already exists!"});
-        }
-
-        // Check if the username already exists
-        const alreadyExistUsername = await Users.findOne({where: {username}})
-
-        if (alreadyExistUsername) {
-            return res.status(400).json({ message: "Username already exists!"});
         }
 
          // Create a new user
