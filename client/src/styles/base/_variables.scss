@@ -17,6 +17,7 @@ $extrabold:800;
 // Breakpoints
 // Specify each device and their respective breakpoint.
 // Usage: $device-name (string), breakpoint (integer). 
+$small-mobile: 360px;
 $mobile: 480px;
 $tablet: 768px; 
 $laptop: 992px;

@@ -59,6 +59,7 @@ const useStyles = makeStyles((theme) => ({
     rightSideIcon: {
         width: "28px", 
         height: "28px",
+        color: "white",
         marginRight: theme.spacing(5),
         [theme.breakpoints.down("xs")]: {
             display: "none",
@@ -217,7 +218,8 @@ function Navbar() {
                     </div>
                     <div className={classes.rightIcon}>
                         <Tooltip title={<h1 style={{fontSize: 8}}>Home</h1>} arrow >
-                            <Link to='/'><HomeIcon
+                            <Link to='/'>
+                                <HomeIcon
                                     aria-label="show Homeicon's description" 
                                     className={classes.rightSideIcon} 
                                     style={iconHover} 
@@ -225,7 +227,8 @@ function Navbar() {
                             </Link>
                         </Tooltip>
                         <Tooltip title={<h1 style={{fontSize: 8}}>Upload work</h1>} arrow >
-                            <Link to='/upload-work'><CloudUploadIcon
+                            <Link to='/upload-work'>
+                                <CloudUploadIcon
                                     aria-label="show UploadworkIcon's description"  
                                     className={classes.rightSideIcon} 
                                     style={iconHover}

@@ -1,4 +1,4 @@
-// Breakpoints
+// Breakpoints from mobile to desktop
 
 // Breakpoint Mixins
 // Usage: $device-name (string), breakpoint (integer).
@@ -6,65 +6,137 @@
 
 /* smartphones (portrait) */
 // Usage: @include mobile{}
+// @mixin mobile {
+//     @media only screen and (min-width: #{$mobile}) {
+//         @content;
+//     }
+// }
+
+// // Usage: @include mobile-tablet{}
+// @mixin mobile-tablet {
+//     @media only screen and (min-width: #{$mobile}) and (max-width: #{$tablet}) {
+//         @content;
+//     }
+// }
+
+// // Usage: @include tablet{}
+// @mixin tablet {
+//     @media only screen and (min-width: #{$tablet}) {
+//         @content;
+//     }
+// }
+
+// // Usage: @include tablet-laptop{}
+// @mixin tablet-laptop {
+//     @media only screen and (min-width: #{$tablet}) and (max-width: #{$laptop}) {
+//         @content;
+//     }
+// }
+
+// // Usage: @include laptop{}
+// @mixin laptop {
+//     @media only screen and (min-width: #{$laptop}) {
+//         @content;
+//     }
+// }
+
+// // Usage: @include laptop-desktop{}
+// @mixin laptop-desktop {
+//     @media only screen and (min-width: #{$laptop}) and (max-width: #{$desktop}) {
+//         @content;
+//     }
+// }
+
+// // Usage: @include desktop{}
+// @mixin desktop {
+//     @media only screen and (min-width: #{$desktop}) {
+//         @content;
+//     }
+// }
+
+// // Usage: @include desktop-bigscreen{}
+// @mixin desktop-bigscreen {
+//     @media only screen and (min-width: #{$desktop}) and (max-width: #{$bigscreen}) {
+//         @content;
+//     }
+// }
+
+// // Usage: @include bigscreen{}
+// @mixin bigscreen {
+//     @media only screen and (min-width: #{$bigscreen}) {
+//         @content;
+//     }
+// }
+
+
+
+// Breakpoints from desktop to mobile
+
+// Usage: @include small-mobile{}
+@mixin small-mobile {
+    @media only screen and (max-width: #{$small-mobile}) {
+        @content;
+    }
+}
+// Usage: @include mobile{}
 @mixin mobile {
-    @media only screen and (min-width: #{$mobile}) {
+    @media only screen and (max-width: #{$mobile}) {
         @content;
     }
 }
 
 // Usage: @include mobile-tablet{}
 @mixin mobile-tablet {
-    @media only screen and (min-width: #{$mobile}) and (max-width: #{$tablet}) {
+    @media only screen and (max-width: #{$mobile}) and (min-width: #{$tablet}) {
         @content;
     }
 }
 
 // Usage: @include tablet{}
 @mixin tablet {
-    @media only screen and (min-width: #{$tablet}) {
+    @media only screen and (max-width: #{$tablet}) {
         @content;
     }
 }
 
 // Usage: @include tablet-laptop{}
 @mixin tablet-laptop {
-    @media only screen and (min-width: #{$tablet}) and (max-width: #{$laptop}) {
+    @media only screen and (max-width: #{$tablet}) and (min-width: #{$laptop}) {
         @content;
     }
 }
 
 // Usage: @include laptop{}
 @mixin laptop {
-    @media only screen and (min-width: #{$laptop}) {
+    @media only screen and (max-width: #{$laptop}) {
         @content;
     }
 }
 
 // Usage: @include laptop-desktop{}
-@mixin laptop-desktop {
-    @media only screen and (min-width: #{$laptop}) and (max-width: #{$desktop}) {
+@mixin desktop-laptop {
+    @media only screen and (max-width: #{$laptop}) and (min-width: #{$desktop}) {
         @content;
     }
 }
 
 // Usage: @include desktop{}
 @mixin desktop {
-    @media only screen and (min-width: #{$desktop}) {
+    @media only screen and (max-width: #{$desktop}) {
         @content;
     }
 }
 
 // Usage: @include desktop-bigscreen{}
 @mixin desktop-bigscreen {
-    @media only screen and (min-width: #{$desktop}) and (max-width: #{$bigscreen}) {
+    @media only screen and (max-width: #{$desktop}) and (min-width: #{$bigscreen}) {
         @content;
     }
 }
 
 // Usage: @include bigscreen{}
 @mixin bigscreen {
-    @media only screen and (min-width: #{$bigscreen}) {
+    @media only screen and (max-width: #{$bigscreen}) {
         @content;
     }
 }
-
