@@ -19,18 +19,19 @@ const useStyles = makeStyles((theme) => ({
         display: "flex",
         justifyContent: "space-between",
         backgroundColor: "#0F6A7D",
+        height: "8vh",
     },
     logoIcon: {
-        width: "60px", 
-        height: "35px",
+        width: "65px", 
+        height: "40px",
     },
     search: {
         display: "flex",
         alignItems: "center",
         backgroundColor: "#F6f4f4",
         borderRadius: theme.shape.borderRadius,
-        width: "25%",
-        height: "35px",
+        width: "40%",
+        height: "4vh",
         [theme.breakpoints.down("sm")]: {
             width: "40%",
         },
@@ -42,13 +43,13 @@ const useStyles = makeStyles((theme) => ({
     searchIcon: {
         color: "black",
         marginLeft: theme.spacing(1),
-        width: "20px",
-        height: "20px"
+        width: "25px",
+        height: "25px"
         
     },
     input: {
         marginLeft: theme.spacing(1),
-        fontSize: "12px",
+        fontSize: "14px",
         width: "80%",
         
     },
@@ -57,8 +58,8 @@ const useStyles = makeStyles((theme) => ({
         alignItems: "center",
     },
     rightSideIcon: {
-        width: "28px", 
-        height: "28px",
+        width: "35px", 
+        height: "35px",
         color: "white",
         marginRight: theme.spacing(5),
         [theme.breakpoints.down("xs")]: {
@@ -82,6 +83,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Navbar() {
     const classes = useStyles();
+
     const [anchorEl, setAnchorMenuEl] = useState(false);
     const [burgerMenuIconAnchorEl, setBurgerMenuIconAnchorEl] = useState(false);
 
@@ -118,31 +120,31 @@ function Navbar() {
         >
             <Link to='/profile' style={{textDecoration: "none", color: "black" }}>
                 <MenuItem 
-                    style={{fontSize: "12px", margin: "5px"}} 
+                    style={{fontSize: "14px", margin: "5px"}} 
                     onClick={handleMenuClose}>Your profile
                 </MenuItem>
             </Link>
             <Link to='/libraries' style={{textDecoration: "none", color: "black" }}>
                 <MenuItem 
-                    style={{fontSize: "12px", margin: "5px"}} 
+                    style={{fontSize: "14px", margin: "5px"}} 
                     onClick={handleMenuClose}>Your libraries
                 </MenuItem>
             </Link>
             <Link to='/privacy' style={{textDecoration: "none", color: "black" }}>
                 <MenuItem 
-                    style={{fontSize: "12px", margin: "5px"}} 
+                    style={{fontSize: "14px", margin: "5px"}} 
                     onClick={handleMenuClose}>Privacy
                 </MenuItem>
             </Link>
             <Link to='/terms-and-policies' style={{textDecoration: "none", color: "black" }}>
                 <MenuItem 
-                    style={{fontSize: "12px", margin: "5px"}} 
+                    style={{fontSize: "14px", margin: "5px"}} 
                     onClick={handleMenuClose}>Terms and policies
                 </MenuItem>
             </Link>
             <Link to='/signout' style={{textDecoration: "none", color: "black" }}>
                 <MenuItem 
-                    style={{fontSize: "12px", margin: "5px"}} 
+                    style={{fontSize: "14px", margin: "5px"}} 
                     onClick={handleMenuClose}>Sign out
                 </MenuItem>
             </Link>
@@ -159,35 +161,35 @@ function Navbar() {
             onClose={handleBurgerMenuClose}
             anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
             transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-            style={{marginTop: "-75px"}}            
+            style={{marginTop: "15px"}}            
         >
             <Link to='/profile' style={{textDecoration: "none", color: "black" }}>
                 <MenuItem 
-                    style={{fontSize: "12px"}} 
+                    style={{fontSize: "14px"}} 
                     onClick={handleBurgerMenuClose}>Your profile
                 </MenuItem>
             </Link>
             <Link to='/' style={{textDecoration: "none", color: "black" }}>
                 <MenuItem 
-                    style={{fontSize: "12px"}} 
+                    style={{fontSize: "14px"}} 
                     onClick={handleBurgerMenuClose}>Homepage
                 </MenuItem>
             </Link>
             <Link to='/upload-work' style={{textDecoration: "none", color: "black" }}>
                 <MenuItem 
-                    style={{fontSize: "12px"}} 
+                    style={{fontSize: "14px"}} 
                     onClick={handleBurgerMenuClose}>Upload work
                 </MenuItem>
             </Link>
             <Link to='/libraries' style={{textDecoration: "none", color: "black" }}>
                 <MenuItem 
-                    style={{fontSize: "12px"}} 
+                    style={{fontSize: "14px"}} 
                     onClick={handleBurgerMenuClose}>Your libraries
                 </MenuItem>
             </Link>
             <Link to='/signout' style={{textDecoration: "none", color: "black" }}>
                 <MenuItem 
-                    style={{fontSize: "12px"}} 
+                    style={{fontSize: "14px"}} 
                     onClick={handleBurgerMenuClose}>Sign out
                 </MenuItem>
             </Link>
@@ -195,7 +197,7 @@ function Navbar() {
     );
 
 
-    const iconHover = {cursor: "pointer"};
+    const iconHover = {cursor: "pointer", marginLeft: "12%"};
 
     return (
         <>
@@ -217,7 +219,7 @@ function Navbar() {
                         />
                     </div>
                     <div className={classes.rightIcon}>
-                        <Tooltip title={<h1 style={{fontSize: 8}}>Home</h1>} arrow >
+                        <Tooltip title={<h1 style={{fontSize: 10}}>Home</h1>} arrow >
                             <Link to='/'>
                                 <HomeIcon
                                     aria-label="show Homeicon's description" 
@@ -226,7 +228,7 @@ function Navbar() {
                                 />
                             </Link>
                         </Tooltip>
-                        <Tooltip title={<h1 style={{fontSize: 8}}>Upload work</h1>} arrow >
+                        <Tooltip title={<h1 style={{fontSize: 10}}>Upload work</h1>} arrow >
                             <Link to='/upload-work'>
                                 <CloudUploadIcon
                                     aria-label="show UploadworkIcon's description"  
@@ -235,7 +237,7 @@ function Navbar() {
                                 />
                             </Link>
                         </Tooltip>
-                        <Tooltip title={<h1 style={{fontSize: 8}}>Your profile</h1>} arrow >
+                        <Tooltip title={<h1 style={{fontSize: 10}}>Your profile</h1>} arrow >
                             <Link to='/profile'><AccountCircle
                                     aria-label="show avatarIcon's description"  
                                     className={classes.rightSideIcon} 
@@ -243,7 +245,7 @@ function Navbar() {
                                 />
                             </Link>
                         </Tooltip>
-                        <Tooltip title={<h1 style={{fontSize: 8}}>Your Account</h1>} arrow >
+                        <Tooltip title={<h1 style={{fontSize: 10}}>Your Account</h1>} arrow >
                             <ArrowDropDownIcon
                                 edge="end"
                                 aria-label="show arrowDropDownIcon's description"

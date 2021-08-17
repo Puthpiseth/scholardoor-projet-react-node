@@ -1,0 +1,198 @@
+* {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 12px;
+}
+
+/* smartphones (portrait) */
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #F6f4f4;
+}
+
+main {
+  margin: 0% 5%;
+  width: 90%;
+  height: 200vh;
+}
+
+.articleContainer {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  position: absolute;
+  top: 26%;
+  left: 25%;
+  width: 70%;
+}
+
+@media only screen and (max-width: 1200px) {
+  .articleContainer {
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
+    width: 65%;
+    left: 30%;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .articleContainer {
+    -ms-grid-columns: (1fr)[1];
+        grid-template-columns: repeat(1, 1fr);
+    width: 50%;
+    left: 45%;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .articleContainer {
+    position: absolute;
+    top: 80%;
+    left: 5%;
+    width: 90%;
+  }
+}
+
+.articleContainer .box {
+  background: #fdfcfc;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 0 2px #999999;
+          box-shadow: 0 0 2px #999999;
+  padding-bottom: 2%;
+}
+
+.articleContainer .box .articleWrapper {
+  margin-left: 5%;
+  margin-right: 5%;
+  padding: 3% 0;
+}
+
+.articleContainer .box .articleWrapper .titleWrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.articleContainer .box .articleWrapper .titleWrapper .articleTitle {
+  cursor: pointer;
+  color: #2794f2;
+}
+
+@media only screen and (max-width: 480px) {
+  .articleContainer .box .articleWrapper .titleWrapper .articleTitle {
+    font-size: 16px;
+  }
+}
+
+.articleContainer .box .articleWrapper .titleWrapper .articleTitle:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 0.1em;
+}
+
+.articleContainer .box .articleWrapper .titleWrapper .download {
+  color: #2794f2;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 480px) {
+  .articleContainer .box .articleWrapper .titleWrapper .download {
+    font-size: 16px;
+  }
+}
+
+.articleContainer .box .articleWrapper .titleWrapper .download:hover {
+  opacity: 0.9;
+}
+
+@media only screen and (max-width: 480px) {
+  .articleContainer .box .articleWrapper .authorsAbstract {
+    font-size: 15px;
+  }
+}
+
+.articleContainer .box .articleWrapper .view {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.articleContainer .box .articleWrapper .view .numberOfView {
+  margin-right: 2%;
+}
+
+@media only screen and (max-width: 480px) {
+  .articleContainer .box .articleWrapper .view .numberOfView {
+    font-size: 16px;
+  }
+}
+
+.articleContainer .box .articleWrapper .view .viewText {
+  color: #999999;
+}
+
+@media only screen and (max-width: 480px) {
+  .articleContainer .box .articleWrapper .view .viewText {
+    font-size: 16px;
+  }
+}
+
+.articleContainer .box .articleWrapper .articleButtons .editButton {
+  color: #474747;
+  border: none;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 0 2px #999999;
+          box-shadow: 0 0 2px #999999;
+  height: 3.5vh;
+  padding: 0 1%;
+  margin-right: 7px;
+  cursor: pointer;
+}
+
+.articleContainer .box .articleWrapper .articleButtons .editButton:hover {
+  color: #fff;
+  background: #2794f2;
+}
+
+@media only screen and (max-width: 480px) {
+  .articleContainer .box .articleWrapper .articleButtons .editButton {
+    font-size: 15px;
+  }
+}
+
+.articleContainer .box .articleWrapper .articleButtons .deleteButton {
+  color: #474747;
+  border: none;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 0 2px #999999;
+          box-shadow: 0 0 2px #999999;
+  height: 3.5vh;
+  padding: 0 1%;
+  cursor: pointer;
+}
+
+.articleContainer .box .articleWrapper .articleButtons .deleteButton:hover {
+  color: #fff;
+  background: #EB4132;
+}
+
+@media only screen and (max-width: 480px) {
+  .articleContainer .box .articleWrapper .articleButtons .deleteButton {
+    font-size: 15px;
+  }
+}
+/*# sourceMappingURL=article.css.map */

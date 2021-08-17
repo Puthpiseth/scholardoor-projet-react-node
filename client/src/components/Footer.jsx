@@ -1,11 +1,28 @@
 import React from 'react'
+import { makeStyles } from "@material-ui/core";
 import {Link} from 'react-router-dom'
-import '../styles/components/footer.scss'
+
+const useStyles = makeStyles((theme) => ({
+
+    copyright: {
+        display: "flex",
+        justifyContent: "center", 
+        fontSize: "14px",  
+        
+    },
+    privatePolicy: {
+        fontSize: "14px", 
+        marginLeft: theme.spacing(1),
+    }
+}));
+
 
 function Footer() {
+    const classes = useStyles();
+
     return (
-        <div className="copyright">
-            <p>ScholarDoor© 2021 All rights reserved <Link to="/private-policy" className="private-policy">Private Policy</Link></p>
+        <div className={classes.copyrightPrivatePolicy}>
+            <p className={classes.copyright}>ScholarDoor© 2021 All rights reserved <Link to="/private-policy" className={classes.privatePolicy}>Private Policy</Link></p>
         </div>
     )
 }

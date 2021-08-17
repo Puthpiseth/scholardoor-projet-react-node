@@ -18,4 +18,10 @@ body {
   padding: 0;
   background-color: #F6f4f4;
 }
+
+main {
+  margin: 0% 5%;
+  width: 90%;
+  height: 200vh;
+}
 /*# sourceMappingURL=app.css.map */
