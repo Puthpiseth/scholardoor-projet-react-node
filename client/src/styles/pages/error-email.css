@@ -19,6 +19,12 @@ body {
   background-color: #F6f4f4;
 }
 
+main {
+  margin: 0% 5%;
+  width: 90%;
+  height: 200vh;
+}
+
 .error-email-container {
   position: absolute;
   top: 35%;

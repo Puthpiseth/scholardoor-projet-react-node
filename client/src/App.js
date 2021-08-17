@@ -21,9 +21,8 @@ function App() {
         <Route exact path='/error-email' component={ErrorEmail}></Route>
         <Route exact path='/create-profile' component={CreateProfile}></Route>
         <Route exact path='/update-profile' component={UpdateProfile}></Route>
-        <Route exact path='/my-profile/:id' component={Profile}></Route>
+        <Route exact path='/profile/:id' component={Profile}></Route>
         <Route exact path='/private-policy' component={PrivatePolicy}></Route>
-        
       </Switch>
     </Router>
   );

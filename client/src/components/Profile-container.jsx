@@ -1,57 +1,181 @@
-import React from 'react'
-import '../styles/components/profile-container.scss';
+import React from 'react';
+import { makeStyles } from "@material-ui/core";
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import Button from '@material-ui/core/Button';
+
+
+const useStyles = makeStyles((theme) => ({
+
+    mainContainer: {
+        marginTop: "15%",
+        [theme.breakpoints.down("md")]: {
+            marginTop: "22%",
+        },
+        [theme.breakpoints.down("sm")]: {
+            marginTop: "30%",
+        },
+        
+    },
+    profileAvatarIcon: {
+        color: "#C4C4C4",
+        width: "120px",
+        height: "120px",
+        marginLeft: "5%",
+        [theme.breakpoints.down("sm")]: {
+            marginLeft: "12%",
+            width: "100px",
+            height: "100px",
+        },
+        [theme.breakpoints.down("xs")]: {
+            marginLeft: "40%",
+        },  
+    },
+
+    profileInfo: {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: "4px",
+        border: "1px solid #E5E5E5",
+        width: "18%",
+        [theme.breakpoints.down("md")]: {
+            width: "25%",
+        },  
+        [theme.breakpoints.down("sm")]: {
+            width: "40%",
+        },
+        [theme.breakpoints.down("xs")]: {
+            width: "100%",
+            
+        },       
+    },
+    
+    profileWrapper: {
+        padding: "2% 0% 10% 2%",
+    },
+
+    usernameText: {
+        fontWeight: "bold", 
+        fontSize: "20px",
+        [theme.breakpoints.down("xs")]: {
+            fontSize: "30px",
+        },  
+    },
+
+    profileText: {
+        fontSize: "14px",
+        [theme.breakpoints.down("xs")]: {
+            fontSize: "18px",
+        },  
+    },
+
+    follow: {
+        display: "flex",
+    },
+
+    followers: {
+        display: "flex",
+        marginRight: "15%",
+    },
+
+    followersText: {
+        marginRight: "15%",
+        fontSize: "14px",
+        [theme.breakpoints.down("xs")]: {
+            fontSize: "18px",
+        },  
+    },
+
+    following: {
+        display: "flex",
+    },
+
+    followingText: {
+        marginLeft: "10%",
+        fontSize: "14px",
+        [theme.breakpoints.down("xs")]: {
+            fontSize: "18px",
+        },  
+    },
+    
+    profileUploadButton: {
+        background: "#0F6A7D",
+        color: "#fff",
+        fontSize: "14px",
+        border: "none",
+        borderRadius: "5px",
+        boxShadow: "0 0 2px #999999",
+        height: "4vh",
+        marginRight: theme.spacing(1),
+        cursor: "pointer",
+            "&:hover": {
+                opacity: 0.9,
+            },
+        [theme.breakpoints.down("xs")]: {
+            height: "5vh",
+            fontSize: "18px",
+            marginRight: theme.spacing(2),
+        }, 
+    },
+
+    profileEditButton: {
+        background: "",
+        color: "#474747",
+        fontSize: "14px",
+        border: "none",
+        borderRadius: "5px",
+        boxShadow: "0 0 2px #999999",
+        height: "4vh",
+        cursor: "pointer",
+        "&:hover": {
+            color: "#fff",
+            background: "#2794f2",
+        },
+        [theme.breakpoints.down("xs")]: {
+            height: "5vh",
+            fontSize: "18px",
+        },  
+    },
+
+}));
 
 function ProfileContainer() {
+    const classes = useStyles();
     
     return (
-        <>
         <main>
-        <div className="profile-container">
-            <div className="profile-background-top"></div>
-            <div className="profile-wrapper">
-                <div className="profile-avatar" name="avatar">
-                    <AccountCircle className="profile-avatar-icon"/>
-                </div>
-                <div className="profile-info">
-                    <p className="username" name="username">Puthpiseth TUN</p>
-                    <p className="position" name="position">Director of Academic Affairs</p>
-                    <p className="affiliation" name="affiliation">Royal University of Fine Arts</p>
-                    <p className="researchInterest" name="researchInterest">History of Art, Buddhism</p>
-                    <p className="location" name="location">Phnom Penh, Cambodia</p>
-                </div>
-                <div className="followers-following">
-                    <div className="number-of-followers">
-                        <p name="followers">0</p>
-                        <p className="follower">Followers</p>
+            <div className={classes.mainContainer}>
+                <AccountCircle className={classes.profileAvatarIcon}/>
+                <div className={classes.profileInfo}>
+                    <div className={classes.profileWrapper}>
+                        <div>
+                            <p className={classes.usernameText} name="username">Puthpiseth TUN</p>
+                            <p className={classes.profileText} name="position">Director of Academic Affairs</p>
+                            <p className={classes.profileText} name="affiliation">Royal University of Fine Arts</p>
+                            <p className={classes.profileText} name="researchInterest">History of Art, Buddhism</p>
+                            <p className={classes.profileText} name="location">Cambodia</p>
+                        </div>
+                        <div className={classes.follow}>
+                            <div className={classes.followers}>
+                                <p className={classes.followersText} name="followers">0</p>
+                                <p className={classes.followersText}>Followers</p>
+                            </div>
+                            <div className={classes.following} >
+                                <p className={classes.followingText} name="following">0</p>
+                                <p className={classes.followingText}>Following</p>
+                            </div>
+                        </div>
+                        <div className={classes.profileButtons}>
+                            <button className={classes.profileUploadButton}>
+                                Upload work
+                            </button>
+                            <button className={classes.profileEditButton}>  
+                                Edit profile
+                            </button>
+                        </div>
                     </div>
-                    <div className="number-of-following" >
-                        <p name="following">0</p>
-                        <p className="follower">Following</p>
-                    </div>
-                </div>
-                <div className="profile-buttons">
-                    <Button 
-                        variant="contained" 
-                        style={{backgroundColor: "#0F6A7D", color: "#fff", marginRight: "2px"}}>
-                        upload work
-                    </Button>
-                    <Button 
-                        variant="contained" 
-                        style={{backgroundColor: "#2794f2", color: "#fff", marginRight: "2px"}}> 
-                        contact
-                    </Button>
-                    <Button 
-                        variant="contained" 
-                        style={{backgroundColor: "#0F6A7D", color: "#fff", marginRight: "2px"}}>
-                        edit profile
-                    </Button>
                 </div>
             </div>
-        </div>
         </main>
-        </>
     )
 }
 

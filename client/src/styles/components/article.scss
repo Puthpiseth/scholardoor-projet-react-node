@@ -1,0 +1,150 @@
+@import '../app.scss';
+
+.articleContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;    
+    position: absolute;
+    top: 26%;
+    left: 25%;
+    width: 70%;
+
+    @include desktop {
+        grid-template-columns: repeat(2, 1fr);
+        width: 65%;
+        left: 30%;
+    };
+
+    @include laptop {
+        grid-template-columns: repeat(1, 1fr);
+        width: 50%;
+        left: 45%;
+    };
+
+    @include mobile {
+        position: absolute;
+        top: 80%;
+        left: 5%;
+        width: 90%;
+        
+    };
+
+    .box {
+        background: #fdfcfc;
+        border-radius: 5px;
+        box-shadow: 0 0 2px $darkgrey;
+        padding-bottom: 2%;
+
+        .articleWrapper {
+            margin-left: 5%;
+            margin-right: 5%;
+            padding: 3% 0;
+
+            .titleWrapper {
+                display: flex;
+                justify-content: space-between;
+
+                .articleTitle {
+                    cursor: pointer;
+                    color: $midblue;
+
+                    @include mobile {
+                        font-size: 16px; 
+                    };
+                
+                        &:hover {
+                        text-decoration: underline;
+                        text-underline-offset: 0.2em;
+                        text-decoration-thickness: 0.1em;
+                    }
+                }
+                .download {
+                    color: $midblue;
+                    cursor: pointer;
+
+                    @include mobile {
+                        font-size: 16px; 
+                    };
+                        &:hover {
+                            opacity: 0.9;
+                        }
+                }
+            }
+            .authorsAbstract {
+                    
+                @include mobile {
+                    font-size: 15px; 
+                };
+                            
+            }
+
+            .view {
+                display: flex;
+                
+                .numberOfView {
+                    margin-right: 2%;
+
+                    @include mobile {
+                        font-size: 16px; 
+                    };
+
+                }
+                .viewText {
+                    color: $darkgrey;
+
+                    @include mobile {
+                        font-size: 16px; 
+                    };
+                }
+            }
+
+            .articleButtons {
+
+                .editButton {
+                    color: $darkergrey;
+                    border: none;
+                    border-radius: 5px;
+                    box-shadow: 0 0 2px $darkgrey;
+                    height: 3.5vh;
+                    padding: 0 1%;
+                    margin-right: 7px;
+                    cursor: pointer;
+                    &:hover {
+                        color: $white;
+                        background: $midblue;
+                    };
+
+                    @include mobile {
+                        font-size: 15px; 
+                    };
+                }
+                .deleteButton {
+                    color: $darkergrey;
+                    border: none;
+                    border-radius: 5px;
+                    box-shadow: 0 0 2px $darkgrey;
+                    height: 3.5vh;
+                    padding: 0 1%;
+                    cursor: pointer;
+                        &:hover {
+                            color: $white;
+                            background: $midred;
+                        };
+                    @include mobile {
+                        font-size: 15px; 
+                    };
+                }
+            }
+        }
+    }
+    
+}
+
+
+    
+    
+    
+
+    
+
+    

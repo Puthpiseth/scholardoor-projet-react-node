@@ -19,6 +19,12 @@ body {
   background-color: #F6f4f4;
 }
 
+main {
+  margin: 0% 5%;
+  width: 90%;
+  height: 200vh;
+}
+
 .form-update-profile-container {
   width: 28%;
   margin: 100px auto;
