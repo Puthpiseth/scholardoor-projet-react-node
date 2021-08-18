@@ -7,11 +7,15 @@ const useStyles = makeStyles((theme) => ({
 
     mainContainer: {
         marginTop: "15%",
+        
         [theme.breakpoints.down("md")]: {
             marginTop: "22%",
         },
         [theme.breakpoints.down("sm")]: {
             marginTop: "30%",
+        },
+        [theme.breakpoints.down("xs")]: {
+            marginRight: "6%",
         },
         
     },
@@ -20,13 +24,20 @@ const useStyles = makeStyles((theme) => ({
         width: "120px",
         height: "120px",
         marginLeft: "5%",
+        [theme.breakpoints.down("lg")]: {
+            marginLeft: "6%",
+            width: "110px",
+            height: "110px",
+        },
+        [theme.breakpoints.down("md")]: {
+            marginLeft: "11%",
+        },
         [theme.breakpoints.down("sm")]: {
-            marginLeft: "12%",
             width: "100px",
             height: "100px",
         },
         [theme.breakpoints.down("xs")]: {
-            marginLeft: "40%",
+            marginLeft: "36%",
         },  
     },
 
@@ -36,16 +47,14 @@ const useStyles = makeStyles((theme) => ({
         alignItems: "center",
         borderRadius: "4px",
         border: "1px solid #E5E5E5",
-        width: "18%",
-        [theme.breakpoints.down("md")]: {
-            width: "25%",
+        [theme.breakpoints.down("lg")]: {
+            width: "20%",
         },  
-        [theme.breakpoints.down("sm")]: {
-            width: "40%",
+        [theme.breakpoints.down("md")]: {
+            width: "35%",
         },
         [theme.breakpoints.down("xs")]: {
-            width: "100%",
-            
+            width: "110%",            
         },       
     },
     

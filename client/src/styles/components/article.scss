@@ -2,30 +2,37 @@
 
 .articleContainer {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;    
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;    
     position: absolute;
     top: 26%;
-    left: 25%;
-    width: 70%;
+    left: 30%;
+    width: 60%;
+
+    @include bigscreen {
+        top: 24%;
+        grid-template-columns: repeat(2, 1fr);
+        left: 30%;
+    };
 
     @include desktop {
-        grid-template-columns: repeat(2, 1fr);
-        width: 65%;
-        left: 30%;
+        grid-template-columns: repeat(1, 1fr);
+        top: 24%;
+        width: 45%;
+        left: 45%;
     };
 
     @include laptop {
         grid-template-columns: repeat(1, 1fr);
         width: 50%;
-        left: 45%;
+        left: 40%;
     };
 
     @include mobile {
         position: absolute;
         top: 80%;
-        left: 5%;
-        width: 90%;
+        left: 9%;
+        width: 88%;
         
     };
 
@@ -47,6 +54,7 @@
                 .articleTitle {
                     cursor: pointer;
                     color: $midblue;
+                    font-size: 14px;
 
                     @include mobile {
                         font-size: 16px; 
@@ -61,6 +69,7 @@
                 .download {
                     color: $midblue;
                     cursor: pointer;
+                    font-size: 14px;
 
                     @include mobile {
                         font-size: 16px; 
@@ -71,7 +80,7 @@
                 }
             }
             .authorsAbstract {
-                    
+                font-size: 14px;
                 @include mobile {
                     font-size: 15px; 
                 };
@@ -83,6 +92,7 @@
                 
                 .numberOfView {
                     margin-right: 2%;
+                    font-size: 14px;
 
                     @include mobile {
                         font-size: 16px; 
@@ -91,6 +101,7 @@
                 }
                 .viewText {
                     color: $darkgrey;
+                    font-size: 14px;
 
                     @include mobile {
                         font-size: 16px; 
@@ -106,6 +117,7 @@
                     border-radius: 5px;
                     box-shadow: 0 0 2px $darkgrey;
                     height: 3.5vh;
+                    font-size: 14px;
                     padding: 0 1%;
                     margin-right: 7px;
                     cursor: pointer;
@@ -124,6 +136,7 @@
                     border-radius: 5px;
                     box-shadow: 0 0 2px $darkgrey;
                     height: 3.5vh;
+                    font-size: 14px;
                     padding: 0 1%;
                     cursor: pointer;
                         &:hover {
