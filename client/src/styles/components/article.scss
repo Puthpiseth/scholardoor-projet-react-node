@@ -25,14 +25,14 @@
     @include laptop {
         grid-template-columns: repeat(1, 1fr);
         width: 50%;
-        left: 40%;
+        left: 41.5%;
     };
 
     @include mobile {
         position: absolute;
-        top: 80%;
+        top: 76%;
         left: 9%;
-        width: 88%;
+        width: 84%;
         
     };
 
@@ -127,7 +127,7 @@
                     };
 
                     @include mobile {
-                        font-size: 15px; 
+                        font-size: 14px; 
                     };
                 }
                 .deleteButton {
@@ -144,7 +144,7 @@
                             background: $midred;
                         };
                     @include mobile {
-                        font-size: 15px; 
+                        font-size: 14px; 
                     };
                 }
             }

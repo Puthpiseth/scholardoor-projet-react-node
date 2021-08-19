@@ -22,7 +22,7 @@ body {
 main {
   margin: 0% 9%;
   width: 85%;
-  height: 200vh;
+  height: 90vh;
 }
 
 .articleContainer {
@@ -61,16 +61,16 @@ main {
     -ms-grid-columns: (1fr)[1];
         grid-template-columns: repeat(1, 1fr);
     width: 50%;
-    left: 40%;
+    left: 41.5%;
   }
 }
 
 @media only screen and (max-width: 480px) {
   .articleContainer {
     position: absolute;
-    top: 80%;
+    top: 76%;
     left: 9%;
-    width: 88%;
+    width: 84%;
   }
 }
 
@@ -189,7 +189,7 @@ main {
 
 @media only screen and (max-width: 480px) {
   .articleContainer .box .articleWrapper .articleButtons .editButton {
-    font-size: 15px;
+    font-size: 14px;
   }
 }
 
@@ -212,7 +212,7 @@ main {
 
 @media only screen and (max-width: 480px) {
   .articleContainer .box .articleWrapper .articleButtons .deleteButton {
-    font-size: 15px;
+    font-size: 14px;
   }
 }
 /*# sourceMappingURL=article.css.map */
