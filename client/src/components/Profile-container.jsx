@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
             marginTop: "30%",
         },
         [theme.breakpoints.down("xs")]: {
-            marginRight: "6%",
+            marginRight: "11%",
         },
         
     },
@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
             height: "100px",
         },
         [theme.breakpoints.down("xs")]: {
-            marginLeft: "36%",
+            marginLeft: "39%",
         },  
     },
 
@@ -71,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
     },
 
     profileText: {
-        fontSize: "14px",
+        fontSize: "16px",
         [theme.breakpoints.down("xs")]: {
             fontSize: "18px",
         },  
@@ -87,10 +87,10 @@ const useStyles = makeStyles((theme) => ({
     },
 
     followersText: {
-        marginRight: "15%",
+        marginRight: "14%",
         fontSize: "14px",
         [theme.breakpoints.down("xs")]: {
-            fontSize: "18px",
+            fontSize: "16px",
         },  
     },
 
@@ -99,10 +99,10 @@ const useStyles = makeStyles((theme) => ({
     },
 
     followingText: {
-        marginLeft: "10%",
+        marginLeft: "18%",
         fontSize: "14px",
         [theme.breakpoints.down("xs")]: {
-            fontSize: "18px",
+            fontSize: "16px",
         },  
     },
     
@@ -114,14 +114,15 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: "5px",
         boxShadow: "0 0 2px #999999",
         height: "4vh",
-        marginRight: theme.spacing(1),
+        padding: "0 4%",
+        marginRight: theme.spacing(2),
         cursor: "pointer",
             "&:hover": {
                 opacity: 0.9,
             },
         [theme.breakpoints.down("xs")]: {
             height: "5vh",
-            fontSize: "18px",
+            fontSize: "16px",
             marginRight: theme.spacing(2),
         }, 
     },
@@ -134,6 +135,7 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: "5px",
         boxShadow: "0 0 2px #999999",
         height: "4vh",
+        padding: "0 4%",
         cursor: "pointer",
         "&:hover": {
             color: "#fff",
@@ -141,7 +143,7 @@ const useStyles = makeStyles((theme) => ({
         },
         [theme.breakpoints.down("xs")]: {
             height: "5vh",
-            fontSize: "18px",
+            fontSize: "16px",
         },  
     },
 
