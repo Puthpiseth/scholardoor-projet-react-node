@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: "columns",
         justifyContent: "center",
         width: "90%",
-        margin: "auto",
+        margin: "auto",  
         marginBottom: theme.spacing(2),      
     },
     labelPublicationDate: {
@@ -80,16 +80,17 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function AddPaperDetails() {
+function AddPaperDetails(props) {
     const classes = useStyles();
     return (
         <>
             <Navbar/>
                 <main>
                     <h1 className={classes.paperDetailTitle}>Fill Paper Details</h1>
-                    <form className={classes.AddPaperContainer} >
+                    <form className={classes.AddPaperContainer} onSubmit={props.handleSubmit}>
                         <div>
                             <TextField
+                                onChange={props.handleChange}
                                 variant="outlined"
                                 type="text"
                                 // change font size of input text
@@ -103,6 +104,7 @@ function AddPaperDetails() {
                             </TextField>
                     
                             <TextField
+                                onChange={props.handleChange}
                                 variant="outlined"
                                 type="text"
                                 // change font size of input text
@@ -116,6 +118,7 @@ function AddPaperDetails() {
                             </TextField>
 
                             <TextareaAutosize
+                                onChange={props.handleChange}
                                 maxRows={4}
                                 aria-label="maximum height"
                                 name="abstract"
@@ -126,6 +129,7 @@ function AddPaperDetails() {
                             />
 
                             <TextField
+                                onChange={props.handleChange}
                                 variant="outlined"
                                 type="text"
                                 // change font size of input text
@@ -138,6 +142,7 @@ function AddPaperDetails() {
                             >
                             </TextField>
                             <TextField
+                                onChange={props.handleChange}
                                 variant="outlined"
                                 type="text"
                                 // change font size of input text
@@ -153,6 +158,7 @@ function AddPaperDetails() {
                         <label className={classes.labelPublicationDate}>Publication Date</label>
                         <div className={classes.publicationAndIssue}>
                             <TextField
+                                onChange={props.handleChange}
                                 variant="outlined"
                                 type="date"
                                 // change font size of input text
@@ -165,6 +171,7 @@ function AddPaperDetails() {
                             </TextField>
                             
                             <TextField
+                                onChange={props.handleChange}
                                 variant="outlined"
                                 type="text"
                                // change font size of input text
@@ -178,16 +185,22 @@ function AddPaperDetails() {
                             </TextField>
                         </div>
                             
-                        <Button 
+                        <Button
                             variant="contained" 
                             type="submit"
                             style={{marginTop: "2%", marginLeft: "5%", background: "#0F6A7D", color: "#fff", width: "90%", height: "5vh"}}
-                        >Submit
+                        >
+                            Submit
                         </Button>     
                     </form>
 
                     <div className={classes.backButton}>
-                        <Button variant="contained">Back</Button>
+                        <Button
+                            onClick = {props.handlePrevStep} 
+                            variant="contained"
+                        >
+                            Back
+                        </Button>
                         
                     </div>
                 </main>

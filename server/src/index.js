@@ -9,10 +9,11 @@ require('dotenv').config();
 const app = express();
 
   // Routes
-const users = require('./routes/user');
-  // const posts = require('./routes/posts');
-const profile = require('./routes/profile')
-
+// const users = require('./routes/user');
+//   // const posts = require('./routes/posts');
+// const profile = require('./routes/profile')
+// const article = require('./routes/article')
+const router = require('./routes/index')
 app.use(cors());
 app.use(express.urlencoded());
 app.use(express.json());
@@ -20,9 +21,11 @@ app.use(express.json());
 
 app.use(cookieParser());
 app.use(fileUpload());
+app.use('/', router)
 
-app.use(users);
-app.use(profile);
+// app.use(users);
+// app.use(profile);
+// app.use(article);
   // app.use('/posts', posts);
 
 const port = process.env.PORT || 9000;
@@ -45,7 +48,6 @@ sequelize
 sequelize.sync({ alter: true  }).then(() => {
     console.log("Database & tables created!")
 });
-
 
 module.exports = sequelize;
 global.sequelize = sequelize;

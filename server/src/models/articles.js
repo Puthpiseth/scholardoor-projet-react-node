@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       defaultValue: DataTypes.UUIDV4,
     },
-    filePath: DataTypes.STRING,
+    filePath: DataTypes.TEXT('long'),
     title: DataTypes.STRING,
     authors: DataTypes.STRING,
     publicationDate: DataTypes.DATE,

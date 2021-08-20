@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { makeStyles } from '@material-ui/core';
 import {DropzoneArea} from 'material-ui-dropzone'
 import Button from '@material-ui/core/Button'
+import UploadFile from '../services/article';
 
 const useStyles = makeStyles((theme) => ({
     
@@ -44,14 +45,17 @@ const useStyles = makeStyles((theme) => ({
         },
         [theme.breakpoints.down("xs")]: {
             width: "90%",
-         },
+        },
     },
     
 
 }));
 
-function UploadFile() {
+function UploadUserFile(props) {
     const classes = useStyles();
+
+    const fileMaxSize = 10000000// max size 10MB
+
     return (
         <>
             <Navbar/>
@@ -64,12 +68,21 @@ function UploadFile() {
                             dropzoneClass={classes.dropZone}
                             dropzoneText={'Drag and drop or click upload icon to upload your papers'}
                             name="filePath"
+                            acceptedFiles={["application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document"]}
+                            filesLimit={1}
+                            showFileNames
+                            onDrop={props.handleChange}
+                            onChange={props.handleChange}
+                            maxFileSize={fileMaxSize}// Files are accepted less than 20MB
                         >
                         </DropzoneArea>
+
                         <Button 
                             variant="contained" 
                             style={{background: "#2794f2", color: "#fff", marginTop: "1%"}}
-                        > Next
+                            onClick ={props.handleNextStep}
+                        > 
+                            Next 
                         </Button>
                     </div>
                 </main>
@@ -78,4 +91,4 @@ function UploadFile() {
     )
 }
 
-export default UploadFile;
+export default UploadUserFile;
