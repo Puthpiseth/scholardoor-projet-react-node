@@ -9,6 +9,7 @@ import CreateProfile from './pages/Create_Profile';
 import UpdateProfile from './pages/update_profile';
 import UploadFile from './pages/upload_file';
 import AddPaperDetails from './pages/Add_Paper_Details';
+import UploadArticle from './pages/Upload_Article';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 
@@ -24,8 +25,7 @@ function App() {
         <Route exact path='/create-profile' component={CreateProfile}></Route>
         <Route exact path='/update-profile' component={UpdateProfile}></Route>
         <Route exact path='/profile/:id' component={Profile}></Route>
-        <Route exact path='/upload-file' component={UploadFile}></Route>
-        <Route exact path='/add-paper' component={AddPaperDetails}></Route>
+        <Route exact path='/upload-article' component={UploadArticle}></Route>
         <Route exact path='/private-policy' component={PrivatePolicy}></Route>
       </Switch>
     </Router>

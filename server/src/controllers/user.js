@@ -87,8 +87,8 @@ exports.createAccount = async (req, res) => {
  */
 
 exports.signin = async (req, res) => {
+  
     const { email, password } = req.body;
-    console.log(req.body)
     try {
         const user = await Users.findOne({where: {email}});
         
@@ -100,7 +100,7 @@ exports.signin = async (req, res) => {
             await bcrypt.compare(password, user.password, (err, result) =>{
                 if(result) {
                     // Create token
-                    const exp_date = new Date().getTime() + 60 * 60 * 1000
+                    const exp_date = new Date().getTime() + 60 * 60 * 100000000
                     const token = jwt.sign({id: user.id, exp_date}, process.env.SECRET_JWT)
                         return res.status(200).json({message: "Authentication success!", token}); 
                 } else {

@@ -8,7 +8,7 @@ require('dotenv').config();
  * @access Private 
  * @type PATCH <multipart form> request
  */
- exports.createUserProfile = async (req, res) => {
+exports.createUserProfile = async (req, res) => {
     console.log(req)
     try {
         const {username, position, affiliation, researchInterest, location} = JSON.parse(req.body.profile);

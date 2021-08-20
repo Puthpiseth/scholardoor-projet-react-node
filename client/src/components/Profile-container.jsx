@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from "@material-ui/core";
+import {Link} from 'react-router-dom'
 import AccountCircle from '@material-ui/icons/AccountCircle';
 
 
@@ -176,9 +177,11 @@ function ProfileContainer() {
                             </div>
                         </div>
                         <div className={classes.profileButtons}>
-                            <button className={classes.profileUploadButton}>
-                                Upload work
-                            </button>
+                            <Link to='/upload-article'>
+                                <button className={classes.profileUploadButton}>
+                                    Upload work
+                                </button>
+                            </Link>
                             <button className={classes.profileEditButton}>  
                                 Edit profile
                             </button>

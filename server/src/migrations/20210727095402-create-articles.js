@@ -18,7 +18,7 @@ module.exports = {
       },
       filePath: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.TEXT('long')
       },
       title: {
         allowNull: false,
