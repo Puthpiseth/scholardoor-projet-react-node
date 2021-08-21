@@ -7,6 +7,7 @@ import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import HttpsOutlinedIcon from '@material-ui/icons/HttpsOutlined';
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import { registerRequest } from '../services/index';
+import Navbar from '../components/Navbar';
 
 function Signup() {
     const {register, handleSubmit, formState: {errors}} = useForm();

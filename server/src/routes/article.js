@@ -7,6 +7,7 @@ const router = express.Router();
 
 router.post('/auth/upload-file', articleController.uploadFile)
 .get('/auth', articleController.getAllArticles)
+.delete('/auth/delete', articleController.deleteArticles)
 
 
 module.exports = router;

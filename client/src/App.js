@@ -3,27 +3,28 @@ import Signin from './pages/Signin';
 import ForgotPassword from './pages/Forgot-password';
 import ResetPassword from './pages/Reset-password';
 import ErrorEmail from './pages/Error-email';
-import Articles from './pages/Articles';
+import Profile from './pages/Profile';
 import PrivatePolicy from './pages/Private-policy'
+import UploadArticle from './pages/Upload_Article';
 import EditProfile from './pages/EditProfile';
-import Home from './pages/Home'
-import Navbar from './components/Navbar';
+import Home from './pages/Home';
 import Footer from './components/Footer';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 function App() {
   return (
     <Router>
-      <Navbar/>
+      {/* <Navbar/> */}
       <Switch>
         <Route exact path='/signup' component={Signup} />
         <Route exact path='/signin' component={Signin} />
-        <Route exact path = '/home' compoent ={Home} />
+        <Route exact path ='/home' component ={Home} />
         <Route exact path='/forgot-password' component={ForgotPassword} />
         <Route exact path='/reset-password' component={ResetPassword} />
         <Route exact path='/error-email' component={ErrorEmail} />
+        <Route exact path='/upload-article' component={UploadArticle} />
         <Route exact path='/edit-profile' component={EditProfile} />
-        <Route exact path='/articles' component={Articles} />
+        <Route exact path='/profile' component={Profile} />
         <Route exact path='/private-policy' component={PrivatePolicy} />
       </Switch>
       <Footer/>

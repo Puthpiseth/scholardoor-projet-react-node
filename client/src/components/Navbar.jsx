@@ -1,9 +1,18 @@
 // import {Link} from 'react-router-dom'
 import React, { useState } from 'react';
-import { AppBar, Toolbar, makeStyles, Avatar } from "@material-ui/core";
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { 
+    AppBar,
+    Toolbar,
+    makeStyles,
+    Avatar,
+    BottomNavigation,
+    BottomNavigationAction
+ } from "@material-ui/core";
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import HomeIcon from '@material-ui/icons/Home';
+import DescriptionIcon from '@material-ui/icons/Description';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -52,15 +61,32 @@ const useStyles = makeStyles((theme) => ({
         width: "80%",
         
     },
-    rightIcon: {
+    //each icon with label block
+    bottomNavigationWrapper : {
+        height : '100%',
+        display : 'flex',
+        alignItems :'center'
+    },
+    //each labeled icon
+    rightIcons: {
         display: "flex",
         alignItems: "center",
+        background : 'inherit',
+        justifyContent : 'space-evenly',
+        width : '38%',
+        height : '100%'
     },
+    //label under navigation icon
+    BottomNavigationLabel : {
+        fontSize : '1.2rem',
+        color : 'white'
+    },
+    //all labeled icon wrapper
     rightSideIcon: {
         width: "35px", 
         height: "35px",
         color: "white",
-        marginRight: theme.spacing(5),
+        margin: '5px',
         [theme.breakpoints.down("xs")]: {
             display: "none",
         },
@@ -87,7 +113,7 @@ function Navbar() {
     const {avatar} = JSON.parse(localStorage.getItem('token')).user
     const isMenuOpen = Boolean(anchorEl);
     const isBurgerMenuOpen = Boolean(burgerMenuIconAnchorEl);
-
+    const history = useHistory();
     const handleProfileMenuOpen = (e) => {
         setAnchorMenuEl(e.currentTarget);
     };
@@ -116,12 +142,7 @@ function Navbar() {
             transformOrigin={{ vertical: 'top', horizontal: 'right' }}
             style={{ marginTop: "45px" }}
         >
-            {/* <Link to='/edit-profile' style={{textDecoration: "none", color: "black" }}>
-                <MenuItem 
-                    style={{fontSize: "14px", margin: "5px"}} 
-                    onClick={handleMenuClose}>Your profile
-                </MenuItem>
-            </Link> */}
+        
             <Link to='/libraries' style={{textDecoration: "none", color: "black" }}>
                 <MenuItem 
                     style={{fontSize: "14px", margin: "5px"}} 
@@ -163,7 +184,7 @@ function Navbar() {
             <Link to='/edit-profile' style={{textDecoration: "none", color: "black" }}>
                 <MenuItem 
                     style={{fontSize: "14px"}} 
-                    onClick={handleBurgerMenuClose}>Your profile
+                    onClick={handleBurgerMenuClose}>Edit your profile
                 </MenuItem>
             </Link>
             <Link to='/' style={{textDecoration: "none", color: "black" }}>
@@ -172,10 +193,10 @@ function Navbar() {
                     onClick={handleBurgerMenuClose}>Homepage
                 </MenuItem>
             </Link>
-            <Link to='/articles' style={{textDecoration: "none", color: "black" }}>
+            <Link to='/upload-article' style={{textDecoration: "none", color: "black" }}>
                 <MenuItem 
                     style={{fontSize: "14px"}} 
-                    onClick={handleBurgerMenuClose}>Articles
+                    onClick={handleBurgerMenuClose}>Upload new article
                 </MenuItem>
             </Link>
             <Link to='/libraries' style={{textDecoration: "none", color: "black" }}>
@@ -194,7 +215,7 @@ function Navbar() {
     );
 
 
-    const iconHover = {cursor: "pointer", marginLeft: "12%"};
+    const iconHover = {cursor: "pointer"};
 
     return (
         <>
@@ -215,34 +236,63 @@ function Navbar() {
                                 className={classes.input}
                             />
                         </div>
-                        <div className={classes.rightIcon}>
+                        <BottomNavigation classes={{root : classes.rightIcons}} showLabels>
                             <Tooltip title={<h1 style={{fontSize: 10}}>Home</h1>} arrow >
-                                <Link to='/home'>
-                                    <HomeIcon
-                                        aria-label="redirect to home page" 
-                                        className={classes.rightSideIcon} 
-                                        style={iconHover} 
-                                    />
-                                </Link>
+                                <BottomNavigationAction 
+                                    classes = {{label : classes.BottomNavigationLabel, root : classes.bottomNavigationWrapper}}
+                                    label = 'Home'
+                                    icon = {
+                                        <HomeIcon
+                                            aria-label="redirect to home page" 
+                                            className={classes.rightSideIcon} 
+                                            style={iconHover} 
+                                        />
+                                    }
+                                />
+                                
                             </Tooltip>
+
                             <Tooltip title={<h1 style={{fontSize: 10}}>Articles</h1>} arrow >
-                                <Link to='/articles'>
-                                    <CloudUploadIcon
-                                        aria-label="show UploadworkIcon's description"  
-                                        className={classes.rightSideIcon} 
-                                        style={iconHover}
-                                    />
-                                </Link>
+                                <BottomNavigationAction 
+                                    classes = {{label : classes.BottomNavigationLabel, root : classes.bottomNavigationWrapper}}
+                                    icon = {
+                                        <DescriptionIcon className = {classes.rightSideIcon}/>
+                                    }
+                                    label = "Articles"
+                                    onClick = {() => history.push('/profile')}
+                                />
                             </Tooltip>
-                            <Tooltip title={<h1 style={{fontSize: 10}}>Your profile</h1>} arrow >
-                                <Link to='/edit-profile'>
-                                    <Avatar
-                                        src = {`data:image/png;base64,${avatar}`}
-                                        aria-label="show avatarIcon's description"  
-                                        className={classes.rightSideIcon} 
-                                        style={iconHover}
-                                    />
-                                </Link>
+                            
+                            <Tooltip title={<h1 style={{fontSize: 10}}>Upload new article</h1>} arrow >
+                                <BottomNavigationAction 
+                                    classes = {{label : classes.BottomNavigationLabel, root : classes.bottomNavigationWrapper}}
+                                    label = 'Upload new article'
+                                    onClick = {() => history.push('/upload-article')}
+                                    icon = {
+                                        <CloudUploadIcon
+                                            aria-label="show UploadworkIcon's description"  
+                                            className={classes.rightSideIcon} 
+                                            style={iconHover}
+                                        />
+                                    }
+                                />
+                                
+                            </Tooltip>
+                            <Tooltip title={<h1 style={{fontSize: 10}}>Edit your profile</h1>} arrow >
+                                <BottomNavigationAction 
+                                    classes = {{label : classes.BottomNavigationLabel, root : classes.bottomNavigationWrapper}}
+                                    label = 'Profile'
+                                    onClick = {() => history.push('/edit-profile')}
+                                    icon = {
+                                        <Avatar
+                                            src = {`data:image/png;base64,${avatar}`}
+                                            aria-label="show avatarIcon's description"  
+                                            className={classes.rightSideIcon} 
+                                            style={iconHover}
+                                        />
+                                    }
+                                />
+                                
                             </Tooltip>
                             <Tooltip title={<h1 style={{fontSize: 10}}>Your Account</h1>} arrow >
                                 <ArrowDropDownIcon
@@ -256,7 +306,7 @@ function Navbar() {
                                     color="inherit"
                                 />            
                             </Tooltip>
-                        </div>
+                        </BottomNavigation>
                         <MenuIcon
                             edge="end" 
                             aria-controls= 'primary-search-account-menu'

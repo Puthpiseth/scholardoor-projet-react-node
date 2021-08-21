@@ -1,6 +1,7 @@
 import React from "react";
 import ProfileContainer from "../components/Profile-container";
 import ShowArticles from "../components/ShowArticles";
+import Navbar from '../components/Navbar';
 import {makeStyles} from '@material-ui/core'
 
 const useStyle = makeStyles(theme => ({
@@ -28,6 +29,7 @@ function Profile() {
   
   return (
     <div className={classes.root}>
+      <Navbar/>
       <ProfileContainer />
       <ShowArticles />
     </div>

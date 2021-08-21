@@ -1,9 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-
+import {AppStore} from './store'
 ReactDOM.render(
-    <App />,
+  <AppStore>
+      <App />
+  </AppStore>
+,
   document.getElementById('root')
 );
 

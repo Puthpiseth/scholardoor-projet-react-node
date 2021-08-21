@@ -159,7 +159,17 @@ exports.updateProfile = async(req, res) => {
         console.log(data)
         const condition = {where : {id}}
         await Users.update(data, condition);
-        res.status(200).json({error: null})
+        //send updated user to front end
+        const newUser = await Users.findOne({
+            where : {id},
+            //exclude more if needed
+            attributes : {exclude : ['password']},
+            raw : true
+        })
+        //set up new token
+        const exp_date = new Date().getTime() + 60 * 60 * 100000000
+        const token = jwt.sign({id, exp_date}, process.env.SECRET_JWT);
+        res.status(200).json({token, user : newUser});
     }
     catch(e){
         res.status(500).json({error: 'something went wrong'})
