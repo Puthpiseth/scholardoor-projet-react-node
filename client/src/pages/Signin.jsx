@@ -5,7 +5,7 @@ import { Link, Redirect } from 'react-router-dom'
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import HttpsOutlinedIcon from '@material-ui/icons/HttpsOutlined';
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
-import { Login } from '../services/user';
+import { loginRequest } from '../services/index';
 
 
 function Signin() {
@@ -18,8 +18,8 @@ function Signin() {
     const onSubmit = async (e) => {
         const user = { email, password }
         try {
-            const response = await Login(user);
-            localStorage.setItem('token', response.data.token);
+            const response = await loginRequest(user);
+            localStorage.setItem('token', JSON.stringify(response.data));
             console.log(response.data)
             setRedirect(true);
         }

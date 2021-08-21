@@ -90,23 +90,51 @@ exports.signin = async (req, res) => {
   
     const { email, password } = req.body;
     try {
-        const user = await Users.findOne({where: {email}});
+        const userDatas = await Users.findOne({
+            where: {email},
+            attributes : {exclude : ['createdAt', 'updatedAt']},
+            raw : true
+        });
         
-        if(!user){
-            res.status(401).json({
-                message: " User doesn't exist!"
-            }); 
-        } else {
-            await bcrypt.compare(password, user.password, (err, result) =>{
+        if(!userDatas){
+            res.status(401).json({ message: " User doesn't exist!" }); 
+        } 
+        else {
+            await bcrypt.compare(password, userDatas.password, (err, result) =>{
                 if(result) {
                     // Create token
                     const exp_date = new Date().getTime() + 60 * 60 * 100000000
-                    const token = jwt.sign({id: user.id, exp_date}, process.env.SECRET_JWT)
-                        return res.status(200).json({message: "Authentication success!", token}); 
-                } else {
-                    res.status(401).json({
-                        message: " Incorrect password!"
-                    }); 
+                    const token = jwt.sign({id : userDatas.id, exp_date}, process.env.SECRET_JWT)
+                    const {
+                        id,
+                        affiliation,
+                        avatar,
+                        email,
+                        firstname,
+                        lastname,
+                        location,
+                        position,
+                        researchInterest,
+                        username
+                    } = userDatas;
+
+                    const user = {
+                        id,
+                        affiliation,
+                        avatar,
+                        email,
+                        firstname,
+                        lastname,
+                        location,
+                        position,
+                        researchInterest,
+                        username
+                    };
+
+                    return res.status(200).json({token, user}); 
+                } 
+                else {
+                    res.status(401).json({ message: " Incorrect password!" }); 
                 }
             });
         }

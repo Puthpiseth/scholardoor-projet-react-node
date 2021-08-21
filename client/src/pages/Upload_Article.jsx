@@ -18,8 +18,9 @@ function UploadArticle() {
     });
     
     const switchStep = (stp) => {
-
-        (step>=0 && step<=1) && setStep(step => step + stp)
+        //if next pressed && step === 0 --> go to step === 1 else if prev clicked && step === 1 ---> got to step === 0
+        //else nothing
+        (step >= 0 && step <= 1) && setStep(step => step + stp)
     }
 
     const handleChange = (e) => {

@@ -1,45 +1,49 @@
-import React from 'react';
-import { makeStyles } from "@material-ui/core";
-import {Link} from 'react-router-dom'
-import AccountCircle from '@material-ui/icons/AccountCircle';
+import React, {useState, useEffect} from 'react';
+import { makeStyles, Avatar, Button } from "@material-ui/core";
+import {useHistory} from 'react-router-dom'
 
 
 const useStyles = makeStyles((theme) => ({
 
     mainContainer: {
-        marginTop: "15%",
-        
-        [theme.breakpoints.down("md")]: {
-            marginTop: "22%",
+        display : 'flex',
+        flexDirection : 'column',
+        alignItems : 'center',
+        width: "90%",
+        padding : '15px 0',
+        borderRadius : '6px',
+        border : '0.5px solid lightgrey',
+        boxShadow :'0 0 2px black',
+        [theme.breakpoints.up("sm")]: {
+            width : '40%'
         },
-        [theme.breakpoints.down("sm")]: {
-            marginTop: "30%",
+        [theme.breakpoints.up("lg")]: {
+            width : '20%',
+            padding : '35px 0',
         },
-        [theme.breakpoints.down("xs")]: {
-            marginRight: "11%",
-        },
+        // [theme.breakpoints.up("md")]: {
+            //     width : '60%'
+            // },
+            // [theme.breakpoints.up("xs")]: {
+            //     width : '90%'
+            // },
         
     },
     profileAvatarIcon: {
         color: "#C4C4C4",
         width: "120px",
         height: "120px",
-        marginLeft: "5%",
         [theme.breakpoints.down("lg")]: {
-            marginLeft: "6%",
             width: "110px",
             height: "110px",
         },
         [theme.breakpoints.down("md")]: {
-            marginLeft: "11%",
         },
         [theme.breakpoints.down("sm")]: {
             width: "100px",
             height: "100px",
         },
-        [theme.breakpoints.down("xs")]: {
-            marginLeft: "39%",
-        },  
+       
     },
 
     profileInfo: {
@@ -47,16 +51,8 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: "center",
         alignItems: "center",
         borderRadius: "4px",
-        border: "1px solid #E5E5E5",
-        [theme.breakpoints.down("lg")]: {
-            width: "20%",
-        },  
-        [theme.breakpoints.down("md")]: {
-            width: "35%",
-        },
-        [theme.breakpoints.down("xs")]: {
-            width: "110%",            
-        },       
+        // border: "1px solid #E5E5E5",
+        width : '100%'      
     },
     
     profileWrapper: {
@@ -80,70 +76,38 @@ const useStyles = makeStyles((theme) => ({
 
     follow: {
         display: "flex",
+        width : '100%',
+        justifyContent : 'space-around'
     },
-
-    followers: {
-        display: "flex",
-        marginRight: "15%",
+    fellas: {
+        fontSize : '1.4rem',
+        flex :1 
     },
-
-    followersText: {
-        marginRight: "14%",
-        fontSize: "14px",
-        [theme.breakpoints.down("xs")]: {
-            fontSize: "16px",
-        },  
+    profileButtonsContainer : {
+        display : 'flex',
+        width : '58%',
+        justifyContent : 'space-around',
+        [theme.breakpoints.up("lg")] : {
+            width : '70%'
+        }
     },
-
-    following: {
-        display: "flex",
-    },
-
-    followingText: {
-        marginLeft: "18%",
-        fontSize: "14px",
-        [theme.breakpoints.down("xs")]: {
-            fontSize: "16px",
-        },  
-    },
-    
     profileUploadButton: {
         background: "#0F6A7D",
         color: "#fff",
         fontSize: "14px",
-        border: "none",
         borderRadius: "5px",
         boxShadow: "0 0 2px #999999",
-        height: "4vh",
-        padding: "0 4%",
-        marginRight: theme.spacing(2),
-        cursor: "pointer",
-            "&:hover": {
-                opacity: 0.9,
-            },
         [theme.breakpoints.down("xs")]: {
-            height: "5vh",
             fontSize: "16px",
-            marginRight: theme.spacing(2),
         }, 
     },
-
+    
     profileEditButton: {
-        background: "",
         color: "#474747",
         fontSize: "14px",
-        border: "none",
         borderRadius: "5px",
         boxShadow: "0 0 2px #999999",
-        height: "4vh",
-        padding: "0 4%",
-        cursor: "pointer",
-        "&:hover": {
-            color: "#fff",
-            background: "#2794f2",
-        },
         [theme.breakpoints.down("xs")]: {
-            height: "5vh",
             fontSize: "16px",
         },  
     },
@@ -152,44 +116,52 @@ const useStyles = makeStyles((theme) => ({
 
 function ProfileContainer() {
     const classes = useStyles();
+    const [user, setUser] = useState({});
+    const history = useHistory();
+    
+    useEffect(()=>{
+        const {user} = JSON.parse(localStorage.getItem('token'));
+        setUser(user);
+    },[]);
     
     return (
-        <main>
+        // <main>
             <div className={classes.mainContainer}>
-                <AccountCircle className={classes.profileAvatarIcon}/>
+                <Avatar className={classes.profileAvatarIcon} src = {user.avatar} alt = "avatar"/>
                 <div className={classes.profileInfo}>
                     <div className={classes.profileWrapper}>
                         <div>
-                            <p className={classes.usernameText} name="username">Puthpiseth TUN</p>
-                            <p className={classes.profileText} name="position">Director of Academic Affairs</p>
-                            <p className={classes.profileText} name="affiliation">Royal University of Fine Arts</p>
-                            <p className={classes.profileText} name="researchInterest">History of Art, Buddhism</p>
-                            <p className={classes.profileText} name="location">Cambodia</p>
+                            <p className={classes.usernameText} name="username">{`${user.firstname} ${user.lastname}`}</p>
+                            <p className={classes.profileText} name="position">{user.position}</p>
+                            <p className={classes.profileText} name="affiliation">{user.affiliation}</p>
+                            <p className={classes.profileText} name="researchInterest">{user.researchInterest}</p>
+                            <p className={classes.profileText} name="location">{user.location}</p>
                         </div>
                         <div className={classes.follow}>
-                            <div className={classes.followers}>
-                                <p className={classes.followersText} name="followers">0</p>
-                                <p className={classes.followersText}>Followers</p>
-                            </div>
-                            <div className={classes.following} >
-                                <p className={classes.followingText} name="following">0</p>
-                                <p className={classes.followingText}>Following</p>
-                            </div>
-                        </div>
-                        <div className={classes.profileButtons}>
-                            <Link to='/upload-article'>
-                                <button className={classes.profileUploadButton}>
-                                    Upload work
-                                </button>
-                            </Link>
-                            <button className={classes.profileEditButton}>  
-                                Edit profile
-                            </button>
+                            <p className={classes.fellas} name="followers">0 Follower</p>
+                            <p className={classes.fellas} name="following">0 Following</p>
                         </div>
                     </div>
                 </div>
+                <div className={classes.profileButtonsContainer}>
+                    <Button 
+                        onClick = {() => history.push('/upload-article')}
+                        size = 'medium'
+                        className={classes.profileUploadButton}
+                    >
+                        Upload work
+                    </Button>
+                    <Button 
+                        onClick = {() => history.push('/create-profile')}
+                        size = 'medium'
+                        variant = 'outlined'
+                        className={classes.profileEditButton}
+                    >  
+                        Edit profile
+                    </Button>
+                </div>
             </div>
-        </main>
+        // {/* </main> */}
     )
 }
 
