@@ -7,15 +7,16 @@ import Profile from './pages/Profile';
 import PrivatePolicy from './pages/Private-policy'
 import CreateProfile from './pages/Create_Profile';
 import UpdateProfile from './pages/update_profile';
-import UploadFile from './pages/upload_file';
-import AddPaperDetails from './pages/Add_Paper_Details';
 import UploadArticle from './pages/Upload_Article';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 
 function App() {
   return (
     <Router>
+      <Navbar/>
       <Switch>
         <Route exact path='/signup' component={Signup}></Route>
         <Route exact path='/signin' component={Signin}></Route>
@@ -28,6 +29,7 @@ function App() {
         <Route exact path='/upload-article' component={UploadArticle}></Route>
         <Route exact path='/private-policy' component={PrivatePolicy}></Route>
       </Switch>
+      <Footer/>
     </Router>
   );
 }

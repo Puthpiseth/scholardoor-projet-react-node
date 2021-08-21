@@ -6,7 +6,7 @@ import PermIdentityIcon from '@material-ui/icons/PermIdentity';
 import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import HttpsOutlinedIcon from '@material-ui/icons/HttpsOutlined';
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
-import { Register } from '../services/user';
+import { registerRequest } from '../services/index';
 
 function Signup() {
     const {register, handleSubmit, formState: {errors}} = useForm();
@@ -30,7 +30,7 @@ function Signup() {
         }
         
         try {
-            const response = await Register(user);
+            const response = await registerRequest(user);
             setRedirect(true);
             console.log(response.data)
         }

@@ -11,7 +11,7 @@ const useStyle = makeStyles({
         overflow : 'scroll',
         dispaly : 'flex',
         flexDirection : 'column',
-       
+
     },
     page: {
     }
@@ -20,31 +20,24 @@ export const FileViewer = (props) => {
     const [pagesNumber, setPagesNumber] = useState(1);
     const document = useRef(null);
     const classes = useStyle();
-    const [fileLoaded, setFileLoaded] = useState(false);
-
-    const handleClose = () =>{
-        props.setOpen(false)
-    }
-
 
    const handleLoadFileSuccess = (e) =>{
        console.log(e)
        setPagesNumber(e.numPages);
-       setFileLoaded(true);
+       
    }
 
     return(
         <Modal
             open = {props.open}
-            onClose = {handleClose}
+            onClose = {props.onClose}
            >
             <Document
                 inputRef = {document}
                 className = {classes.document}
-                onLoadProgress = {()=> <Loading /> }
+                loading = {() => <Loading />}
                 file = {`data:application/pdf;base64,${props.fileSrc}`} 
                 onLoadSuccess = {handleLoadFileSuccess}
-                noData = {()=> <Loading /> }
             >
             
             {Array.from(Array(pagesNumber)).map((_, i) => {

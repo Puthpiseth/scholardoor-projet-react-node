@@ -3,7 +3,6 @@ import { makeStyles } from "@material-ui/core";
 import {Link} from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => ({
-
     copyright: {
         display: "flex",
         justifyContent: "center", 
