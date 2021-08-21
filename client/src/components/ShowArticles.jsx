@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import MoreVert from '@material-ui/icons/MoreVert'
 import '../styles/components/article.scss';
-import { getArticles } from '../services/article';
+import { getArticles, deleteArticles } from '../services/article';
 import {FileViewer} from "./FileViewer";
 import { Loading } from './Loading';
 import {
@@ -15,7 +15,6 @@ import {
     Grid
 } from '@material-ui/core'
 
-
 const useStyle = makeStyles(theme => ({
     container :{
         width : '90%',
@@ -27,7 +26,6 @@ const useStyle = makeStyles(theme => ({
         width : '20px',
         height : '20px',
     }
-  
 }));
 
 function Articles() {
@@ -137,7 +135,7 @@ function Articles() {
                             </MenuItem>
                             <MenuItem>Éditer</MenuItem>
                             <MenuItem>Télécharger</MenuItem>
-                            <MenuItem>Supprimer</MenuItem>
+                            <MenuItem onClick={() =>{}}>Supprimer</MenuItem>
                         </Menu>
                         <FileViewer 
                             open = {openViewer}

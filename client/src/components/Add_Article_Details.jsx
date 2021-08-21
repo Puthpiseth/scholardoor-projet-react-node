@@ -1,6 +1,5 @@
 import React from 'react';
 import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 import { makeStyles } from '@material-ui/core';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import Button from '@material-ui/core/Button';
@@ -80,133 +79,127 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function AddPaperDetails(props) {
+function AddArticleDetails(props) {
     const classes = useStyles();
     return (
         <>
             <Navbar/>
-                <main>
-                    <h1 className={classes.paperDetailTitle}>Fill Paper Details</h1>
-                    <form className={classes.AddPaperContainer} onSubmit={props.handleSubmit}>
-                        <div>
-                            <TextField
-                                onChange={props.handleChange}
-                                variant="outlined"
-                                type="text"
-                                // change font size of input text
-                                inputProps={{style: {fontSize: "14px"}}}
-                                // change font size of input label
-                                InputLabelProps= {{style: {fontSize: "14px"}}}
-                                name="title"
-                                className={classes.addFormInputDetails}
-                                label="Title"
-                            >
-                            </TextField>
-                    
-                            <TextField
-                                onChange={props.handleChange}
-                                variant="outlined"
-                                type="text"
-                                // change font size of input text
-                                inputProps={{style: {fontSize: "14px"}}}
-                                // change font size of input label
-                                InputLabelProps= {{style: {fontSize: "14px"}}}
-                                name="authors"
-                                className={classes.addFormInputDetails}
-                                label="Authors"
-                            >
-                            </TextField>
-
-                            <TextareaAutosize
-                                onChange={props.handleChange}
-                                maxRows={4}
-                                aria-label="maximum height"
-                                name="abstract"
-                                type="text"
-                                className={classes.addFormInputDetails}
-                                placeholder="Add your abstract"
-                                style={{paddingBottom: "5%", paddingLeft: "2%", fontSize: "14px"}}
-                            />
-
-                            <TextField
-                                onChange={props.handleChange}
-                                variant="outlined"
-                                type="text"
-                                // change font size of input text
-                                inputProps={{style: {fontSize: "14px"}}}
-                                // change font size of input label
-                                InputLabelProps= {{style: {fontSize: "14px"}}}
-                                name="journal"
-                                className={classes.addFormInputDetails}
-                                label="Journal"
-                            >
-                            </TextField>
-                            <TextField
-                                onChange={props.handleChange}
-                                variant="outlined"
-                                type="text"
-                                // change font size of input text
-                                inputProps={{style: {fontSize: "14px"}}}
-                                // change font size of input label
-                                InputLabelProps= {{style: {fontSize: "14px"}}}
-                                name="journal"
-                                className={classes.addFormInputDetails}
-                                label="Publisher"
-                            >
-                            </TextField>                     
-                        </div>
-                        <label className={classes.labelPublicationDate}>Publication Date</label>
-                        <div className={classes.publicationAndIssue}>
-                            <TextField
-                                onChange={props.handleChange}
-                                variant="outlined"
-                                type="date"
-                                // change font size of input text
-                                inputProps={{style: {fontSize: "14px"}}}
-                                // change font size of input label
-                                InputLabelProps= {{style: {fontSize: "14px"}}}
-                                name="publicationDate"
-                                className={classes.publicationDate}
-                            >
-                            </TextField>
-                            
-                            <TextField
-                                onChange={props.handleChange}
-                                variant="outlined"
-                                type="text"
-                               // change font size of input text
-                                inputProps={{style: {fontSize: "14px"}}}
-                               // change font size of input label
-                                InputLabelProps= {{style: {fontSize: "14px"}}}
-                                name="issue"
-                                className={classes.issue}
-                                label="Issue"
-                            >
-                            </TextField>
-                        </div>
-                            
-                        <Button
-                            variant="contained" 
-                            type="submit"
-                            style={{marginTop: "2%", marginLeft: "5%", background: "#0F6A7D", color: "#fff", width: "90%", height: "5vh"}}
+                <h1 className={classes.paperDetailTitle}>Fill Paper Details</h1>
+                <form className={classes.AddPaperContainer} onSubmit={props.handleSubmit}>
+                    <div>
+                        <TextField
+                            onChange={props.handleChange}
+                            variant="outlined"
+                            type="text"
+                            // change font size of input text
+                            inputProps={{style: {fontSize: "14px"}}}
+                            // change font size of input label
+                            InputLabelProps= {{style: {fontSize: "14px"}}}
+                            name="title"
+                            className={classes.addFormInputDetails}
+                            label="Title"
                         >
-                            Submit
-                        </Button>     
-                    </form>
-
-                    <div className={classes.backButton}>
-                        <Button
-                            onClick = {props.handlePrevStep} 
-                            variant="contained"
+                        </TextField>
+                
+                        <TextField
+                            onChange={props.handleChange}
+                            variant="outlined"
+                            type="text"
+                            // change font size of input text
+                            inputProps={{style: {fontSize: "14px"}}}
+                            // change font size of input label
+                            InputLabelProps= {{style: {fontSize: "14px"}}}
+                            name="authors"
+                            className={classes.addFormInputDetails}
+                            label="Authors"
                         >
-                            Back
-                        </Button>
-                        
+                        </TextField>
+                        <TextareaAutosize
+                            onChange={props.handleChange}
+                            maxRows={4}
+                            aria-label="maximum height"
+                            name="abstract"
+                            type="text"
+                            className={classes.addFormInputDetails}
+                            placeholder="Add your abstract"
+                            style={{paddingBottom: "5%", paddingLeft: "2%", fontSize: "14px"}}
+                        />
+                        <TextField
+                            onChange={props.handleChange}
+                            variant="outlined"
+                            type="text"
+                            // change font size of input text
+                            inputProps={{style: {fontSize: "14px"}}}
+                            // change font size of input label
+                            InputLabelProps= {{style: {fontSize: "14px"}}}
+                            name="journal"
+                            className={classes.addFormInputDetails}
+                            label="Journal"
+                        >
+                        </TextField>
+                        <TextField
+                            onChange={props.handleChange}
+                            variant="outlined"
+                            type="text"
+                            // change font size of input text
+                            inputProps={{style: {fontSize: "14px"}}}
+                            // change font size of input label
+                            InputLabelProps= {{style: {fontSize: "14px"}}}
+                            name="journal"
+                            className={classes.addFormInputDetails}
+                            label="Publisher"
+                        >
+                        </TextField>                     
                     </div>
-                </main>
-            <Footer/>
+                    <label className={classes.labelPublicationDate}>Publication Date</label>
+                    <div className={classes.publicationAndIssue}>
+                        <TextField
+                            onChange={props.handleChange}
+                            variant="outlined"
+                            type="date"
+                            // change font size of input text
+                            inputProps={{style: {fontSize: "14px"}}}
+                            // change font size of input label
+                            InputLabelProps= {{style: {fontSize: "14px"}}}
+                            name="publicationDate"
+                            className={classes.publicationDate}
+                        >
+                        </TextField>
+                        
+                        <TextField
+                            onChange={props.handleChange}
+                            variant="outlined"
+                            type="text"
+                           // change font size of input text
+                            inputProps={{style: {fontSize: "14px"}}}
+                           // change font size of input label
+                            InputLabelProps= {{style: {fontSize: "14px"}}}
+                            name="issue"
+                            className={classes.issue}
+                            label="Issue"
+                        >
+                        </TextField>
+                    </div>
+                        
+                    <Button
+                        variant="contained" 
+                        type="submit"
+                        style={{marginTop: "2%", marginLeft: "5%", background: "#0F6A7D", color: "#fff", width: "90%", height: "5vh"}}
+                    >
+                        Submit
+                    </Button>     
+                </form>
+                <div className={classes.backButton}>
+                    <Button
+                        onClick = {props.handlePrevStep} 
+                        variant="contained"
+                    >
+                        Back
+                    </Button>
+                    
+                </div>
         </>
     )
 }
 
-export default AddPaperDetails;
+export default AddArticleDetails;

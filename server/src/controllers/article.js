@@ -32,7 +32,7 @@ require('dotenv').config();
     });     
 }
 
-//for articles' owner
+//To get for articles' owner
 exports.getAllArticles = async(req, res) => {
     const {id} = req.user
     const articles = await Articles.findAll({
@@ -42,4 +42,14 @@ exports.getAllArticles = async(req, res) => {
     });
     res.status(200).json(articles);
 }
-    
+
+// To delete artilces's owner
+exports.deleteArticles = async(req, res) => {
+    const {id} = req.user
+    const articles = await Articles.destroy({
+        where: {
+            userId : id
+        },
+    })
+    res.status(200).json(articles)
+}

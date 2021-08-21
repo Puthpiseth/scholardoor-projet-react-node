@@ -1,32 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import '../styles/pages/create-profile.scss';
-import { useHistory } from 'react-router-dom'
 import { UpdateUser } from '../services/user'
-import AccountCircle from '@material-ui/icons/AccountCircle';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import {Button} from '@material-ui/core';
+import {Button, Avatar} from '@material-ui/core';
+import AppContext from '../store';
+
 
 function EditProfile() {
-
-    const [, setAvatar] = useState('null');
+    const appContext = useContext(AppContext);
     const [datas, setDatas] = useState({
         avatar :null,
-        username: '',
+        firstname: '',
+        lastname: '',
         position: '',
         affiliation: '',
         researchInterest: '',
         location: ''
     })
-   
-    const history = useHistory();
-    // const [redirect, setRedirect] = useState(false);
 
     const handleChange = (e) => {
         const name = e.target.name;
         const value = e.target.value;
         if(e.target.name === 'avatar'){
+            //real time update avatar 
+            const reader = new FileReader();
+            reader.readAsDataURL(e.target.files[0])
+            reader.onload = () =>{
+                const newAvatar = reader.result.split(',')[1]
+                appContext.updateUser({...appContext.user, avatar : newAvatar})
+            }
             setDatas({...datas, avatar : e.target.files[0]});
             return
         }
@@ -48,18 +52,16 @@ function EditProfile() {
                 !datasToSend[data] && (delete datasToSend[data])
             }
             formData.append('profile', JSON.stringify(datasToSend))
+            //return user new datas
             const response = await UpdateUser(formData);
-            console.log(response.data)
-            // history.push('/profile/:id')
-            // setRedirect(true);
+            appContext.updateUser(response.data.user);
+            //update localStorage with user new datas
+            localStorage.setItem('token', JSON.stringify(response.data))
+
         }
         catch(error) {
             console.log(error);
         }        
-
-    // if (redirect) {
-    //     return <Redirect to ="/profile/:id"/>;
-    // }
 }
 
     return (
@@ -67,7 +69,7 @@ function EditProfile() {
             <Navbar />
                 <form className="form-create-profile-container" onSubmit={handleSubmit}>
                     <div className="create-profile-avatar" name="avatar">
-                        <AccountCircle className="create-profile-avatar-icon" />
+                        <Avatar className="create-profile-avatar-icon" src = {`data:image/png;base64,${appContext.user.avatar}`}/>
                     </div>
                     <input 
                         type="file"
@@ -88,9 +90,18 @@ function EditProfile() {
                     <div className="form-inputs">
                         <input
                         type="text"
-                        name="username"
+                        name="firstname"
                         className="form-input"
-                        placeholder="Enter your username"
+                        placeholder="Enter your firstname"
+                        onChange={handleChange}
+                        />
+                    </div>
+                    <div className="form-inputs">
+                        <input
+                        type="text"
+                        name="lastname"
+                        className="form-input"
+                        placeholder="Enter your lastname"
                         onChange={handleChange}
                         />
                     </div>

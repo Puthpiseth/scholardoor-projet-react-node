@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import UploadFile from './upload_file';
 import {uploadNewArticle} from '../services/article'
-import AddPaperDetails from './Add_Paper_Details';
+import AddArticleDetails from '../components/Add_Article_Details';
 
 function UploadArticle() {
 
@@ -58,7 +58,7 @@ function UploadArticle() {
                 handleChange={handleChangeFilePath} 
                 handleNextStep = {()=> switchStep(1)}/>
         default: 
-            return <AddPaperDetails 
+            return <AddArticleDetails 
                 handleSubmit={handleSubmit}
                 handleChange={handleChange} 
                 handlePrevStep ={()=> switchStep(-1)}/>
