@@ -1,11 +1,10 @@
 // import {Link} from 'react-router-dom'
 import React, { useState } from 'react';
-import { AppBar, Toolbar, makeStyles } from "@material-ui/core";
+import { AppBar, Toolbar, makeStyles, Avatar } from "@material-ui/core";
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import HomeIcon from '@material-ui/icons/Home';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
-import AccountCircle from '@material-ui/icons/AccountCircle';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import MenuIcon from '@material-ui/icons/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -65,7 +64,6 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down("xs")]: {
             display: "none",
         },
-        
     },
     menuIcon: {
         width: "30px", 
@@ -86,7 +84,7 @@ function Navbar() {
 
     const [anchorEl, setAnchorMenuEl] = useState(false);
     const [burgerMenuIconAnchorEl, setBurgerMenuIconAnchorEl] = useState(false);
-
+    const {avatar} = JSON.parse(localStorage.getItem('token')).user
     const isMenuOpen = Boolean(anchorEl);
     const isBurgerMenuOpen = Boolean(burgerMenuIconAnchorEl);
 
@@ -105,12 +103,12 @@ function Navbar() {
     const handleBurgerMenuClose = (e) => {
         setBurgerMenuIconAnchorEl(null);
     }
+    const handleLogOout = () => localStorage.removeItem('token');
 
-    const menuId = 'primary-search-account-menu';
-    const renderMenu = (
+    const renderDropDownMenu = (
         <Popover
             anchorEl={anchorEl}
-            id={menuId}
+            id = 'primary-search-account-menu'
             keepMounted
             open={isMenuOpen}
             onClose={handleMenuClose}
@@ -118,12 +116,12 @@ function Navbar() {
             transformOrigin={{ vertical: 'top', horizontal: 'right' }}
             style={{ marginTop: "45px" }}
         >
-            <Link to='/profile' style={{textDecoration: "none", color: "black" }}>
+            {/* <Link to='/edit-profile' style={{textDecoration: "none", color: "black" }}>
                 <MenuItem 
                     style={{fontSize: "14px", margin: "5px"}} 
                     onClick={handleMenuClose}>Your profile
                 </MenuItem>
-            </Link>
+            </Link> */}
             <Link to='/libraries' style={{textDecoration: "none", color: "black" }}>
                 <MenuItem 
                     style={{fontSize: "14px", margin: "5px"}} 
@@ -142,20 +140,19 @@ function Navbar() {
                     onClick={handleMenuClose}>Terms and policies
                 </MenuItem>
             </Link>
-            <Link to='/signout' style={{textDecoration: "none", color: "black" }}>
+            <Link to='/signin' style={{textDecoration: "none", color: "black" }}>
                 <MenuItem 
                     style={{fontSize: "14px", margin: "5px"}} 
-                    onClick={handleMenuClose}>Sign out
+                    onClick={handleLogOout}>Sign out
                 </MenuItem>
             </Link>
         </Popover>
     );
     
-    const burgerMenuId = 'primary-search-account-burger-menu';
     const renderBurgerMenu = (
         <Popover
             anchorEl={anchorEl}
-            id={burgerMenuId}
+            id={'primary-search-account-burger-menu'}
             keepMounted
             open={isBurgerMenuOpen }
             onClose={handleBurgerMenuClose}
@@ -163,7 +160,7 @@ function Navbar() {
             transformOrigin={{ vertical: 'top', horizontal: 'right' }}
             style={{marginTop: "15px"}}            
         >
-            <Link to='/profile' style={{textDecoration: "none", color: "black" }}>
+            <Link to='/edit-profile' style={{textDecoration: "none", color: "black" }}>
                 <MenuItem 
                     style={{fontSize: "14px"}} 
                     onClick={handleBurgerMenuClose}>Your profile
@@ -175,10 +172,10 @@ function Navbar() {
                     onClick={handleBurgerMenuClose}>Homepage
                 </MenuItem>
             </Link>
-            <Link to='/upload-work' style={{textDecoration: "none", color: "black" }}>
+            <Link to='/articles' style={{textDecoration: "none", color: "black" }}>
                 <MenuItem 
                     style={{fontSize: "14px"}} 
-                    onClick={handleBurgerMenuClose}>Upload work
+                    onClick={handleBurgerMenuClose}>Articles
                 </MenuItem>
             </Link>
             <Link to='/libraries' style={{textDecoration: "none", color: "black" }}>
@@ -187,10 +184,10 @@ function Navbar() {
                     onClick={handleBurgerMenuClose}>Your libraries
                 </MenuItem>
             </Link>
-            <Link to='/signout' style={{textDecoration: "none", color: "black" }}>
+            <Link to='/sigin' style={{textDecoration: "none", color: "black" }}>
                 <MenuItem 
                     style={{fontSize: "14px"}} 
-                    onClick={handleBurgerMenuClose}>Sign out
+                    onClick={handleLogOout }>Sign out
                 </MenuItem>
             </Link>
         </Popover>
@@ -203,72 +200,74 @@ function Navbar() {
         <>
             <AppBar>
                 <Toolbar className={classes.toolbar}>
-                <Link to='/' style={{textDecoration: "none", color: "black" }}>
-                    <img 
-                        src= { logo } 
-                        className={classes.logoIcon} 
-                        alt="logo-icon" 
-                        style={iconHover} 
-                    />
-                </Link>
-                    <div className={classes.search}>
-                        <SearchIcon className={classes.searchIcon}/>
-                        <InputBase 
-                            placeholder="Search"
-                            className={classes.input}
+                    <Link to='/home' style={{textDecoration: "none", color: "black" }}>
+                        <img 
+                            src= { logo } 
+                            className={classes.logoIcon} 
+                            alt="logo-icon" 
+                            style={iconHover} 
                         />
-                    </div>
-                    <div className={classes.rightIcon}>
-                        <Tooltip title={<h1 style={{fontSize: 10}}>Home</h1>} arrow >
-                            <Link to='/'>
-                                <HomeIcon
-                                    aria-label="show Homeicon's description" 
-                                    className={classes.rightSideIcon} 
-                                    style={iconHover} 
-                                />
-                            </Link>
-                        </Tooltip>
-                        <Tooltip title={<h1 style={{fontSize: 10}}>Upload work</h1>} arrow >
-                            <Link to='/upload-work'>
-                                <CloudUploadIcon
-                                    aria-label="show UploadworkIcon's description"  
-                                    className={classes.rightSideIcon} 
+                    </Link>
+                        <div className={classes.search}>
+                            <SearchIcon className={classes.searchIcon}/>
+                            <InputBase 
+                                placeholder="Search"
+                                className={classes.input}
+                            />
+                        </div>
+                        <div className={classes.rightIcon}>
+                            <Tooltip title={<h1 style={{fontSize: 10}}>Home</h1>} arrow >
+                                <Link to='/home'>
+                                    <HomeIcon
+                                        aria-label="redirect to home page" 
+                                        className={classes.rightSideIcon} 
+                                        style={iconHover} 
+                                    />
+                                </Link>
+                            </Tooltip>
+                            <Tooltip title={<h1 style={{fontSize: 10}}>Articles</h1>} arrow >
+                                <Link to='/articles'>
+                                    <CloudUploadIcon
+                                        aria-label="show UploadworkIcon's description"  
+                                        className={classes.rightSideIcon} 
+                                        style={iconHover}
+                                    />
+                                </Link>
+                            </Tooltip>
+                            <Tooltip title={<h1 style={{fontSize: 10}}>Your profile</h1>} arrow >
+                                <Link to='/edit-profile'>
+                                    <Avatar
+                                        src = {`data:image/png;base64,${avatar}`}
+                                        aria-label="show avatarIcon's description"  
+                                        className={classes.rightSideIcon} 
+                                        style={iconHover}
+                                    />
+                                </Link>
+                            </Tooltip>
+                            <Tooltip title={<h1 style={{fontSize: 10}}>Your Account</h1>} arrow >
+                                <ArrowDropDownIcon
+                                    edge="end"
+                                    aria-label="drop down menu"
+                                    aria-controls = 'primary-search-account-menu'
+                                    aria-haspopup="true"  
+                                    className={classes.rightSideIcon}
                                     style={iconHover}
-                                />
-                            </Link>
-                        </Tooltip>
-                        <Tooltip title={<h1 style={{fontSize: 10}}>Your profile</h1>} arrow >
-                            <Link to='/profile'><AccountCircle
-                                    aria-label="show avatarIcon's description"  
-                                    className={classes.rightSideIcon} 
-                                    style={iconHover}
-                                />
-                            </Link>
-                        </Tooltip>
-                        <Tooltip title={<h1 style={{fontSize: 10}}>Your Account</h1>} arrow >
-                            <ArrowDropDownIcon
-                                edge="end"
-                                aria-label="show arrowDropDownIcon's description"
-                                aria-controls={menuId}
-                                aria-haspopup="true"  
-                                className={classes.rightSideIcon}
-                                style={iconHover}
-                                onClick={handleProfileMenuOpen} 
-                                color="inherit"
-                            />            
-                        </Tooltip>
-                    </div>
-                    <MenuIcon
-                    edge="end" 
-                        aria-controls={burgerMenuId}
-                        aria-haspopup="true"  
-                        className={classes.menuIcon}
-                        onClick={handleBurgerMenuOpen}
-                        color="inherit"
-                    />
+                                    onClick={handleProfileMenuOpen} 
+                                    color="inherit"
+                                />            
+                            </Tooltip>
+                        </div>
+                        <MenuIcon
+                            edge="end" 
+                            aria-controls= 'primary-search-account-menu'
+                            aria-haspopup="true"  
+                            className={classes.menuIcon}
+                            onClick={handleBurgerMenuOpen}
+                            color="inherit"
+                        />
                 </Toolbar>
             </AppBar>
-            {renderMenu}
+            {renderDropDownMenu}
             {renderBurgerMenu}
         </>
     )

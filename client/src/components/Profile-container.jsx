@@ -85,10 +85,11 @@ const useStyles = makeStyles((theme) => ({
     },
     profileButtonsContainer : {
         display : 'flex',
-        width : '58%',
+        width : '80%',
         justifyContent : 'space-around',
-        [theme.breakpoints.up("lg")] : {
-            width : '70%'
+
+        [theme.breakpoints.up("md")] : {
+            width : '74%'
         }
     },
     profileUploadButton: {
@@ -101,17 +102,6 @@ const useStyles = makeStyles((theme) => ({
             fontSize: "16px",
         }, 
     },
-    
-    profileEditButton: {
-        color: "#474747",
-        fontSize: "14px",
-        borderRadius: "5px",
-        boxShadow: "0 0 2px #999999",
-        [theme.breakpoints.down("xs")]: {
-            fontSize: "16px",
-        },  
-    },
-
 }));
 
 function ProfileContainer() {
@@ -127,7 +117,7 @@ function ProfileContainer() {
     return (
         // <main>
             <div className={classes.mainContainer}>
-                <Avatar className={classes.profileAvatarIcon} src = {user.avatar} alt = "avatar"/>
+                <Avatar className={classes.profileAvatarIcon} src = {`data:image/png;base64,${user.avatar}`} alt = "avatar"/>
                 <div className={classes.profileInfo}>
                     <div className={classes.profileWrapper}>
                         <div>
@@ -149,15 +139,7 @@ function ProfileContainer() {
                         size = 'medium'
                         className={classes.profileUploadButton}
                     >
-                        Upload work
-                    </Button>
-                    <Button 
-                        onClick = {() => history.push('/create-profile')}
-                        size = 'medium'
-                        variant = 'outlined'
-                        className={classes.profileEditButton}
-                    >  
-                        Edit profile
+                        Upload new article
                     </Button>
                 </div>
             </div>

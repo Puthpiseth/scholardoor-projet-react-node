@@ -31,7 +31,7 @@ function Signin() {
         }
     }
     if (redirect) {
-        return <Redirect to ="/create-profile"/>;
+        return <Redirect to ="/home"/>;
     }
 
     return (
