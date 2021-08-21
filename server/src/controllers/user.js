@@ -144,4 +144,25 @@ exports.signin = async (req, res) => {
     }
 };
 
+exports.updateProfile = async(req, res) => {
+    try{
+        const {id} = req.user;
+        let data = {}
+        if(req.files.avatar){
+            const {avatar} = req.files;
+            const avatarBase64 = avatar.data.toString('base64')
+            data.avatar = avatarBase64
+        }
+        const user = JSON.parse(req.body.profile);
+        //add all data keys/value to data
+        data = {...data, ...user};
+        console.log(data)
+        const condition = {where : {id}}
+        await Users.update(data, condition);
+        res.status(200).json({error: null})
+    }
+    catch(e){
+        res.status(500).json({error: 'something went wrong'})
+    }
+}
 

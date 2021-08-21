@@ -1,14 +1,14 @@
 import React from "react";
 import ProfileContainer from "../components/Profile-container";
-import Articles from "../components/Articles";
+import ShowArticles from "../components/ShowArticles";
 import {makeStyles} from '@material-ui/core'
 
 const useStyle = makeStyles(theme => ({
   root : {
     display: "flex",
     flexDirection : "column",
+    paddingTop : '100px',
     alignItems : 'center',
-    border : '2px solid red',
     '& > *' : {
       marginBottom : '80px'
     },
@@ -29,7 +29,7 @@ function Profile() {
   return (
     <div className={classes.root}>
       <ProfileContainer />
-      <Articles />
+      <ShowArticles />
     </div>
   );
 }

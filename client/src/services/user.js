@@ -1,13 +1,5 @@
 import api from '../services/api';
 
+const UpdateUser = async (data) => await api.patch('/user/auth/update-profile', data);
 
-
-const CreateUserProfile = async (data) => {
-    return await api.patch('/user/create-profile', data)
-}
-
-const UpdateUserProfile = async (data) => {
-    return await api.patch('/user/update-profile', data);
-}
-
-export {CreateUserProfile, UpdateUserProfile};
+export {UpdateUser};

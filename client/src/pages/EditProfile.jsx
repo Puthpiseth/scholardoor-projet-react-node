@@ -1,45 +1,56 @@
 import React, { useState } from 'react';
 import '../styles/pages/create-profile.scss';
 import { useHistory } from 'react-router-dom'
-import { CreateUserProfile } from '../services/user'
+import { UpdateUser } from '../services/user'
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import {Button} from '@material-ui/core';
 
-function CreateProfile() {
+function EditProfile() {
 
-    const [avatar, setAvatar] = useState('null');
-    const [username, setUsername] = useState('');
-    const [position, setPosition] = useState('');
-    const [affiliation, setAffiliation] = useState('');
-    const [researchInterest, setResearchInterest] = useState('');
-    const [location, setLocation] = useState('');
+    const [, setAvatar] = useState('null');
+    const [datas, setDatas] = useState({
+        avatar :null,
+        username: '',
+        position: '',
+        affiliation: '',
+        researchInterest: '',
+        location: ''
+    })
+   
     const history = useHistory();
     // const [redirect, setRedirect] = useState(false);
 
-    const onChange = (e) => {
-        console.log(e.target.files)
-        setAvatar(e.target.files[0]);
+    const handleChange = (e) => {
+        const name = e.target.name;
+        const value = e.target.value;
+        if(e.target.name === 'avatar'){
+            setDatas({...datas, avatar : e.target.files[0]});
+            return
+        }
+        setDatas({...datas, [name] : value});
     }
 
-    const onSubmit = async (data) => {        
-        
+    const handleSubmit = async (e) => {        
+        e.preventDefault();
         let formData = new FormData();
-        formData.append('avatar', avatar);
+
+        formData.append('avatar', datas.avatar);
 
         try {
-            const profile = {
-                username,
-                position,
-                affiliation,
-                researchInterest,
-                location
+            const datasToSend = {...datas};
+            delete datasToSend.avatar;
+
+            for(let data in datasToSend){
+                //if datasToSend[data]=== '' delete datasToSend[data]
+                !datasToSend[data] && (delete datasToSend[data])
             }
-            formData.append('profile', JSON.stringify(profile))
-            const response = await CreateUserProfile(formData);
+            formData.append('profile', JSON.stringify(datasToSend))
+            const response = await UpdateUser(formData);
             console.log(response.data)
-            history.push('/profile/:id')
+            // history.push('/profile/:id')
             // setRedirect(true);
         }
         catch(error) {
@@ -54,17 +65,18 @@ function CreateProfile() {
     return (
         <>
             <Navbar />
-                <form className="form-create-profile-container" onSubmit={onSubmit}>
+                <form className="form-create-profile-container" onSubmit={handleSubmit}>
                     <div className="create-profile-avatar" name="avatar">
-                        <AccountCircle className="create-profile-avatar-icon"/ >
+                        <AccountCircle className="create-profile-avatar-icon" />
                     </div>
                     <input 
-                    type="file"
-                    name="avatar"
-                    className="avatar-upload"
-                    id="input"
-                    accept="image/*"
-                    onChange={onChange}
+                        type="file"
+                        mutilple = {false}
+                        name="avatar"
+                        className="avatar-upload"
+                        id="input"
+                        accept="image/*"
+                        onChange={handleChange}
                     />
                     <div className="label">
                         <label htmlFor="input" className="avatar-label">
@@ -79,7 +91,7 @@ function CreateProfile() {
                         name="username"
                         className="form-input"
                         placeholder="Enter your username"
-                        onChange={e => setUsername(e.target.value)}
+                        onChange={handleChange}
                         />
                     </div>
         
@@ -89,7 +101,7 @@ function CreateProfile() {
                         name="position"
                         className="form-input"
                         placeholder="Enter your position"
-                        onChange={e => setPosition(e.target.value)}
+                        onChange={handleChange}
                         />
                     </div>
                     <div className="form-inputs">
@@ -98,7 +110,7 @@ function CreateProfile() {
                         name="affiliation"
                         className="form-input"
                         placeholder="Enter your affiliation"
-                        onChange={e => setAffiliation(e.target.value)}
+                        onChange={handleChange}
                         />
     
                     </div>
@@ -108,7 +120,7 @@ function CreateProfile() {
                         name="researchInterest"
                         className="form-input"
                         placeholder="Enter your research interest"
-                        onChange={e => setResearchInterest(e.target.value)}
+                        onChange={handleChange}
                         />
                     </div>
                     <div className="form-inputs"> 
@@ -117,14 +129,21 @@ function CreateProfile() {
                         name="location"
                         className="form-input"
                         placeholder="Enter your location"
-                        onChange={e => setLocation(e.target.value)}
+                        onChange={handleChange}
                         />
                     </div>
-                    <button type="submit" className="create-profile-btn">Submit</button>     
+                    <Button 
+                        type="submit" 
+                        size = 'medium' 
+                        variant ='contained' 
+                        color = 'primary'
+                    >
+                        Submit
+                    </Button>     
                 </form>
             <Footer/>
         </>
     )
 }
 
-export default CreateProfile;
+export default EditProfile;
