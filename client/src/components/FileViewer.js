@@ -5,10 +5,8 @@ import { Loading } from "./Loading";
 
 const useStyle = makeStyles(theme =>( {
     document : {
-        width : '80%',
         position : 'absolute',
-        left : '75%',
-        transform : 'translateX(-50%)',
+        left : '25%',
         height : '100vh',
         overflow : 'scroll',
         dispaly : 'flex',
@@ -22,7 +20,7 @@ export const FileViewer = (props) => {
     const [pagesNumber, setPagesNumber] = useState(1);
     const document = useRef(null);
     const classes = useStyle();
-    const isScreenSmall = useMediaQuery('(max-width : 748px)');
+    const isScreenSmall = useMediaQuery('(max-width : 768px)');
     const handleLoadFileSuccess = (e) =>{
        setPagesNumber(e.numPages);
    }
@@ -43,7 +41,7 @@ export const FileViewer = (props) => {
                 {Array.from(Array(pagesNumber)).map((_, i) => {
                     return(
                         <Page 
-                            scale = {isScreenSmall ? 0.5 : 1.0}
+                            scale = {isScreenSmall ? 0.5 : 1.5}
                             size = 'A4'  
                             pageNumber= {i+1}  
                         >

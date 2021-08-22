@@ -61,11 +61,9 @@ exports.getAllUsersArticles = async(req, res)=> {
 
 // To delete artilces's owner
 exports.deleteArticles = async(req, res) => {
-    const {id} = req.user
+    const {id} = req.params
     const articles = await Articles.destroy({
-        where: {
-            userId : id
-        },
+        where: {id},
     })
     res.status(200).json(articles)
 }
