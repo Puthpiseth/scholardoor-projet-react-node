@@ -9,18 +9,17 @@
     
 }
     h1 {
+        color: #474747;
         font-size: 40px;
     }
-
 
 .form-signin {
     width: 25%;
     margin: 2% 5% 10% 37.5%;
-    padding: 2% 0;
+    padding: 1% 0 2% 0;
     background: #0F6A7D;
     box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 5px;
-
 
     .form-signin-title {
         display: flex;
@@ -56,7 +55,7 @@
             width: 100%;
             height: 5vh;
             font-size: 15px;
-            background: #E5E5E5;
+            background: #F6f4f4;
             border: none;
 
             &:focus {
