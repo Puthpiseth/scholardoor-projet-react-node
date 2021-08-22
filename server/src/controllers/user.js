@@ -148,7 +148,8 @@ exports.updateProfile = async(req, res) => {
     try{
         const {id} = req.user;
         let data = {}
-        if(req.files.avatar){
+
+        if(req.files && req.files.avatar){
             const {avatar} = req.files;
             const avatarBase64 = avatar.data.toString('base64')
             data.avatar = avatarBase64
@@ -172,7 +173,9 @@ exports.updateProfile = async(req, res) => {
         res.status(200).json({token, user : newUser});
     }
     catch(e){
+        console.log(e)
         res.status(500).json({error: 'something went wrong'})
+        
     }
 }
 

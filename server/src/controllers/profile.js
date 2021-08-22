@@ -11,11 +11,12 @@ require('dotenv').config();
 exports.createUserProfile = async (req, res) => {
     console.log(req)
     try {
-        const {username, position, affiliation, researchInterest, location} = JSON.parse(req.body.profile);
+        const {firstname, lastname, position, affiliation, researchInterest, location} = JSON.parse(req.body.profile);
         let avatar = null;
         
         const profile = {
-            username,
+            firstname,
+            lastname,
             position,
             affiliation,
             researchInterest,
@@ -87,10 +88,12 @@ exports.createUserProfile = async (req, res) => {
  exports.updateUserProfile = async (req, res) => {
     console.log(req)
     try {
-        const {position, affiliation, researchInterest, location} = JSON.parse(req.body.profile);
+        const {firstname, lastname, position, affiliation, researchInterest, location} = JSON.parse(req.body.profile);
         let avatar = null;
         
         const profile = {
+            firstname,
+            username,
             position,
             affiliation,
             researchInterest,
