@@ -40,13 +40,12 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: theme.shape.borderRadius,
         width: "40%",
         height: "4vh",
-        [theme.breakpoints.down("sm")]: {
-            width: "40%",
+        [theme.breakpoints.down("md")]: {
+            width: "35%",
         },
-        [theme.breakpoints.down("xs")]: {
-            width: "55%",
-            marginLeft: theme.spacing(4),
-        }
+        // [theme.breakpoints.up("sm")]: {
+        //     width: "50%",
+        // },
     },
     searchIcon: {
         color: "black",
@@ -72,9 +71,22 @@ const useStyles = makeStyles((theme) => ({
         display: "flex",
         alignItems: "center",
         background : 'inherit',
-        justifyContent : 'space-evenly',
+        justifyContent : 'space-evently',
         width : '38%',
-        height : '100%'
+        height : '100%',
+        [theme.breakpoints.down("lg")]: {
+            width : '40%',
+        },
+        // [theme.breakpoints.down("md")]: {
+        //     display: "none",
+        // },
+        // [theme.breakpoints.up("xs")]: {
+        //     display: "none",
+        // },
+        // [theme.breakpoints.up("sm")]: {
+        //     display: "none",
+        // },
+        
     },
     //label under navigation icon
     BottomNavigationLabel : {
@@ -87,20 +99,25 @@ const useStyles = makeStyles((theme) => ({
         height: "35px",
         color: "white",
         margin: '5px',
-        [theme.breakpoints.down("xs")]: {
-            display: "none",
-        },
+        // [theme.breakpoints.up("xs")]: {
+        //     display: "none",
+        // },
     },
+    // burger menu
     menuIcon: {
         width: "30px", 
         height: "30px",
-        
         [theme.breakpoints.down("lg")]: {
             display: "none",
         },
-        [theme.breakpoints.down("xs")]: {
-            display: "block",
+        [theme.breakpoints.down("md")]: {
+            display: "none",
         },
+        // [theme.breakpoints.up("xs")]: {
+        //     display: "block",
+        // },
+        
+        
     }
 }));
 
@@ -179,7 +196,7 @@ function Navbar() {
             onClose={handleBurgerMenuClose}
             anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
             transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-            style={{marginTop: "15px"}}            
+            style={{marginTop: "80px"}}            
         >
             <Link to='/edit-profile' style={{textDecoration: "none", color: "black" }}>
                 <MenuItem 
@@ -237,7 +254,7 @@ function Navbar() {
                             />
                         </div>
                         <BottomNavigation classes={{root : classes.rightIcons}} showLabels>
-                            <Tooltip title={<h1 style={{fontSize: 10}}>Home</h1>} arrow >
+                            <Tooltip>
                                 <BottomNavigationAction 
                                     onClick={()=> history.push('/home')}
                                     classes = {{label : classes.BottomNavigationLabel, root : classes.bottomNavigationWrapper}}
@@ -253,7 +270,7 @@ function Navbar() {
                                 
                             </Tooltip>
 
-                            <Tooltip title={<h1 style={{fontSize: 10}}>Articles</h1>} arrow >
+                            <Tooltip>
                                 <BottomNavigationAction 
                                     classes = {{label : classes.BottomNavigationLabel, root : classes.bottomNavigationWrapper}}
                                     icon = {
@@ -264,7 +281,7 @@ function Navbar() {
                                 />
                             </Tooltip>
                             
-                            <Tooltip title={<h1 style={{fontSize: 10}}>Upload new article</h1>} arrow >
+                            <Tooltip arrow >
                                 <BottomNavigationAction 
                                     classes = {{label : classes.BottomNavigationLabel, root : classes.bottomNavigationWrapper}}
                                     label = 'Upload new article'
@@ -279,13 +296,14 @@ function Navbar() {
                                 />
                                 
                             </Tooltip>
-                            <Tooltip title={<h1 style={{fontSize: 10}}>Edit your profile</h1>} arrow >
+                            <Tooltip>
                                 <BottomNavigationAction 
                                     classes = {{label : classes.BottomNavigationLabel, root : classes.bottomNavigationWrapper}}
                                     label = 'Profile'
                                     onClick = {() => history.push('/edit-profile')}
                                     icon = {
                                         <Avatar
+                                            //all avatars uploaded converted to png file
                                             src = {`data:image/png;base64,${avatar}`}
                                             aria-label="show avatarIcon's description"  
                                             className={classes.rightSideIcon} 
@@ -295,7 +313,7 @@ function Navbar() {
                                 />
                                 
                             </Tooltip>
-                            <Tooltip title={<h1 style={{fontSize: 10}}>Your Account</h1>} arrow >
+                            <Tooltip >
                                 <ArrowDropDownIcon
                                     edge="end"
                                     aria-label="drop down menu"

@@ -4,6 +4,7 @@ import MoreVert from '@material-ui/icons/MoreVert';
 import { getAllUsersArticles} from '../services/article';
 import {FileViewer} from "../components/FileViewer";
 import { Loading } from '../components/Loading';
+import {jsPDF} from 'jspdf';
 import {
     Avatar,
     Card,
@@ -15,19 +16,15 @@ import {
     makeStyles,
     Grid
 } from '@material-ui/core';
+import AvatarGroup from '@material-ui/lab/AvatarGroup';
 
 
 const useStyles = makeStyles((theme) => ({
+    
     root: {
-        height: "50vh",
-        display: "flex",
-        flexDirection: "column-reverse",
-        // [theme.breakpoints.up('sm')] : {
-        //     flexDirection: "row",
-        //     alignItems: "center",
-        // }
+        
     },
-    container :{
+    homeContainer :{
         width : "90%",
         margin: "0 auto",
         [theme.breakpoints.up('sm')] : {
@@ -141,6 +138,12 @@ function Home(){
         setOpenMenu(false);
         setOpenViewer(false)
     }
+
+    // Download article's pdf file
+    const pdfDownload = () => {
+        const doc = new jsPDF();
+        doc.save("a4.pdf");
+    }
     
     return(
         <>
@@ -149,11 +152,10 @@ function Home(){
             {articles.map((article, i) => {
 
                 return (
-
-                <div className={classes.root}>
+                    <div className={classes.root}>
                     <Grid 
                         container 
-                        classes = {{container : classes.container}}
+                        classes = {{container : classes.homeContainer}}
                         spacing = {2}
                     >
                         <Grid item xs = {12}>
@@ -164,10 +166,8 @@ function Home(){
                                         src = {`data:image/png;base64,${avatar}`} 
                                         alt = "avatar"
                                     />
-
                                     <div>
                                         <p className={classes.firstnameAndLastname}>
-
                                             {`${article.articleAuthor?.firstname} ${article.articleAuthor?.lastname}`}
                                         </p>
                                         <p className={classes.articlePublicationDate}>{new Date(article.createdAt).toUTCString().split('GMT')[0]}</p>
@@ -191,11 +191,11 @@ function Home(){
                                         <h3>{article.abstract}</h3>
                                         <h4>{`${article.viewId ?? 0}  views`}</h4>
                                         </CardContent>
-                                    </Card>
-                            </Grid>
+                            </Card>
+                        </Grid>
                     </Grid>
-                </div>
-            )
+                    </div>
+                )
         })}
             <Menu
                 open = {openMenu}
@@ -208,7 +208,11 @@ function Home(){
                     View
                 </MenuItem>
 
-                <MenuItem>Download</MenuItem>
+                <MenuItem
+                    onClick ={pdfDownload}
+                >
+                    Download
+                </MenuItem>
                 <MenuItem >Add to library</MenuItem>
             </Menu>
             <FileViewer 
@@ -216,9 +220,21 @@ function Home(){
                 onClose = {handleCloseViewer}
                 fileSrc = {fileBase64}
             />
+
+            <AvatarGroup max={4}>
+                <Avatar alt="Remy Sharp" src />
+                <Avatar alt="Travis Howard" src />
+                <Avatar alt="Cindy Baker" src />
+                <Avatar alt="Agnes Walker" src />
+                <Avatar alt="Trevor Henderson" src />
+            </AvatarGroup>
             
         </>
+
+        
     )
+
+    
 }
 
 export default Home;

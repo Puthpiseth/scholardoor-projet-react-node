@@ -1,9 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import MoreVert from '@material-ui/icons/MoreVert'
 import '../styles/components/article.scss';
-import { getArticles} from '../services/article';
+import {getArticles, deleteArticle} from '../services/article';
 import {FileViewer} from "./FileViewer";
 import { Loading } from './Loading';
+import {useHistory} from 'react-router-dom';
+import { saveAs } from 'file-saver';
+
 import {
     Card,
     CardHeader,
@@ -14,6 +17,7 @@ import {
     makeStyles,
     Grid
 } from '@material-ui/core'
+
 
 const useStyle = makeStyles(theme => ({
     container :{
@@ -35,7 +39,9 @@ function Articles() {
     const [openViewer, setOpenViewer]  = useState(false);
     const [fileBase64, setFileBase64] = useState('');
     const [datasLoading, setDatasLoading] = useState(true);
+    const [fileName, setFileName] = useState('')
     const classes = useStyle();
+    const history = useHistory();
 
     useEffect(()=>{
         const loadArticles = async() => {
@@ -54,7 +60,8 @@ function Articles() {
         const index = e.currentTarget.getAttribute('data-index');
         setAnchorEl(e.currentTarget);
         setOpenMenu(true);
-        setFileBase64(articles[index].filePath)
+        setFileBase64(articles[index].filePath);
+        setFileName(`${articles[index].title}-${articles[index].authors}.pdf`)
     }
     //close menu option on blur
     const handleCloseMenu = () => {
@@ -70,34 +77,26 @@ function Articles() {
         setOpenMenu(false);
         setOpenViewer(false)
     }
+
+    const removeArticles = async(e)=> {
+        const index = anchorEl.getAttribute('data-index')
+        const {id}= articles[index]
+        await deleteArticle(id);
+        const filterArray = articles.filter(article => article.id !== id);
+        setArticles(filterArray);
+    
+    }
+
+    const handleDownloadFile = () =>{
+        saveAs(`data:application/pdf;base64,${fileBase64}`, fileName)
+    }
     return (
         <Grid 
             container 
             classes = {{container : classes.container}}
             spacing = {3}
         >
-        {/* //         <div className="box">
-        //             <div className="articleWrapper">
-        //                 <div className="titleWrapper">
-        //                     <p className="articleTitle" name="title">Arial Photo at Phnom Kulen</p>
-        //                     <p className="download" name="filePath">Download</p>
-        //                 </div>
-        //                 <div>
-        //                     <p className="authorsAbstract" name="authors">TUN, VINCENT, GREGORY</p>
-        //                     <p className="authorsAbstract" name="abstract">Phnom Kulen is located at the north of Siem Reap</p>
-        //                 </div>
-        //                 <div className="view">                      
-        //                     <p className="numberOfView" name="view">0</p>
-        //                     <p className="viewText">Views</p>
-        //                 </div>  
-
-        //                 <div className="articleButtons">
-        //                     <button className="editButton">Edit article</button>
-        //                     <button className="deleteButton">Delete article</button>
-        //                 </div>
-        //             </div>
-        //         </div> */}
-            {/* < */}
+        
             {datasLoading && <Loading />}
             {articles.map((article, i) => {
                 return(
@@ -120,7 +119,7 @@ function Articles() {
                             <CardContent>
                                 <h3>{article.authors}</h3>
                                 <h3>{article.abstract}</h3>
-                                <h4>{`${article.viewId ?? 0}  views`}</h4>
+                                <h4>{`${article.viewId ?? 0} views`}</h4>
                             </CardContent>
                         </Card>
                         <Menu
@@ -131,11 +130,20 @@ function Articles() {
                             <MenuItem
                                 onClick = {handleOpenViewer}
                             >
-                                Visionner
+                                View
                             </MenuItem>
-                            <MenuItem>Éditer</MenuItem>
-                            <MenuItem>Télécharger</MenuItem>
-                            <MenuItem >Supprimer</MenuItem>
+                            <MenuItem onClick ={()=> history.push('/upload-article')}>Edit</MenuItem>
+                            <MenuItem
+                                onClick = {handleDownloadFile}
+                            >
+                                Download
+                            </MenuItem>
+                            <MenuItem
+                                onClick={removeArticles}
+                                data-index = {i}
+                            >
+                                Delete
+                            </MenuItem>
                         </Menu>
                         <FileViewer 
                             open = {openViewer}
