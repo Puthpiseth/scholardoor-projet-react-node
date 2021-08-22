@@ -42,43 +42,7 @@ exports.createUserProfile = async (req, res) => {
     }
 }
 
-/**
- * @description To get profile of the authenticated user
- * @api /my-profile
- * @access Private 
- * @type GET <multipart form> request
- */
-//  exports.getUserProfile = async (req, res) => {
-//     console.log(req)
-//     try {
-//         const {username, position, affiliation, researchInterest, location} = req.body;
-//         let avatar = null;
-        
-//         const profile = {
-//             username,
-//             position,
-//             affiliation,
-//             researchInterest,
-//             location,
-//         }
-//         if(req.files) {
-//             avatar = req.files.avatar.data.toString(`base64`);
-//             profile.avatar = avatar;
-//         }
-//         // console.log(profile);
-//         const response = await Users.findOne(profile, {where: {id: req.userId}});
-//             res.status(200).json(response);
-//         // console.log(response)
-//         if(!profile) {
-//             res.status(404).json({message: "Your profile is not available!"});
-//             } 
-//             res.status(200).json({profile})
-//     }
-//     catch(err) {
-//         res.status(500).json({message: "Unable to get user!"});
-        
-//     }
-//  }
+
 /**
  * @description To update profile info of the authenticated user
  * @api /update-profile

@@ -47,37 +47,6 @@ exports.createAccount = async (req, res) => {
     }
 }
 
-// /**
-//  * @description To activate a user account
-//  * @api /users/verify-account/:verificationCode
-//  * @access Public <Only via email>
-//  * @type GET
-//  */
-
-// exports.activateAccount = async (req, res, next) => {
-    
-//     try {
-//         const {token} = req.body
-
-//         await jwt.verify(token, process.env.SECRET_JWT);
-//         const user = await users.findOne({where: {_id: token}});
-        
-//             if(!user) {
-//                 res.status(403).json({ 
-//                     message: 'User with this email already exists'})
-//             } else {
-//                 next();
-//             }
-            
-//             const newUser = new user({...user.data});
-//             await newUser.save();
-//             await user.remove();
-//             res.json({message: `User with this ${token} has been activated.`})
-//     }
-//     catch(err) {
-//         return res.status(500).json(err.message);
-//     }
-// }
 
 /**
  * @description To authenticate a user and get an auth token

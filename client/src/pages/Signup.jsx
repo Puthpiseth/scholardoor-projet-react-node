@@ -7,7 +7,6 @@ import MailOutlineIcon from '@material-ui/icons/MailOutline';
 import HttpsOutlinedIcon from '@material-ui/icons/HttpsOutlined';
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import { registerRequest } from '../services/index';
-import Navbar from '../components/Navbar';
 
 function Signup() {
     const {register, handleSubmit, formState: {errors}} = useForm();
@@ -56,7 +55,7 @@ function Signup() {
             <form className="form-signup-container" onSubmit={handleSubmit(onSubmit)} >
                 <div className="form-title">
                     <h2><Link to={'/signup'}> Sign up</Link></h2>
-                    <h2><Link to={'/signin'}> Sign in</Link></h2>
+                    <h2><Link to={'/'}> Sign in</Link></h2>
                 </div>        
                             
                 <div className="form-inputs">
