@@ -2,10 +2,8 @@ import React, {useState} from 'react';
 import '../styles/pages/signin.scss';
 import {useForm} from 'react-hook-form';
 import { Link, Redirect } from 'react-router-dom'
-import MailOutlineIcon from '@material-ui/icons/MailOutline';
-import HttpsOutlinedIcon from '@material-ui/icons/HttpsOutlined';
-import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import { loginRequest } from '../services/index';
+import logo from '../../src/theme/images/logo_gray.png';
 
 
 function Signin() {
@@ -36,26 +34,25 @@ function Signin() {
 
     return (
         <>
-            <div className="title">
+            <div className="signin-title">
+                <img src={logo} width="160px" height="150px" alt="scholardoor logo"/>
                 <h1>Welcome to ScholarDoor</h1>
             </div>
-            <form className="form" onSubmit={handleSubmit(onSubmit)}>
-                <div className="form-title">
+            <form className="form-signin" onSubmit={handleSubmit(onSubmit)}>
+                <div className="form-signin-title">
                     <h2><Link to={'/signup'}>Sign up</Link></h2>
-                    <h2><Link to={'/signin'}>Sign in</Link></h2>
+                    <h2><Link to={'/'}>Sign in</Link></h2>
                 </div>        
                     {error && (
-                        <span style={{color: 'red', marginTop: '5px'}}>
-                            <ErrorOutlineIcon style={{display: 'flex', 
-                                position: 'absolute', left: '8%', fontSize: '15px'}}
-                            />
-                            <p style={{position: 'relative', left: '16%',}}>
-                                Invalid email or password.
+                        <span style={{color: 'white'}}>
+                            <p style={{display: 'flex', alignItems: 'center', position: 'relative', 
+                                left: '12.5%', backgroundColor: '#EB4132', 
+                                fontSize: '14px', width: '75%', height: '3vh', paddingLeft: "5px" }}>
+                                    Invalid email or password.
                             </p>
                         </span>
                     )}
                 <div className="form-inputs">
-                    <MailOutlineIcon className="icons"/>
                     <input
                     type="email"
                     name="email"
@@ -67,16 +64,15 @@ function Signin() {
                     onChange={e => setEmail(e.target.value)}
                     />
                     {errors.email && 
-                        <span style={{color: 'red', marginTop: '5px'}}>
-                            {errors.email.message}
-                            <ErrorOutlineIcon style={{position: 'absolute', 
-                                top: '10%', right: '3%', fontSize: '20px'}}
-                            />
+                        <span style={{display: 'flex', alignItems: 'center', 
+                            backgroundColor: '#EB4132', fontSize: '14px', 
+                            width: '100.5%', height: '3vh', paddingLeft: '5px', 
+                            marginTop:'4px', color: 'white' }}>
+                                {errors.email.message}
                         </span>}
                 </div>
 
                 <div className="form-inputs">
-                    <HttpsOutlinedIcon className="icons"/> 
                     <input
                     type="password"
                     name="password"
@@ -88,19 +84,13 @@ function Signin() {
                     onChange={e => setPassword(e.target.value)}
                     />
                     {errors.password && 
-                        <span style={{color: 'red', marginTop: '5px'}}>
-                            {errors.password.message}
-                            <ErrorOutlineIcon style={{position: 'absolute', top: '10%', right: '3%', fontSize: '20px'}}/>
+                        <span style={{display: 'flex', alignItems: 'center', 
+                            backgroundColor: '#EB4132', fontSize: '14px', 
+                            width: '100.5%', height: '3vh', paddingLeft: '5px', 
+                            marginTop:'4px', color: 'white' }}>
+                                {errors.password.message}
                         </span>}
-                </div>
-                <div className="forgot-password">
-                    <p><Link to={'/forgot-password'}> forgot password?</Link></p>
-                </div>
-                <div className="remember-me">
-                    <input type="checkbox"/>
-                    <p>Remember me</p>
-                </div>
-            
+                </div>            
                 <button type="submit" className="signin-btn">Signin</button>     
             </form>
         </>

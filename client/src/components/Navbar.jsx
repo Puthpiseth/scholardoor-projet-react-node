@@ -178,7 +178,7 @@ function Navbar() {
                     onClick={handleMenuClose}>Terms and policies
                 </MenuItem>
             </Link>
-            <Link to='/signin' style={{textDecoration: "none", color: "black" }}>
+            <Link to='/' style={{textDecoration: "none", color: "black" }}>
                 <MenuItem 
                     style={{fontSize: "14px", margin: "5px"}} 
                     onClick={handleLogOout}>Sign out
