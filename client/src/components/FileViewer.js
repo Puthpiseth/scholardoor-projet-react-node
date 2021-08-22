@@ -7,7 +7,7 @@ const useStyle = makeStyles(theme =>( {
     document : {
         width : '80%',
         position : 'absolute',
-        left : '50%',
+        left : '75%',
         transform : 'translateX(-50%)',
         height : '100vh',
         overflow : 'scroll',

@@ -187,7 +187,7 @@ function Navbar() {
                     onClick={handleBurgerMenuClose}>Edit your profile
                 </MenuItem>
             </Link>
-            <Link to='/' style={{textDecoration: "none", color: "black" }}>
+            <Link to='/home' style={{textDecoration: "none", color: "black" }}>
                 <MenuItem 
                     style={{fontSize: "14px"}} 
                     onClick={handleBurgerMenuClose}>Homepage
@@ -239,6 +239,7 @@ function Navbar() {
                         <BottomNavigation classes={{root : classes.rightIcons}} showLabels>
                             <Tooltip title={<h1 style={{fontSize: 10}}>Home</h1>} arrow >
                                 <BottomNavigationAction 
+                                    onClick={()=> history.push('/home')}
                                     classes = {{label : classes.BottomNavigationLabel, root : classes.bottomNavigationWrapper}}
                                     label = 'Home'
                                     icon = {

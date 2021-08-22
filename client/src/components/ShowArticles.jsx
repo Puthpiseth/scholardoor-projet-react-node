@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import MoreVert from '@material-ui/icons/MoreVert'
 import '../styles/components/article.scss';
-import { getArticles, deleteArticles } from '../services/article';
+import { getArticles} from '../services/article';
 import {FileViewer} from "./FileViewer";
 import { Loading } from './Loading';
 import {
@@ -135,7 +135,7 @@ function Articles() {
                             </MenuItem>
                             <MenuItem>Éditer</MenuItem>
                             <MenuItem>Télécharger</MenuItem>
-                            <MenuItem onClick={() =>{}}>Supprimer</MenuItem>
+                            <MenuItem >Supprimer</MenuItem>
                         </Menu>
                         <FileViewer 
                             open = {openViewer}
