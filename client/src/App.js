@@ -8,6 +8,8 @@ import EditProfile from './pages/EditProfile';
 import Home from './pages/Home';
 import Footer from './components/Footer';
 import AppContext from './store';
+import AuthorsProfileDetails from './pages/AuthorsProfileDetails';
+
 import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
 
 const PrivateRoute = (props) => {
@@ -31,6 +33,7 @@ function App() {
           <PrivateRoute path='/upload-article' component={UploadArticle} />
           <PrivateRoute path='/edit-profile' component={EditProfile} />
           <PrivateRoute path='/profile' component={Profile} />
+          <PrivateRoute path = '/details/:userId' component= {AuthorsProfileDetails} />
           <Route exact path='/private-policy' component={PrivatePolicy} />
         </Switch>
         <Footer/>

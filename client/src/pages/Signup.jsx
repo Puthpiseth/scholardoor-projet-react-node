@@ -39,7 +39,7 @@ function Signup() {
     }
 
     if (redirect) {
-        return <Redirect to ="/signin"/>;
+        return <Redirect to ="/"/>;
     }
 
     return (

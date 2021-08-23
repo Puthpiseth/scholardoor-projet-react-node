@@ -4,6 +4,9 @@ import { makeStyles } from '@material-ui/core';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import {ToastContainer, toast, Zoom, Bounce } from 'react-toastify';
+import '../styles/components/success.scss';
+import "react-toastify/dist/ReactToastify.css";
 
 const useStyles = makeStyles((theme) => ({
 
@@ -21,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
             marginTop: "28%",
         },
         [theme.breakpoints.down("xs")]: {
-            marginTop: "35%",
+            marginTop: "30%",
             marginBottom: "5%",
             fontSize: "22px",
          },
@@ -54,11 +57,6 @@ const useStyles = makeStyles((theme) => ({
         margin: "auto",  
         marginBottom: theme.spacing(2),      
     },
-    labelPublicationDate: {
-        color: "#474747",
-        marginLeft: "5.5%",
-        fontSize: "14px",
-    },
     publicationAndIssue: {
         display: "flex",
         justifyContent: "center", 
@@ -72,12 +70,29 @@ const useStyles = makeStyles((theme) => ({
     issue: {
         width: "44%"
     },
-    backButton: {
+    submitBtn: {
+        border: "none",
+        width: "90%", 
+        height: "5vh",
+        [theme.breakpoints.down("xs")]: {
+            height: "7vh",
+        },
+    },
+    backBtn: {
         display: "flex",
         justifyContent: "center",
         marginTop: "1%",
+        marginBottom: "15%",
     }
 }));
+
+function success() {
+    toast("You have successfully added your paper detail", {
+        className:"success-toast",
+        draggable: true,
+        position: toast.POSITION.BOTTOM_LEFT,
+    });
+}
 
 function AddArticleDetails(props) {
     const classes = useStyles();
@@ -151,18 +166,18 @@ function AddArticleDetails(props) {
                         >
                         </TextField>                     
                     </div>
-                    <label className={classes.labelPublicationDate}>Publication Date</label>
                     <div className={classes.publicationAndIssue}>
                         <TextField
                             onChange={props.handleChange}
                             variant="outlined"
-                            type="date"
+                            type="text"
                             // change font size of input text
                             inputProps={{style: {fontSize: "14px"}}}
                             // change font size of input label
                             InputLabelProps= {{style: {fontSize: "14px"}}}
                             name="publicationDate"
                             className={classes.publicationDate}
+                            label="Date of publication"
                         >
                         </TextField>
                         
@@ -180,16 +195,22 @@ function AddArticleDetails(props) {
                         >
                         </TextField>
                     </div>
-                        
+                    <ToastContainer
+                        draggable={false}
+                        transition={Zoom}
+                        autoClose={4000}
+                    />
                     <Button
+                        onClick={success}
+                        className={classes.submitBtn}
                         variant="contained" 
                         type="submit"
-                        style={{marginTop: "2%", marginLeft: "5%", background: "#0F6A7D", color: "#fff", width: "90%", height: "5vh"}}
+                        style={{marginTop: "2%", marginLeft: "5%", background: "#0F6A7D", color: "#fff"}}
                     >
                         Submit
                     </Button>     
                 </form>
-                <div className={classes.backButton}>
+                <div className={classes.backBtn}>
                     <Button
                         onClick = {props.handlePrevStep} 
                         variant="contained"

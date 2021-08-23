@@ -30,7 +30,7 @@ module.exports = {
       },
       publicationDate: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.STRING
       },
       journal: {
         allowNull: false,
@@ -46,11 +46,11 @@ module.exports = {
       },
       abstract: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.TEXT('medium')
       },
       viewId: {
         allowNull: false,
-        type: Sequelize.UUID
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,

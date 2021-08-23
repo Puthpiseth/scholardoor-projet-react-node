@@ -1,10 +1,10 @@
 import {useState, useEffect} from 'react';
 import Navbar from '../components/Navbar';
 import MoreVert from '@material-ui/icons/MoreVert';
-import { getAllUsersArticles} from '../services/article';
+import {getAllUsersArticles} from '../services/article';
 import {FileViewer} from "../components/FileViewer";
-import { Loading } from '../components/Loading';
-import {jsPDF} from 'jspdf';
+import {Loading} from '../components/Loading';
+import {saveAs} from 'file-saver';
 import {
     Avatar,
     Card,
@@ -16,21 +16,20 @@ import {
     makeStyles,
     Grid
 } from '@material-ui/core';
-import AvatarGroup from '@material-ui/lab/AvatarGroup';
+
 
 
 const useStyles = makeStyles((theme) => ({
-    
-    root: {
-        
-    },
+
     homeContainer :{
+        margin: "120px auto",
         width : "90%",
-        margin: "0 auto",
+        border: "1px solid red",
+        position: "",
+        top: "50%",
         [theme.breakpoints.up('sm')] : {
             width : "70%",
-            // height: "75%",
-            // overflowY: "scroll",
+            
         }
     },
     cardHeader :{
@@ -94,15 +93,15 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-function Home(){
+function Home({history}){
     const [articles, setArticles] = useState([]);
     const [anchorEl, setAnchorEl ] = useState(null);
     const [openMenu, setOpenMenu] = useState(false);
     const [openViewer, setOpenViewer]  = useState(false);
     const [fileBase64, setFileBase64] = useState('');
+    const [fileName, setFileName] = useState('')
     const [datasLoading, setDatasLoading] = useState(true);
     const classes = useStyles();
-    const {avatar} = JSON.parse(localStorage.getItem('token')).user
 
 
     useEffect(()=>{
@@ -113,9 +112,7 @@ function Home(){
             setArticles(sortedArticles);
             setDatasLoading(false)
         };
-
         loadArticles();
-
     }, []);
     //open car menu option on click
     const handleOpenMenu = (e) => {
@@ -123,6 +120,7 @@ function Home(){
         setAnchorEl(e.currentTarget);
         setOpenMenu(true);
         setFileBase64(articles[index].filePath)
+        setFileName(`${articles[index].title}-${articles[index].authors}.pdf`)
     }
     //close menu option on blur
     const handleCloseMenu = () => {
@@ -138,13 +136,14 @@ function Home(){
         setOpenMenu(false);
         setOpenViewer(false)
     }
-
-    // Download article's pdf file
-    const pdfDownload = () => {
-        const doc = new jsPDF();
-        doc.save("a4.pdf");
-    }
     
+    const handleDownloadFile = () => saveAs(`data:application/pdf;base64,${fileBase64}`, fileName)
+    
+    const handleRedirectToDeatails = (e) => {
+        const userId = e.currentTarget.getAttribute('data-user-id');
+        history.push(`/details/${userId}`);
+    }
+
     return(
         <>
             <Navbar/>
@@ -152,18 +151,22 @@ function Home(){
             {articles.map((article, i) => {
 
                 return (
-                    <div className={classes.root}>
+                    
                     <Grid 
                         container 
                         classes = {{container : classes.homeContainer}}
-                        spacing = {2}
+                        spacing = {3}
                     >
                         <Grid item xs = {12}>
                             <Card key = {i}>
-                                <div className={classes.cardHeader}>
+                                <div 
+                                    className={classes.cardHeader} 
+                                    data-user-id = {article.articleAuthor?.id} 
+                                    onClick = {handleRedirectToDeatails}
+                                >
                                     <Avatar 
                                         className={classes.profileAvatarIcon}
-                                        src = {`data:image/png;base64,${avatar}`} 
+                                        src = {`data:image/png;base64,${article.articleAuthor?.avatar}`} 
                                         alt = "avatar"
                                     />
                                     <div>
@@ -186,6 +189,7 @@ function Home(){
                                         </IconButton>
                                     }
                                 />
+                                <h3 className={classes.publicationDate}>{article.publicationDate}</h3>
                                         <CardContent>
                                         <h3>{article.authors}</h3>
                                         <h3>{article.abstract}</h3>
@@ -194,7 +198,6 @@ function Home(){
                             </Card>
                         </Grid>
                     </Grid>
-                    </div>
                 )
         })}
             <Menu
@@ -209,7 +212,7 @@ function Home(){
                 </MenuItem>
 
                 <MenuItem
-                    onClick ={pdfDownload}
+                    onClick = {handleDownloadFile}
                 >
                     Download
                 </MenuItem>
@@ -220,14 +223,6 @@ function Home(){
                 onClose = {handleCloseViewer}
                 fileSrc = {fileBase64}
             />
-
-            <AvatarGroup max={4}>
-                <Avatar alt="Remy Sharp" src />
-                <Avatar alt="Travis Howard" src />
-                <Avatar alt="Cindy Baker" src />
-                <Avatar alt="Agnes Walker" src />
-                <Avatar alt="Trevor Henderson" src />
-            </AvatarGroup>
             
         </>
 

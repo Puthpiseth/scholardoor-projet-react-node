@@ -177,6 +177,12 @@ function Navbar() {
             <Link to='/privacy' style={{textDecoration: "none", color: "black" }}>
                 <MenuItem 
                     style={{fontSize: "14px", margin: "5px"}} 
+                    onClick={handleMenuClose}>Your library
+                </MenuItem>
+            </Link>
+            <Link to='/privacy' style={{textDecoration: "none", color: "black" }}>
+                <MenuItem 
+                    style={{fontSize: "14px", margin: "5px"}} 
                     onClick={handleMenuClose}>Privacy
                 </MenuItem>
             </Link>
@@ -230,6 +236,12 @@ function Navbar() {
                 <MenuItem 
                     style={{fontSize: "14px"}} 
                     onClick={handleBurgerMenuClose}>Upload new article
+                </MenuItem>
+            </Link>
+            <Link to='/upload-article' style={{textDecoration: "none", color: "black" }}>
+                <MenuItem 
+                    style={{fontSize: "14px"}} 
+                    onClick={handleBurgerMenuClose}>Your library
                 </MenuItem>
             </Link>
             <Link to='/sigin' style={{textDecoration: "none", color: "black" }}>

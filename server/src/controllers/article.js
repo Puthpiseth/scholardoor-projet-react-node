@@ -34,15 +34,22 @@ require('dotenv').config();
 }
 
 //To get for articles' owner
-exports.getOneUserArticles = async(req, res) => {
-    const {id} = req.user
+exports.getOneUserArticles = async (id, res) => {
+    
     const articles = await Articles.findAll({
-        where : {
+        where :{
             userId : id
         },
+        include: {
+            as: "articleAuthor",
+            model: Users,
+            attributes: {
+                exclude: ['password']
+            }
+        }
     });
     res.status(200).json(articles);
-}
+};
 
 exports.getAllUsersArticles = async(req, res)=> {
 
@@ -57,7 +64,6 @@ exports.getAllUsersArticles = async(req, res)=> {
     });
     res.status(200).json(articles);
 }
-
 
 // To delete artilces's owner
 exports.deleteArticles = async(req, res) => {
