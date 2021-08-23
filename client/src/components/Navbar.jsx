@@ -168,6 +168,12 @@ function Navbar() {
                     {`${user.firstname} ${user.lastname}`}
                 </MenuItem>
             </Link>
+            <Link to='/edit-profile' style={{textDecoration: "none", color: "black" }}>
+                <MenuItem 
+                    style={{fontSize: "14px", margin: "5px"}} 
+                    onClick={handleMenuClose}>Edit profile
+                </MenuItem>
+            </Link>
             <Link to='/privacy' style={{textDecoration: "none", color: "black" }}>
                 <MenuItem 
                     style={{fontSize: "14px", margin: "5px"}} 
@@ -198,7 +204,7 @@ function Navbar() {
             onClose={handleBurgerMenuClose}
             anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
             transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-            style={{marginTop: "50px"}}            
+            // style={{marginTop: "0px"}}            
         >
             <Link to='/profile' style={{textDecoration: "none", color: "black" }}>
                 <MenuItem 
