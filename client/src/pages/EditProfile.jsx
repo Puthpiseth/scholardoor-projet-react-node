@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import '../styles/pages/create-profile.scss';
+import '../styles/pages/edit-profile.scss';
 import { UpdateUser } from '../services/user'
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import Navbar from "../components/Navbar";
@@ -67,9 +67,9 @@ function EditProfile() {
     return (
         <>
             <Navbar />
-                <form className="form-create-profile-container" onSubmit={handleSubmit}>
-                    <div className="create-profile-avatar" name="avatar">
-                        <Avatar className="create-profile-avatar-icon" src = {`data:image/png;base64,${appContext.user.avatar}`}/>
+                <form className="form-edit-profile-container" onSubmit={handleSubmit}>
+                    <div className="edit-profile-avatar" name="avatar">
+                        <Avatar className="edit-profile-avatar-icon" src = {`data:image/png;base64,${appContext.user.avatar}`}/>
                     </div>
                     <input 
                         type="file"
@@ -143,16 +143,8 @@ function EditProfile() {
                         onChange={handleChange}
                         />
                     </div>
-                    <Button 
-                        type="submit" 
-                        size = 'medium' 
-                        variant ='contained' 
-                        color = 'primary'
-                    >
-                        Submit
-                    </Button>     
+                    <button type="submit" className="edit-profile-btn">Submit</button>      
                 </form>
-            <Footer/>
         </>
     )
 }

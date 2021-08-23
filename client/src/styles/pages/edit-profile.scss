@@ -1,16 +1,18 @@
 @import '../app.scss';
 
 
-.form-create-profile-container {
-    width: 30%;
+.form-edit-profile-container {
+    width: 25%;
     margin: 150px auto;
-    padding: 2.5% 0%;
-    background-color: #fdfcfc;
+    padding: 1.5% 0%;
+    background-color: #F6f4f4;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 3px;
+    border-radius: 4px;
 
     @include desktop {
-        width: 30%;
+        width: 40%;
+        margin-top: 20%;
+        padding: 3% 0%;
     };
 
     @include laptop {
@@ -19,6 +21,7 @@
 
     @include mobile {
         width: 75%;
+        margin-top: 20%;
     };
 
     @include small-mobile {
@@ -29,18 +32,15 @@
     //     width: 30%;
     // };
     
-    .create-profile-avatar {
+    .edit-profile-avatar {
         display: flex;
         justify-content: center;
+        padding-bottom: 6px;
     
-        .create-profile-avatar-icon {
+        .edit-profile-avatar-icon {
             width: 70px;
             height: 70px;
-            color: $midgrey;
-
-            &:hover {
-                cursor: pointer;
-            }          
+            color: $midgrey;        
         }
     }
     #input[type="file"] {
@@ -50,6 +50,7 @@
     .avatar-label {
         display: flex;
         justify-content: center;
+        padding-bottom: 8px;
 
         &:hover {
             cursor: pointer;
@@ -57,7 +58,7 @@
         }
 
         .add-avatar-icon {
-            margin: 3%;
+            margin: 2.5%;
         }
     }
 
@@ -71,15 +72,22 @@
 
         ::-webkit-input-placeholder{
             color: $darkgrey;
+            font-size: 12px;
             padding: 10px;
         }
 
         input {
             width: 100%;
             height: 5vh;
-            font-size: $small;
+            font-size: $medium;
             border: none;
             border-bottom: solid 1px $lightgrey;
+            @include desktop {
+                height: 3.5vh;
+            };
+            @include mobile {
+                height: 6vh;
+            };
 
             &:focus {
                 outline: 1px solid $midblue;
@@ -89,23 +97,28 @@
         }
         .file-input {
             font-size: $small;
-            // background: $white;
             
         }
     }
 
-    .create-profile-btn {
+    .edit-profile-btn {
         position: relative;
         left: 13%;
         height: 5vh;
         width: 75.5%;
         top: 5%;
-        font-size: $small;
+        font-size: $medium;
         background: $mainColor;
         color:$white;
         border: none;
         border-radius: 3px;
         cursor: pointer;
+        @include desktop {
+            height: 3.5vh;
+        };
+        @include mobile {
+            height: 6vh;
+        };
     
         &:hover{
             opacity: 0.9;
