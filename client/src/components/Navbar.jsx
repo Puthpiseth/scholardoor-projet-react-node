@@ -17,7 +17,6 @@ import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import MenuIcon from '@material-ui/icons/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import Tooltip from '@material-ui/core/Tooltip';
 import Popover from '@material-ui/core/Popover';
 import { Link } from 'react-router-dom';
 import logo from '../../src/theme/images/Logo.png';
@@ -43,9 +42,9 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down("md")]: {
             width: "35%",
         },
-        // [theme.breakpoints.up("sm")]: {
-        //     width: "50%",
-        // },
+        [theme.breakpoints.down("sm")]: {
+            width: "60%",
+        },
     },
     searchIcon: {
         color: "black",
@@ -77,15 +76,15 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down("lg")]: {
             width : '40%',
         },
-        // [theme.breakpoints.down("md")]: {
-        //     display: "none",
-        // },
-        // [theme.breakpoints.up("xs")]: {
-        //     display: "none",
-        // },
-        // [theme.breakpoints.up("sm")]: {
-        //     display: "none",
-        // },
+        [theme.breakpoints.down("md")]: {
+            width : '45%',
+        },
+        [theme.breakpoints.down("sm")]: {
+            display: "none",
+        },
+        [theme.breakpoints.down("xs")]: {
+            display: "none",
+        },
         
     },
     //label under navigation icon
@@ -98,10 +97,7 @@ const useStyles = makeStyles((theme) => ({
         width: "35px", 
         height: "35px",
         color: "white",
-        margin: '5px',
-        // [theme.breakpoints.up("xs")]: {
-        //     display: "none",
-        // },
+        margin: '4px',
     },
     // burger menu
     menuIcon: {
@@ -113,10 +109,12 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down("md")]: {
             display: "none",
         },
-        // [theme.breakpoints.up("xs")]: {
-        //     display: "block",
-        // },
-        
+        [theme.breakpoints.down("sm")]: {
+            display: "block",
+        },
+        [theme.breakpoints.down("xs")]: {
+            display: "block",
+        },        
         
     }
 }));
@@ -128,9 +126,11 @@ function Navbar() {
     const [anchorEl, setAnchorMenuEl] = useState(false);
     const [burgerMenuIconAnchorEl, setBurgerMenuIconAnchorEl] = useState(false);
     const {avatar} = JSON.parse(localStorage.getItem('token')).user
+    const {user} = JSON.parse(localStorage.getItem('token'));
     const isMenuOpen = Boolean(anchorEl);
     const isBurgerMenuOpen = Boolean(burgerMenuIconAnchorEl);
     const history = useHistory();
+
     const handleProfileMenuOpen = (e) => {
         setAnchorMenuEl(e.currentTarget);
     };
@@ -160,10 +160,12 @@ function Navbar() {
             style={{ marginTop: "45px" }}
         >
         
-            <Link to='/libraries' style={{textDecoration: "none", color: "black" }}>
-                <MenuItem 
+            <Link to='/profile' style={{textDecoration: "none", color: "black" }}>
+                <MenuItem
                     style={{fontSize: "14px", margin: "5px"}} 
-                    onClick={handleMenuClose}>Your libraries
+                    onClick={handleMenuClose}
+                >
+                    {`${user.firstname} ${user.lastname}`}
                 </MenuItem>
             </Link>
             <Link to='/privacy' style={{textDecoration: "none", color: "black" }}>
@@ -196,8 +198,16 @@ function Navbar() {
             onClose={handleBurgerMenuClose}
             anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
             transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-            style={{marginTop: "80px"}}            
+            style={{marginTop: "50px"}}            
         >
+            <Link to='/profile' style={{textDecoration: "none", color: "black" }}>
+                <MenuItem 
+                    style={{fontSize: "14px"}} 
+                    onClick={handleBurgerMenuClose}
+                >
+                    {`${user.firstname} ${user.lastname}`}
+                </MenuItem>
+            </Link>
             <Link to='/edit-profile' style={{textDecoration: "none", color: "black" }}>
                 <MenuItem 
                     style={{fontSize: "14px"}} 
@@ -207,19 +217,13 @@ function Navbar() {
             <Link to='/home' style={{textDecoration: "none", color: "black" }}>
                 <MenuItem 
                     style={{fontSize: "14px"}} 
-                    onClick={handleBurgerMenuClose}>Homepage
+                    onClick={handleBurgerMenuClose}>Home
                 </MenuItem>
             </Link>
             <Link to='/upload-article' style={{textDecoration: "none", color: "black" }}>
                 <MenuItem 
                     style={{fontSize: "14px"}} 
                     onClick={handleBurgerMenuClose}>Upload new article
-                </MenuItem>
-            </Link>
-            <Link to='/libraries' style={{textDecoration: "none", color: "black" }}>
-                <MenuItem 
-                    style={{fontSize: "14px"}} 
-                    onClick={handleBurgerMenuClose}>Your libraries
                 </MenuItem>
             </Link>
             <Link to='/sigin' style={{textDecoration: "none", color: "black" }}>
@@ -254,77 +258,58 @@ function Navbar() {
                             />
                         </div>
                         <BottomNavigation classes={{root : classes.rightIcons}} showLabels>
-                            <Tooltip>
-                                <BottomNavigationAction 
-                                    onClick={()=> history.push('/home')}
-                                    classes = {{label : classes.BottomNavigationLabel, root : classes.bottomNavigationWrapper}}
-                                    label = 'Home'
-                                    icon = {
-                                        <HomeIcon
-                                            aria-label="redirect to home page" 
-                                            className={classes.rightSideIcon} 
-                                            style={iconHover} 
-                                        />
-                                    }
-                                />
-                                
-                            </Tooltip>
-
-                            <Tooltip>
-                                <BottomNavigationAction 
-                                    classes = {{label : classes.BottomNavigationLabel, root : classes.bottomNavigationWrapper}}
-                                    icon = {
-                                        <DescriptionIcon className = {classes.rightSideIcon}/>
-                                    }
-                                    label = "Articles"
-                                    onClick = {() => history.push('/profile')}
-                                />
-                            </Tooltip>
+                            <BottomNavigationAction 
+                                onClick={()=> history.push('/home')}
+                                classes = {{label : classes.BottomNavigationLabel, root : classes.bottomNavigationWrapper}}
+                                label = 'Home'
+                                icon = {
+                                    <HomeIcon
+                                        aria-label="redirect to home page" 
+                                        className={classes.rightSideIcon} 
+                                        style={iconHover} 
+                                    />
+                                }
+                            />
                             
-                            <Tooltip arrow >
-                                <BottomNavigationAction 
-                                    classes = {{label : classes.BottomNavigationLabel, root : classes.bottomNavigationWrapper}}
-                                    label = 'Upload new article'
-                                    onClick = {() => history.push('/upload-article')}
-                                    icon = {
-                                        <CloudUploadIcon
-                                            aria-label="show UploadworkIcon's description"  
-                                            className={classes.rightSideIcon} 
-                                            style={iconHover}
-                                        />
-                                    }
-                                />
+                            <BottomNavigationAction 
+                                classes = {{label : classes.BottomNavigationLabel, root : classes.bottomNavigationWrapper}}
+                                label = 'Upload new article'
+                                onClick = {() => history.push('/upload-article')}
+                                icon = {
+                                    <CloudUploadIcon
+                                        aria-label="show UploadworkIcon's description"  
+                                        className={classes.rightSideIcon} 
+                                        style={iconHover}
+                                    />
+                                }
+                            />
                                 
-                            </Tooltip>
-                            <Tooltip>
-                                <BottomNavigationAction 
-                                    classes = {{label : classes.BottomNavigationLabel, root : classes.bottomNavigationWrapper}}
-                                    label = 'Profile'
-                                    onClick = {() => history.push('/edit-profile')}
-                                    icon = {
-                                        <Avatar
-                                            //all avatars uploaded converted to png file
-                                            src = {`data:image/png;base64,${avatar}`}
-                                            aria-label="show avatarIcon's description"  
-                                            className={classes.rightSideIcon} 
-                                            style={iconHover}
-                                        />
-                                    }
-                                />
+                            <BottomNavigationAction 
+                                classes = {{label : classes.BottomNavigationLabel, root : classes.bottomNavigationWrapper}}
+                                label = 'Profile'
+                                onClick = {() => history.push('/profile')}
+                                icon = {
+                                    <Avatar
+                                        //all avatars uploaded converted to png file
+                                        src = {`data:image/png;base64,${avatar}`}
+                                        aria-label="show avatarIcon's description"  
+                                        className={classes.rightSideIcon} 
+                                        style={iconHover}
+                                    />
+                                } 
+                            />
                                 
-                            </Tooltip>
-                            <Tooltip >
-                                <ArrowDropDownIcon
-                                    edge="end"
-                                    aria-label="drop down menu"
-                                    aria-controls = 'primary-search-account-menu'
-                                    aria-haspopup="true"  
-                                    className={classes.rightSideIcon}
-                                    style={iconHover}
-                                    onClick={handleProfileMenuOpen} 
-                                    color="inherit"
-                                />            
-                            </Tooltip>
+                            <ArrowDropDownIcon
+                                edge="end"
+                                aria-label="drop down menu"
+                                aria-controls = 'primary-search-account-menu'
+                                aria-haspopup="true"  
+                                className={classes.rightSideIcon}
+                                style={iconHover}
+                                onClick={handleProfileMenuOpen} 
+                                color="inherit"
+                            />            
+                            
                         </BottomNavigation>
                         <MenuIcon
                             edge="end" 
