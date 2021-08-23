@@ -18,23 +18,17 @@ import {
 } from '@material-ui/core';
 
 
-
 const useStyles = makeStyles((theme) => ({
 
     homeContainer :{
         margin: "120px auto",
         width : "90%",
-        border: "1px solid red",
-        position: "",
-        top: "50%",
         [theme.breakpoints.up('sm')] : {
             width : "70%",
-            
         }
     },
     cardHeader :{
         display: "flex",
-        // justifyContent: "flex-start",
         alignItems: "center",
         width: "94%",
         margin: "0 auto",
@@ -42,7 +36,18 @@ const useStyles = makeStyles((theme) => ({
         // border: "1px solid red",
     },
     profileAvatarIcon: {
+        width: "50px",
+        height: "50px",
         marginRight: "4px",
+        cursor: "pointer",
+    },
+    headerTitle: {
+        cursor: "pointer",
+        '&:hover': {
+            textDecoration: "underline",
+            textUnderlineOffset: "0.2em",
+            textDecorationThickness: "0.1em",
+        }
     },
     optionIcons : {
         width : '20px',
@@ -61,36 +66,35 @@ const useStyles = makeStyles((theme) => ({
         overflowX: "scroll",
         [theme.breakpoints.up('sm')] : {
             width : "68%",
-            // height: "30vh",
-            // flexDirection: "column",
-
         }
     },
-    friendsAvatar: {
-        marginRight: "4px"
+    publicationDate: {
+        margin: "0 auto",
+        width: "92%",
+        fontSize: "14px",
+        fontWeight: "400",
+        [theme.breakpoints.up('sm')] : {
+            width : "94%"
+        },
     },
-    avatarAndLabel: {
-        display: "flex",
+    firstnameAndLastname: {
+        cursor: "pointer",
+        '&:hover': {
+            textDecoration: "underline",
+            textUnderlineOffset: "0.2em",
+            textDecorationThickness: "0.1em",
+        }
     },
-    friendsAvatarName: {
-        display: "none",
-        // [theme.breakpoints.up('sm')] : {
-        //     display: "block",
-
-        // }
+    authors : {
+        fontWeight: "500",
+        fontSize: "14px",
     },
-    contacts: {
-        display: "none",
-        // [theme.breakpoints.up('sm')] : {
-        //     display: "block",
-        //     position: "relative",
-        //     bottom: "20%",
-        //     left: "18%",
-        //     margin: "0 %",
-        // },
-        
-    }
-
+    abstract: {
+        fontWeight: "400",
+    },
+    view: {
+        fontWeight: "400",
+    },  
 }));
 
 function Home({history}){
@@ -178,6 +182,7 @@ function Home({history}){
                                 </div>
 
                                 <CardHeader
+                                    classes={{title: classes.headerTitle}}
                                     title={article.title}
                                     action = {
                                         <IconButton
@@ -190,10 +195,10 @@ function Home({history}){
                                     }
                                 />
                                 <h3 className={classes.publicationDate}>{article.publicationDate}</h3>
-                                        <CardContent>
-                                        <h3>{article.authors}</h3>
-                                        <h3>{article.abstract}</h3>
-                                        <h4>{`${article.viewId ?? 0}  views`}</h4>
+                                        <CardContent className={classes.articleContent}>
+                                        <h3 className={classes.authors}>{article.authors}</h3>
+                                        <h3 className={classes.abstract}>{article.abstract}</h3>
+                                        <h4 className={classes.view}>{`${article.viewId ?? 0}  views`}</h4>
                                         </CardContent>
                             </Card>
                         </Grid>
