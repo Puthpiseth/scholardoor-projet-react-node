@@ -1,4 +1,4 @@
-
+@import '../app.scss';
 
 .signin-title {
     display: flex;
@@ -6,20 +6,65 @@
     justify-content: center;
     align-items: center;
     margin-top: 5%;
+
+    @include mobile {
+        margin-top: 15%;
+        img {
+            width: 70px;
+            height: 60px;
+        }
+    }
+    @include laptop {
+        margin-top: 15%;
+        img {
+            width: 140px;
+            height: 130px;
+        }
+    }
+    @include mobile {
+        img {
+            width: 100px;
+            height: 90px;
+        }
+    }
     
 }
     h1 {
         color: #474747;
         font-size: 40px;
+
+        @include laptop {
+            font-size: 35px;
+        }
+        @include mobile {
+            font-size: 25px;
+        }
+        
     }
 
 .form-signin {
     width: 25%;
-    margin: 2% 5% 10% 37.5%;
+    margin: 0 5% 10% 37.5%;
     padding: 1% 0 2% 0;
     background: #0F6A7D;
     box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 5px;
+
+    @include desktop {
+        width: 50%;
+        margin: 0 0 10% 25%;
+        padding: 2% 0 4% 0;
+    }
+    @include laptop {
+        width: 50%;
+        margin: 0 0 10% 25%;
+        padding: 2% 0 4% 0;
+    }
+    @include mobile {
+        width: 70%;
+        margin: 0 0 20% 15%;
+        padding: 3% 0 7% 0;
+    }
 
     .form-signin-title {
         display: flex;
@@ -33,6 +78,13 @@
                 text-decoration: none;
                 color: #E5E5E5;
                 font-size: 20px;
+
+                @include laptop {
+                    font-size: 18px;
+                }
+                @include mobile {
+                    font-size: 15px;
+                }
                 &:hover {
                     text-decoration: underline;
                 }
@@ -58,6 +110,15 @@
             background: #F6f4f4;
             border: none;
 
+            @include desktop {
+                height: 4vh;
+            }
+
+            @include mobile {
+                height: 5vh;
+                font-size: 13px;
+            }
+
             &:focus {
                 outline: 1px solid #E5E5E5;
                 box-shadow: 0 0 4px #E5E5E5;
@@ -81,6 +142,18 @@
         border: none;
         border-radius: 3px;
         cursor: pointer;
+
+        @include desktop {
+            height: 4vh;
+        }
+        @include laptop {
+            height: 4vh;
+            font-size: 16px;
+        }
+        @include mobile {
+            height: 5vh;
+            font-size: 14px;
+        }
     
         &:hover{
             opacity: 0.9;
