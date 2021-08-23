@@ -6,24 +6,26 @@ import {makeStyles} from '@material-ui/core'
 
 const useStyle = makeStyles(theme => ({
   root : {
-    display: "flex",
-    flexDirection : "column",
-    alignItems : 'flex-start',
-    marginTop : '100px',    
+    display: 'flex',
+    flexDirection : 'column',
+    justifyContent: 'center',
+    alignItems : 'center',
+    marginTop : '150px',    
     '& > *' : {
       marginBottom : '80px'
     },
+    [theme.breakpoints.up('sm')] : {
+      marginTop: "200px",
+  }, 
     [theme.breakpoints.up('md')] : {
       flexDirection : 'row',
       justifyContent : 'space-around',
-      marginTop: "200px",
+      alignItems: "flex-start",
     },
     [theme.breakpoints.up('lg')] : {
       width: "90%",
-      height: "80vh",
     },
   },
-  
 }))
 
 function Profile() {

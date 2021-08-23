@@ -28,6 +28,9 @@ const useStyle = makeStyles(theme => ({
         [theme.breakpoints.up('md')] : {
             width : "55%",
         },
+        [theme.breakpoints.up('lg')] : {
+            height: "65vh",
+        },
     },
     articleCard: {
         background: "#fdfcfc",
@@ -52,7 +55,16 @@ const useStyle = makeStyles(theme => ({
     publicationDate: {
         margin: "0 auto",
         width: "90%",
-        
+        fontSize: "14px",
+        [theme.breakpoints.up('sm')] : {
+            width : "95%"
+        },
+        [theme.breakpoints.up('md')] : {
+            width : "94%"
+        },
+        [theme.breakpoints.up('lg')] : {
+            width : "96%"
+        },
     },
     authors: {
         fontSize: "16px",

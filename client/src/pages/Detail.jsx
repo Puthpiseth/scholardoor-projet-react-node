@@ -55,7 +55,6 @@ const useStyle = makeStyles(theme => ({
         [theme.breakpoints.up('sm')] : {
             width : "95%"
         },
-        
     },
     authors: {
         fontSize: "16px",
