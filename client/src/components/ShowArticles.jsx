@@ -23,8 +23,15 @@ const useStyle = makeStyles(theme => ({
     container :{
         width : "90%",
         [theme.breakpoints.up('sm')] : {
-            width : '50%'
-        }
+            width : "80%"
+        },
+        [theme.breakpoints.up('md')] : {
+            width : "55%",
+            marginTop: "80px",
+        },
+        [theme.breakpoints.up('lg')] : {
+            marginTop: "70px",
+        },
     },
     articleCard: {
         background: "#fdfcfc",

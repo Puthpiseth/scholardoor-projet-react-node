@@ -8,18 +8,19 @@ const useStyle = makeStyles(theme => ({
   root : {
     display: "flex",
     flexDirection : "column",
-    paddingTop : '100px',
     alignItems : 'center',
+    marginTop : '100px',    
     '& > *' : {
       marginBottom : '80px'
     },
-    [theme.breakpoints.up('sm')] : {
-      
+    [theme.breakpoints.up('md')] : {
       flexDirection : 'row',
       justifyContent : 'space-around',
-      alignItems : 'flex-start',
-      paddingTop : '200px',
-    }
+    },
+    [theme.breakpoints.up('lg')] : {
+      width: "90%",
+      height: "80vh",
+    },
   },
   
 }))
