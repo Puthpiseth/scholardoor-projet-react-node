@@ -8,7 +8,7 @@ const useStyle = makeStyles(theme => ({
   root : {
     display: "flex",
     flexDirection : "column",
-    alignItems : 'center',
+    alignItems : 'flex-start',
     marginTop : '100px',    
     '& > *' : {
       marginBottom : '80px'
@@ -16,6 +16,7 @@ const useStyle = makeStyles(theme => ({
     [theme.breakpoints.up('md')] : {
       flexDirection : 'row',
       justifyContent : 'space-around',
+      marginTop: "200px",
     },
     [theme.breakpoints.up('lg')] : {
       width: "90%",

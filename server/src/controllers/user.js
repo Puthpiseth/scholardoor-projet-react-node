@@ -40,14 +40,11 @@ exports.createAccount = async (req, res) => {
                 message: "Something went wrong!",
             })
         });       
-
     } 
     catch(err) {
         return res.status(500).json(err.message);
     }
 }
-
-
 /**
  * @description To authenticate a user and get an auth token
  * @api /users/signin
@@ -72,7 +69,7 @@ exports.signin = async (req, res) => {
             await bcrypt.compare(password, userDatas.password, (err, result) =>{
                 if(result) {
                     // Create token
-                    const exp_date = new Date().getTime() + 60 * 60 * 100000000
+                    const exp_date = new Date().getTime() + 60 * 60 * 24000
                     const token = jwt.sign({id : userDatas.id, exp_date}, process.env.SECRET_JWT)
                     const {
                         id,

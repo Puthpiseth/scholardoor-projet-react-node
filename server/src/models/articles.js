@@ -24,12 +24,12 @@ module.exports = (sequelize, DataTypes) => {
     filePath: DataTypes.TEXT('long'),
     title: DataTypes.STRING,
     authors: DataTypes.STRING,
-    publicationDate: DataTypes.DATE,
+    publicationDate: DataTypes.STRING,
     journal: DataTypes.STRING,
     issue: DataTypes.STRING,
     publisher: DataTypes.STRING,
-    abstract: DataTypes.STRING,
-    viewId: DataTypes.UUID
+    abstract: DataTypes.TEXT('medium'),
+    viewId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Articles',

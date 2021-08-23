@@ -1,12 +1,11 @@
-import React, {useState, useEffect} from 'react';
-import MoreVert from '@material-ui/icons/MoreVert'
-import '../styles/components/article.scss';
-import {getArticles, deleteArticle} from '../services/article';
-import {FileViewer} from "./FileViewer";
-import { Loading } from './Loading';
+import {useState, useEffect} from 'react';
+import {getDetails} from '../services/article';
+import {useParams} from 'react-router-dom'
+import MoreVert from '@material-ui/icons/MoreVert';
+import {FileViewer} from "../components/FileViewer";
+import { Loading } from '../components/Loading';
 import {useHistory} from 'react-router-dom';
 import { saveAs } from 'file-saver';
-
 import {
     Card,
     CardHeader,
@@ -16,7 +15,7 @@ import {
     MenuItem,
     makeStyles,
     Grid
-} from '@material-ui/core'
+} from '@material-ui/core';
 
 
 const useStyle = makeStyles(theme => ({
@@ -52,6 +51,10 @@ const useStyle = makeStyles(theme => ({
     publicationDate: {
         margin: "0 auto",
         width: "90%",
+        fontSize: "14px",
+        [theme.breakpoints.up('sm')] : {
+            width : "95%"
+        },
         
     },
     authors: {
@@ -68,7 +71,9 @@ const useStyle = makeStyles(theme => ({
     }
 }));
 
-function Articles() {
+
+function Details(){
+    const [author, setAuthor] = useState({});
     const [articles, setArticles] = useState([]);
     const [anchorEl, setAnchorEl ] = useState(null);
     const [openMenu, setOpenMenu] = useState(false);
@@ -76,21 +81,24 @@ function Articles() {
     const [fileBase64, setFileBase64] = useState('');
     const [datasLoading, setDatasLoading] = useState(true);
     const [fileName, setFileName] = useState('')
+    const {userId} = useParams();
     const classes = useStyle();
     const history = useHistory();
 
-    useEffect(()=>{
-        const loadArticles = async() => {
-            const articles = await getArticles();
-            const sortedArticles = articles.data.sort((a,b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-            console.log(articles)
-            setArticles(sortedArticles);
+
+    useEffect(() => {
+        const loadDetails = async() => {
+            const details = await getDetails(userId);
+            setAuthor(details.data[0].articleAuthor);
+            setArticles(details.data);
             setDatasLoading(false)
+            console.log(details.data[0])
         };
 
-        loadArticles();
+        loadDetails();
 
     }, []);
+
     //open car menu option on click
     const handleOpenMenu = (e) => {
         const index = e.currentTarget.getAttribute('data-index');
@@ -114,20 +122,14 @@ function Articles() {
         setOpenViewer(false)
     }
 
-    const removeArticles = async(e)=> {
-        const index = anchorEl.getAttribute('data-index')
-        const {id}= articles[index]
-        await deleteArticle(id);
-        const filterArray = articles.filter(article => article.id !== id);
-        setArticles(filterArray);
-    
-    }
+
 
     const handleDownloadFile = () =>{
         saveAs(`data:application/pdf;base64,${fileBase64}`, fileName)
     }
-    
-    return (
+
+
+    return(
         <Grid 
             container 
             classes = {{container : classes.container}}
@@ -176,12 +178,6 @@ function Articles() {
                                 View
                             </MenuItem>
                             <MenuItem
-                                className={classes.menuItemsOption} 
-                                onClick ={()=> history.push('/upload-article')}
-                            >
-                                Edit
-                            </MenuItem>
-                            <MenuItem
                                 className={classes.menuItemsOption}
                                 onClick = {handleDownloadFile}
                             >
@@ -189,10 +185,8 @@ function Articles() {
                             </MenuItem>
                             <MenuItem
                                 className={classes.menuItemsOption}
-                                onClick={removeArticles}
-                                data-index = {i}
                             >
-                                Delete
+                                Save to library
                             </MenuItem>
                         </Menu>
                         <FileViewer 
@@ -208,4 +202,4 @@ function Articles() {
     )
 }
 
-export default Articles;
+export default Details;

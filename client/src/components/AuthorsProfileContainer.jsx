@@ -1,42 +1,41 @@
 import React, {useState, useEffect} from 'react';
 import { makeStyles, Avatar, Button } from "@material-ui/core";
-import {useHistory} from 'react-router-dom'
-
+import {useHistory} from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
-
     mainContainer: {
         display : 'flex',
         flexDirection : 'column',
-        alignItems : 'center',
         width: "85%",
-        padding : '15px 0',
+        padding : '25px 25px',
         borderRadius : '6px',
         border : '0.5px solid lightgrey',
         boxShadow :'0 0 1px black',
         [theme.breakpoints.up("sm")]: {
             width : '77%',
-            padding : '30px 0',
         },
         [theme.breakpoints.up("md")]: {
+            justifyContent : 'flex-start',
             width : '35%',            
         },
         [theme.breakpoints.up("lg")]: {
-            width : "30%",
+            width : "25%",
             marginLeft: "12%",
         },        
     },
     profileAvatarIcon: {
         color: "#C4C4C4",
         width: "120px",
-        height: "120px",       
+        height: "120px",
+        [theme.breakpoints.up('sm')] : {
+            width: "100px",
+            height: "100px",
+        },    
+        
     },
     profileInfo: {
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
         borderRadius: "4px",
-        width : '100%',
+        width : '85%',
     },
     profileWrapper: {
         padding: "2% 0% 10% 2%",
@@ -45,6 +44,9 @@ const useStyles = makeStyles((theme) => ({
     usernameText: {
         fontWeight: "bold", 
         fontSize: "28px",
+        [theme.breakpoints.up('sm')] : {
+            fontSize: "24px",
+        }, 
     },
 
     profileText: {
@@ -56,8 +58,13 @@ const useStyles = makeStyles((theme) => ({
 
     follow: {
         display: "flex",
-        width : '100%',
-        justifyContent : 'space-around'
+        width : '70%',
+        [theme.breakpoints.up("sm")] : {
+            width : '55%',
+        }, 
+        [theme.breakpoints.up("md")] : {
+            width : '80%',
+        }, 
     },
     fellas: {
         fontSize : '1.4rem',
@@ -67,29 +74,20 @@ const useStyles = makeStyles((theme) => ({
         }, 
     },
     profileButtonsContainer : {
-        display : 'flex',
-        width : '80%',
-        justifyContent : 'space-around',
+        width : '85%',
         [theme.breakpoints.up("sm")] : {
-            width : '45%'
+            width : '82%'
         },
         [theme.breakpoints.up("md")] : {
             width : '75%',
         },
         [theme.breakpoints.up("lg")] : {
-            width : '68%',
+            width : '90%',
         },
-    },
-    profileUploadButton: {
-        background: "#0F6A7D",
-        color: "#fff",
-        fontSize: "14px",
-        borderRadius: "4px",
-        boxShadow: "0 0 2px #999999", 
     },
 }));
 
-function ProfileContainer() {
+function AuthorsProfileContainer() {
     const classes = useStyles();
     const [user, setUser] = useState({});
     const history = useHistory();
@@ -98,10 +96,9 @@ function ProfileContainer() {
         const {user} = JSON.parse(localStorage.getItem('token'));
         setUser(user);
     },[]);
-    
+
     return (
-        // <main>
-            <div className={classes.mainContainer}>
+        <div className={classes.mainContainer}>
                 <Avatar className={classes.profileAvatarIcon} src = {`data:image/png;base64,${user.avatar}`} alt = "avatar"/>
                 <div className={classes.profileInfo}>
                     <div className={classes.profileWrapper}>
@@ -122,28 +119,37 @@ function ProfileContainer() {
                     <Button 
                         onClick = {() => history.push('/upload-article')}
                         size = 'medium'
-                        className={classes.uploadArticleButton}
+                        className={classes.followBtn}
                         style={{background: '#0F6A7D', color: '#fff', 
                             borderRadius: "5px",boxShadow: "0 0 2px #999999",
-                            '&:hover': {opacity: "0.8"}
+                            '&:hover': {opacity: "0.8"}, marginRight: "4px"
                         }}
                     >
-                        Upload new article
+                        Follow
                     </Button>
                     <Button 
                         onClick = {() => history.push('/edit-profile')}
                         size = 'medium'
-                        className={classes.eidtProfileUploadButton}
+                        className={classes.messageBtn}
+                        style={{background: '#2794f2', color: '#fff', marginRight: "4px",
+                                borderRadius: "5px",boxShadow: "0 0 2px #999999",
+                        }}
+                    >
+                        Message
+                    </Button>
+                    <Button 
+                        onClick = {() => history.push('/edit-profile')}
+                        size = 'medium'
+                        className={classes.contactBtn}
                         style={{background: '#E5E5E5', color: '#474747', 
-                        borderRadius: "5px",boxShadow: "0 0 2px #999999",
+                                borderRadius: "5px",boxShadow: "0 0 2px #999999",
                     }}
                     >
-                        Edit profile
+                        Contact
                     </Button>
                 </div>
             </div>
-        // {/* </main> */}
     )
 }
 
-export default ProfileContainer;
+export default AuthorsProfileContainer
