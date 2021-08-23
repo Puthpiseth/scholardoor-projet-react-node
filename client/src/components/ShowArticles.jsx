@@ -21,14 +21,42 @@ import {
 
 const useStyle = makeStyles(theme => ({
     container :{
-        width : '90%',
+        width : "90%",
         [theme.breakpoints.up('sm')] : {
             width : '50%'
         }
     },
+    articleCard: {
+        background: "#fdfcfc",
+        border: "1px solid #C4C4C4",
+    },
     optionIcons : {
-        width : '20px',
-        height : '20px',
+        width : '22px',
+        height : '22px',
+    },
+    menuItemsOption: {
+        fontSize: "13px",
+    },
+    headerTitle: {
+        fontSize: "18px",
+        fontWeight: "bold",
+        color: "#474747",
+        cursor: "pointer",
+        "&:hover": {
+            color: "#2794f2"
+        }
+    },
+    authors: {
+        fontSize: "16px",
+        fontWeight: "400",
+    },
+    abstract: {
+        fontSize: "14px",
+        fontWeight: "400",
+    },
+    view: {
+        fontSize: "13px",
+        fontWeight: "400",
     }
 }));
 
@@ -104,9 +132,13 @@ function Articles() {
                         item  
                         xs = {12}
                     >
-                        <Card key = {i}>
-                            <CardHeader 
+                        <Card
+                            className={classes.articleCard} 
+                            key = {i}>
+                            <CardHeader
+                                classes={{title: classes.headerTitle}}
                                 title = {article.title}
+                                
                                 action = {
                                     <IconButton
                                         onClick = {handleOpenMenu}
@@ -116,11 +148,11 @@ function Articles() {
                                     </IconButton>
                                 }
                             />
-                            <CardContent>
-                                <h3>{article.authors}</h3>
-                                <h3>{article.abstract}</h3>
-                                <h4>{`${article.viewId ?? 0} views`}</h4>
-                            </CardContent>
+                                <CardContent className={classes.articleContent}>
+                                    <h3 className={classes.authors}>{article.authors}</h3>
+                                    <h3 className={classes.abstract}>{article.abstract}</h3>
+                                    <h4 className={classes.view}>{`${article.viewId ?? 0} views`}</h4>
+                                </CardContent>
                         </Card>
                         <Menu
                             open = {openMenu}
@@ -128,17 +160,25 @@ function Articles() {
                             anchorEl = {anchorEl}
                         >
                             <MenuItem
+                                className={classes.menuItemsOption}
                                 onClick = {handleOpenViewer}
                             >
                                 View
                             </MenuItem>
-                            <MenuItem onClick ={()=> history.push('/upload-article')}>Edit</MenuItem>
                             <MenuItem
+                                className={classes.menuItemsOption} 
+                                onClick ={()=> history.push('/upload-article')}
+                            >
+                                Edit
+                            </MenuItem>
+                            <MenuItem
+                                className={classes.menuItemsOption}
                                 onClick = {handleDownloadFile}
                             >
                                 Download
                             </MenuItem>
                             <MenuItem
+                                className={classes.menuItemsOption}
                                 onClick={removeArticles}
                                 data-index = {i}
                             >

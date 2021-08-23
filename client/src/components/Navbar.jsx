@@ -157,12 +157,12 @@ function Navbar() {
             onClose={handleMenuClose}
             anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
             transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-            style={{ marginTop: "45px" }}
+            style={{ marginTop: "55px", padding: "5px" }}
         >
         
-            <Link to='/profile' style={{textDecoration: "none", color: "black" }}>
+            <Link to='/profile' style={{textDecoration: "none", color: "black"}}>
                 <MenuItem
-                    style={{fontSize: "14px", margin: "5px"}} 
+                    style={{fontSize: "14px", margin: "5px", fontWeight: "bold"}} 
                     onClick={handleMenuClose}
                 >
                     {`${user.firstname} ${user.lastname}`}
@@ -202,7 +202,7 @@ function Navbar() {
         >
             <Link to='/profile' style={{textDecoration: "none", color: "black" }}>
                 <MenuItem 
-                    style={{fontSize: "14px"}} 
+                    style={{fontSize: "14px", fontWeight: "bold"}} 
                     onClick={handleBurgerMenuClose}
                 >
                     {`${user.firstname} ${user.lastname}`}
