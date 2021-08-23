@@ -16,70 +16,10 @@ html {
 body {
   margin: 0;
   padding: 0;
-  background-color: #F6f4f4;
+  background-color: white;
 }
 
-main {
-  margin: 0% 9%;
-  width: 85%;
-  height: 90vh;
-}
-
-.title {
-  position: absolute;
-  top: 14%;
-  left: 39%;
-}
-
-.title h1 {
-  font-size: 30px;
-  color: #F6f4f4;
-}
-
-.form {
-  position: absolute;
-  top: 28%;
-  left: 38%;
-  background: #F6f4f4;
-  -webkit-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 3px;
-}
-
-.form .icons {
-  position: absolute;
-  top: 0%;
-  right: 100%;
-  width: 10%;
-  height: 5vh;
-  color: #C4C4C4;
-  background: #E5E5E5;
-}
-
-.form .form-title {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-}
-
-.form .form-title h2 {
-  margin: 7% 7%;
-  font-weight: 700;
-}
-
-.form .form-title h2 a {
-  text-decoration: none;
-  color: #000;
-  font-size: 20px;
-}
-
-.form .form-title h2 a:hover {
-  color: #2794f2;
-}
-
-.form .form-inputs {
+.signin-title {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -87,87 +27,208 @@ main {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  position: relative;
-  left: 16.5%;
-  padding-bottom: 2%;
-  width: 75%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 5%;
 }
 
-.form .form-inputs ::-webkit-input-placeholder {
-  color: #C4C4C4;
-  padding: 10px;
+@media only screen and (max-width: 480px) {
+  .signin-title {
+    margin-top: 15%;
+  }
+  .signin-title img {
+    width: 70px;
+    height: 60px;
+  }
 }
 
-.form .form-inputs input {
-  width: 100%;
-  height: 5vh;
-  font-size: 15px;
-  border: none;
+@media only screen and (max-width: 992px) {
+  .signin-title {
+    margin-top: 15%;
+  }
+  .signin-title img {
+    width: 140px;
+    height: 130px;
+  }
 }
 
-.form .form-inputs input:focus {
-  outline: 1px solid #2794f2;
-  -webkit-box-shadow: 0 0 7px #2794f2;
-          box-shadow: 0 0 7px #2794f2;
-  padding-left: 10px;
+@media only screen and (max-width: 480px) {
+  .signin-title img {
+    width: 100px;
+    height: 90px;
+  }
 }
 
-.form .form-inputs .visibility-icons {
-  position: absolute;
-  top: 25%;
-  right: 5%;
-  color: #C4C4C4;
+h1 {
+  color: #474747;
+  font-size: 40px;
 }
 
-.form .form-inputs .visibility-icons .show-icons {
-  position: relative;
-  left: 50%;
+@media only screen and (max-width: 992px) {
+  h1 {
+    font-size: 35px;
+  }
 }
 
-.form .forgot-password {
-  position: absolute;
-  right: 10%;
+@media only screen and (max-width: 480px) {
+  h1 {
+    font-size: 25px;
+  }
 }
 
-.form .forgot-password a {
-  text-decoration: none;
-  color: #2794f2;
+.form-signin {
+  width: 25%;
+  margin: 0 5% 10% 37.5%;
+  padding: 1% 0 2% 0;
+  background: #0F6A7D;
+  -webkit-box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
+          box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
 }
 
-.form .forgot-password a:hover {
-  color: #2D6597;
+@media only screen and (max-width: 1200px) {
+  .form-signin {
+    width: 50%;
+    margin: 0 0 10% 25%;
+    padding: 2% 0 4% 0;
+  }
 }
 
-.form .remember-me {
+@media only screen and (max-width: 992px) {
+  .form-signin {
+    width: 50%;
+    margin: 0 0 10% 25%;
+    padding: 2% 0 4% 0;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .form-signin {
+    width: 70%;
+    margin: 0 0 20% 15%;
+    padding: 3% 0 7% 0;
+  }
+}
+
+.form-signin .form-signin-title {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  position: relative;
-  padding: 0 38px;
-  top: 10%;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 
-.form .remember-me p {
-  text-align: center;
-  margin-top: 0.7%;
-  font-size: 15px;
+.form-signin .form-signin-title h2 {
+  color: #474747;
+  font-weight: bold;
 }
 
-.form .signin-btn {
-  position: relative;
-  left: 9.5%;
+.form-signin .form-signin-title h2 a {
+  text-decoration: none;
+  color: #E5E5E5;
+  font-size: 20px;
+}
+
+@media only screen and (max-width: 992px) {
+  .form-signin .form-signin-title h2 a {
+    font-size: 18px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .form-signin .form-signin-title h2 a {
+    font-size: 15px;
+  }
+}
+
+.form-signin .form-signin-title h2 a:hover {
+  text-decoration: underline;
+}
+
+.form-signin .form-inputs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 30px auto;
+  width: 75%;
+}
+
+.form-signin .form-inputs ::-webkit-input-placeholder {
+  color: #999999;
+  padding-left: 10px;
+}
+
+.form-signin .form-inputs input {
+  width: 100%;
   height: 5vh;
-  width: 82%;
-  top: 12%;
   font-size: 15px;
-  background: #0F6A7D;
-  color: #fff;
+  background: #F6f4f4;
+  border: none;
+}
+
+@media only screen and (max-width: 1200px) {
+  .form-signin .form-inputs input {
+    height: 4vh;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .form-signin .form-inputs input {
+    height: 5vh;
+    font-size: 13px;
+  }
+}
+
+.form-signin .form-inputs input:focus {
+  outline: 1px solid #E5E5E5;
+  -webkit-box-shadow: 0 0 4px #E5E5E5;
+          box-shadow: 0 0 4px #E5E5E5;
+  padding-left: 10px;
+}
+
+.form-signin .signin-btn {
+  position: relative;
+  left: 13%;
+  height: 5vh;
+  width: 75%;
+  font-size: 18px;
+  font-weight: bold;
+  background: #E5E5E5;
+  color: #474747;
   border: none;
   border-radius: 3px;
   cursor: pointer;
 }
 
-.form .signin-btn:hover {
+@media only screen and (max-width: 1200px) {
+  .form-signin .signin-btn {
+    height: 4vh;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .form-signin .signin-btn {
+    height: 4vh;
+    font-size: 16px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .form-signin .signin-btn {
+    height: 5vh;
+    font-size: 14px;
+  }
+}
+
+.form-signin .signin-btn:hover {
   opacity: 0.9;
 }
 /*# sourceMappingURL=signin.css.map */
