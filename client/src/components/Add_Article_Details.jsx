@@ -5,8 +5,8 @@ import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import {ToastContainer, toast, Zoom, Bounce } from 'react-toastify';
-import '../styles/components/success.scss';
 import "react-toastify/dist/ReactToastify.css";
+import '../styles/components/success.scss';
 
 const useStyles = makeStyles((theme) => ({
 
@@ -87,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function success() {
-    toast("You have successfully added your paper detail", {
+    toast.success("You have successfully added your paper detail", {
         className:"success-toast",
         draggable: true,
         position: toast.POSITION.BOTTOM_LEFT,
@@ -198,7 +198,7 @@ function AddArticleDetails(props) {
                     <ToastContainer
                         draggable={false}
                         transition={Zoom}
-                        autoClose={4000}
+                        autoClose={3000}
                     />
                     <Button
                         onClick={success}

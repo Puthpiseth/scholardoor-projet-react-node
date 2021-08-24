@@ -34,7 +34,7 @@ function Profile() {
   return (
     <div className={classes.root}>
       <Navbar/>
-      <ProfileContainer />
+        <ProfileContainer isConnectedUser = {true}/>
       <ShowArticles />
     </div>
   );

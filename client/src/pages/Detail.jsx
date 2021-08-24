@@ -1,5 +1,4 @@
 import {useState, useEffect} from 'react';
-import {getDetails} from '../services/article';
 import {useParams} from 'react-router-dom'
 import MoreVert from '@material-ui/icons/MoreVert';
 import {FileViewer} from "../components/FileViewer";
@@ -44,8 +43,10 @@ const useStyle = makeStyles(theme => ({
         fontWeight: "bold",
         color: "#474747",
         cursor: "pointer",
-        "&:hover": {
-            color: "#2794f2"
+        '&:hover': {
+            textDecoration: "underline",
+            textUnderlineOffset: "0.2em",
+            textDecorationThickness: "0.1em",
         }
     },
     publicationDate: {
@@ -54,6 +55,12 @@ const useStyle = makeStyles(theme => ({
         fontSize: "14px",
         [theme.breakpoints.up('sm')] : {
             width : "95%"
+        },
+        [theme.breakpoints.up('md')] : {
+            width : "94%"
+        },
+        [theme.breakpoints.up('lg')] : {
+            width : "96.5%"
         },
     },
     authors: {
@@ -71,32 +78,14 @@ const useStyle = makeStyles(theme => ({
 }));
 
 
-function Details(){
-    const [author, setAuthor] = useState({});
-    const [articles, setArticles] = useState([]);
+function Details({articles, author, datasLoading}){
     const [anchorEl, setAnchorEl ] = useState(null);
     const [openMenu, setOpenMenu] = useState(false);
     const [openViewer, setOpenViewer]  = useState(false);
     const [fileBase64, setFileBase64] = useState('');
-    const [datasLoading, setDatasLoading] = useState(true);
     const [fileName, setFileName] = useState('')
-    const {userId} = useParams();
     const classes = useStyle();
     const history = useHistory();
-
-
-    useEffect(() => {
-        const loadDetails = async() => {
-            const details = await getDetails(userId);
-            setAuthor(details.data[0].articleAuthor);
-            setArticles(details.data);
-            setDatasLoading(false)
-            console.log(details.data[0])
-        };
-
-        loadDetails();
-
-    }, []);
 
     //open car menu option on click
     const handleOpenMenu = (e) => {
@@ -121,12 +110,9 @@ function Details(){
         setOpenViewer(false)
     }
 
-
-
     const handleDownloadFile = () =>{
         saveAs(`data:application/pdf;base64,${fileBase64}`, fileName)
     }
-
 
     return(
         <Grid 
