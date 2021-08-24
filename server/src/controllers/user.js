@@ -81,7 +81,6 @@ exports.signin = async (req, res) => {
                         location,
                         position,
                         researchInterest,
-                        username
                     } = userDatas;
 
                     const user = {
@@ -94,7 +93,6 @@ exports.signin = async (req, res) => {
                         location,
                         position,
                         researchInterest,
-                        username
                     };
 
                     return res.status(200).json({token, user}); 

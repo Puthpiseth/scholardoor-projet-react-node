@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import { makeStyles, Avatar, Button } from "@material-ui/core";
 import {useHistory} from 'react-router-dom'
-
+import ConnectedUserProfileContainerActions from './ConnectedUserProfileContainerActions';
+import AuthorDetailsProfileContainerActions from './AuthorDetailsProfileContainerActions'
 
 const useStyles = makeStyles((theme) => ({
 
@@ -75,29 +76,21 @@ const useStyles = makeStyles((theme) => ({
             fontSize: "1.6rem",
         }, 
     },
-    profileButtonsContainer : {
-        width : '85%',
-        [theme.breakpoints.up("sm")] : {
-            width : '82%'
-        },
-        [theme.breakpoints.up("md")] : {
-            width : '90%',
-        },
-        [theme.breakpoints.up("lg")] : {
-            width : '95%',
-        },
-    },
+   
 }));
 
-function ProfileContainer() {
+function ProfileContainer({isConnectedUser, userDetails}) {
     const classes = useStyles();
     const [user, setUser] = useState({});
-    const history = useHistory();
     
     useEffect(()=>{
-        const {user} = JSON.parse(localStorage.getItem('token'));
-        setUser(user);
-    },[]);
+        if(isConnectedUser){
+            const {user} = JSON.parse(localStorage.getItem('token'));
+            setUser(user);
+            return
+        }
+        setUser(userDetails);
+    },[userDetails, user, isConnectedUser]);
     
     return (
         // <main>
@@ -118,29 +111,9 @@ function ProfileContainer() {
                         </div>
                     </div>
                 </div>
-                <div className={classes.profileButtonsContainer}>
-                    <Button 
-                        onClick = {() => history.push('/upload-article')}
-                        size = 'medium'
-                        className={classes.uploadArticleButton}
-                        style={{background: '#0F6A7D', color: '#fff', 
-                                borderRadius: "5px",boxShadow: "0 0 2px #999999",
-                                '&:hover': {opacity: "0.8"}, marginRight: "6px"
-                        }}
-                    >
-                        Upload new article
-                    </Button>
-                    <Button 
-                        onClick = {() => history.push('/edit-profile')}
-                        size = 'medium'
-                        className={classes.eidtProfileUploadButton}
-                        style={{background: '#E5E5E5', color: '#474747', marginRight: "6px", 
-                                borderRadius: "5px",boxShadow: "0 0 2px #999999",
-                    }}
-                    >
-                        Edit profile
-                    </Button>
-                </div>
+                {isConnectedUser && <ConnectedUserProfileContainerActions />}
+                {!isConnectedUser && <AuthorDetailsProfileContainerActions />}
+                
             </div>
         // {/* </main> */}
     )

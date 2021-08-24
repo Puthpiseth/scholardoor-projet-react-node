@@ -22,18 +22,28 @@ const useStyles = makeStyles((theme) => ({
 
     homeContainer :{
         margin: "120px auto",
+        background: "#fdfcfc",
         width : "90%",
         [theme.breakpoints.up('sm')] : {
             width : "70%",
+        },
+        [theme.breakpoints.up('md')] : {
+            width : "65%",
+        },
+        [theme.breakpoints.up('lg')] : {
+            width : "55%",
         }
+
     },
     cardHeader :{
         display: "flex",
         alignItems: "center",
         width: "94%",
         margin: "0 auto",
-        borderBottom: "1px solid #999999"
-        // border: "1px solid red",
+        borderBottom: "1px solid #999999",
+        [theme.breakpoints.up('lg')] : {
+            width : "96%",
+        }
     },
     profileAvatarIcon: {
         width: "50px",
@@ -76,6 +86,12 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.up('sm')] : {
             width : "94%"
         },
+        [theme.breakpoints.up('md')] : {
+            width : "95%",
+        },
+        [theme.breakpoints.up('lg')] : {
+            width : "96.5%",
+        }
     },
     firstnameAndLastname: {
         cursor: "pointer",
@@ -91,6 +107,9 @@ const useStyles = makeStyles((theme) => ({
     },
     abstract: {
         fontWeight: "400",
+        [theme.breakpoints.up('lg')] : {
+            fontSize: "14px",
+        }
     },
     view: {
         fontWeight: "400",
@@ -134,13 +153,15 @@ function Home({history}){
     //open file modal viewer
     const handleOpenViewer = () => {
         setOpenViewer(true);
-    }
+    };
+
     //close file modal viewer
     const handleCloseViewer = () => {
         setOpenMenu(false);
         setOpenViewer(false)
-    }
-    
+    };
+
+    // Download authors's pdf file
     const handleDownloadFile = () => saveAs(`data:application/pdf;base64,${fileBase64}`, fileName)
     
     const handleRedirectToDeatails = (e) => {

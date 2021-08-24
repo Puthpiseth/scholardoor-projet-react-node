@@ -48,8 +48,10 @@ const useStyle = makeStyles(theme => ({
         fontWeight: "bold",
         color: "#474747",
         cursor: "pointer",
-        "&:hover": {
-            color: "#2794f2"
+        '&:hover': {
+            textDecoration: "underline",
+            textUnderlineOffset: "0.2em",
+            textDecorationThickness: "0.1em",
         }
     },
     publicationDate: {
@@ -109,6 +111,7 @@ function Articles() {
         setAnchorEl(e.currentTarget);
         setOpenMenu(true);
         setFileBase64(articles[index].filePath);
+        // set up a pdf file with the name below
         setFileName(`${articles[index].title}-${articles[index].authors}.pdf`)
     }
     //close menu option on blur
@@ -131,10 +134,10 @@ function Articles() {
         const {id}= articles[index]
         await deleteArticle(id);
         const filterArray = articles.filter(article => article.id !== id);
-        setArticles(filterArray);
-    
+        setArticles(filterArray); 
     }
 
+    // Download a article pdf file
     const handleDownloadFile = () =>{
         saveAs(`data:application/pdf;base64,${fileBase64}`, fileName)
     }
@@ -212,11 +215,11 @@ function Articles() {
                             onClose = {handleCloseViewer}
                             fileSrc = {fileBase64}
                         />
-                                
+                        
                     </Grid>
                 )
             })}
-        </Grid>            
+        </Grid>
     )
 }
 

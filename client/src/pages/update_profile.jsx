@@ -98,7 +98,12 @@ function UpdateProfile() {
                     onChange={e => setLocation(e.target.value)}
                     />
                 </div>
-                <button type="submit" className="create-profile-btn">Submit</button>     
+                <button
+                    type="submit" 
+                    className="create-profile-btn"
+                >
+                    Submit
+                </button>     
             </form>
         </>
     )

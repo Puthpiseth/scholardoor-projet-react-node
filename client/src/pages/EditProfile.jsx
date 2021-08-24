@@ -3,9 +3,19 @@ import '../styles/pages/edit-profile.scss';
 import { UpdateUser } from '../services/user'
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-import {Button, Avatar} from '@material-ui/core';
+import {Avatar} from '@material-ui/core';
 import AppContext from '../store';
+import {ToastContainer, toast, Zoom, Bounce } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+
+
+function successEditProfile() {
+    toast.success("You have successfully updated your profile", {
+        className:"success-toast",
+        draggable: true,
+        position: toast.POSITION.BOTTOM_LEFT,
+    });
+}
 
 
 function EditProfile() {
@@ -143,7 +153,18 @@ function EditProfile() {
                         onChange={handleChange}
                         />
                     </div>
-                    <button type="submit" className="edit-profile-btn">Submit</button>      
+                    <ToastContainer
+                        draggable={false}
+                        transition={Zoom}
+                        autoClose={3000}
+                    />
+                    <button
+                        onClick={successEditProfile}  
+                        type="submit" 
+                        className="edit-profile-btn"
+                    >
+                        Submit
+                    </button>      
                 </form>
         </>
     )
