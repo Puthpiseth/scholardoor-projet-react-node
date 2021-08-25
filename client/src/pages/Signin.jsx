@@ -92,6 +92,7 @@ function Signin() {
                         </span>}
                 </div>            
                 <button type="submit" className="signin-btn">Signin</button>     
+                <p className="linkToSignup">Don't have an account ? <Link className="link" to={'/signup'}>Sign up</Link></p>
             </form>
         </>
     )

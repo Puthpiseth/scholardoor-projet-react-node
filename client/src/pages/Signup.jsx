@@ -15,8 +15,7 @@ function Signup() {
     const [redirect, setRedirect] = useState(false);
 
     const onSubmit = async (data) => {
-        // console.log(data);
-                
+        // console.log(data);  
         const user = {
             firstname,
             lastname,
@@ -31,7 +30,7 @@ function Signup() {
         }
         catch(error) {
             setError(error)
-            // Check if the username or the email is already taken
+            // Check if the email is already taken
             if(user.email) {
                 setError(error.message)
             }        
@@ -139,13 +138,15 @@ function Signup() {
                     {errors.password && 
                         <span style={{display: 'flex', alignItems: 'center', 
                             backgroundColor: '#EB4132', fontSize: '14px', 
-                            width: '100.5%', height: '3vh', paddingLeft: '5px', 
+                            width: '100.5%', height: '6vh', paddingLeft: '5px', 
                             marginTop:'4px', color: 'white' }}>
                                 {errors.password.message}
                         </span>}
                 </div>
                 <button type="submit" className="signup-btn">Signup</button>     
+                <p className="linkToSignin">Already have an account ? <Link className="link" to={'/'}>Sign in</Link></p>
             </form>
+            
         </>
     )
 }

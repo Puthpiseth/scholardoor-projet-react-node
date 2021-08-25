@@ -13,13 +13,6 @@ const useStyles = makeStyles((theme) => ({
             width : '80%',
         }, 
     },
-    // fellas: {
-    //     fontSize : '1.4rem',
-    //     flex :1,
-    //     [theme.breakpoints.up("sm")] : {
-    //         fontSize: "1.6rem",
-    //     }, 
-    // },
     profileButtonsContainer : {
         width : '85%',
         [theme.breakpoints.up("sm")] : {
@@ -41,7 +34,6 @@ function AuthorsProfileContainerActions() {
     return (
         <div className={classes.profileButtonsContainer}>
             <Button 
-                onClick = {() => history.push('/upload-article')}
                 size = 'medium'
                 className={classes.followBtn}
                 style={{background: '#0F6A7D', color: '#fff', 
@@ -62,7 +54,6 @@ function AuthorsProfileContainerActions() {
                 Message
             </Button>
             <Button 
-                onClick = {() => history.push('/edit-profile')}
                 size = 'medium'
                 className={classes.contactBtn}
                 style={{background: '#E5E5E5', color: '#474747', 

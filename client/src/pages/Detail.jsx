@@ -65,15 +65,15 @@ const useStyle = makeStyles(theme => ({
     },
     authors: {
         fontSize: "16px",
-        fontWeight: "400",
+        fontWeight: "bold",
     },
     abstract: {
         fontSize: "14px",
-        fontWeight: "400",
+        fontWeight: "bold",
     },
     view: {
         fontSize: "13px",
-        fontWeight: "400",
+        fontWeight: "bold",
     }
 }));
 
