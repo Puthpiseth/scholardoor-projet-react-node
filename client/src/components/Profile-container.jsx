@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import { makeStyles, Avatar, Button } from "@material-ui/core";
-import {useHistory} from 'react-router-dom'
+import { makeStyles, Avatar } from "@material-ui/core";
 import ConnectedUserProfileContainerActions from './ConnectedUserProfileContainerActions';
 import AuthorDetailsProfileContainerActions from './AuthorDetailsProfileContainerActions'
 
@@ -93,29 +92,27 @@ function ProfileContainer({isConnectedUser, userDetails}) {
     },[userDetails, user, isConnectedUser]);
     
     return (
-        // <main>
-            <div className={classes.mainContainer}>
-                <Avatar className={classes.profileAvatarIcon} src = {`data:image/png;base64,${user.avatar}`} alt = "avatar"/>
-                <div className={classes.profileInfo}>
-                    <div className={classes.profileWrapper}>
-                        <div>
-                            <p className={classes.usernameText} name="username">{`${user.firstname} ${user.lastname}`}</p>
-                            <p className={classes.profileText} name="position">{user.position}</p>
-                            <p className={classes.profileText} name="affiliation">{user.affiliation}</p>
-                            <p className={classes.profileText} name="researchInterest">{user.researchInterest}</p>
-                            <p className={classes.profileText} name="location">{user.location}</p>
-                        </div>
-                        <div className={classes.follow}>
-                            <p className={classes.fellas} name="followers">0 Follower</p>
-                            <p className={classes.fellas} name="following">0 Following</p>
-                        </div>
+        <div className={classes.mainContainer}>
+            <Avatar className={classes.profileAvatarIcon} src = {`data:image/png;base64,${user.avatar}`} alt = "avatar"/>
+            <div className={classes.profileInfo}>
+                <div className={classes.profileWrapper}>
+                    <div>
+                        <p className={classes.usernameText} name="username">{`${user.firstname} ${user.lastname}`}</p>
+                        <p className={classes.profileText} name="position">{user.position}</p>
+                        <p className={classes.profileText} name="affiliation">{user.affiliation}</p>
+                        <p className={classes.profileText} name="researchInterest">{user.researchInterest}</p>
+                        <p className={classes.profileText} name="location">{user.location}</p>
+                    </div>
+                    <div className={classes.follow}>
+                        <p className={classes.fellas} name="followers">0 Follower</p>
+                        <p className={classes.fellas} name="following">0 Following</p>
                     </div>
                 </div>
-                {isConnectedUser && <ConnectedUserProfileContainerActions />}
-                {!isConnectedUser && <AuthorDetailsProfileContainerActions />}
-                
             </div>
-        // {/* </main> */}
+            {isConnectedUser && <ConnectedUserProfileContainerActions />}
+            {!isConnectedUser && <AuthorDetailsProfileContainerActions />}
+            
+        </div>
     )
 }
 

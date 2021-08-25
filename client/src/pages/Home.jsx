@@ -53,6 +53,7 @@ const useStyles = makeStyles((theme) => ({
     },
     headerTitle: {
         cursor: "pointer",
+        fontSize: "16px",
         '&:hover': {
             textDecoration: "underline",
             textUnderlineOffset: "0.2em",
@@ -82,7 +83,7 @@ const useStyles = makeStyles((theme) => ({
         margin: "0 auto",
         width: "92%",
         fontSize: "14px",
-        fontWeight: "400",
+        fontWeight: "bold",
         [theme.breakpoints.up('sm')] : {
             width : "94%"
         },
@@ -102,17 +103,17 @@ const useStyles = makeStyles((theme) => ({
         }
     },
     authors : {
-        fontWeight: "500",
+        fontWeight: "bold",
         fontSize: "14px",
     },
     abstract: {
-        fontWeight: "400",
+        fontWeight: "bold",
         [theme.breakpoints.up('lg')] : {
             fontSize: "14px",
         }
     },
     view: {
-        fontWeight: "400",
+        fontWeight: "bold",
     },  
 }));
 
@@ -176,7 +177,6 @@ function Home({history}){
             {articles.map((article, i) => {
 
                 return (
-                    
                     <Grid 
                         container 
                         classes = {{container : classes.homeContainer}}
@@ -216,11 +216,11 @@ function Home({history}){
                                     }
                                 />
                                 <h3 className={classes.publicationDate}>{article.publicationDate}</h3>
-                                        <CardContent className={classes.articleContent}>
+                                    <CardContent className={classes.articleContent}>
                                         <h3 className={classes.authors}>{article.authors}</h3>
                                         <h3 className={classes.abstract}>{article.abstract}</h3>
                                         <h4 className={classes.view}>{`${article.viewId ?? 0}  views`}</h4>
-                                        </CardContent>
+                                    </CardContent>
                             </Card>
                         </Grid>
                     </Grid>
@@ -249,13 +249,8 @@ function Home({history}){
                 onClose = {handleCloseViewer}
                 fileSrc = {fileBase64}
             />
-            
         </>
-
-        
     )
-
-    
 }
 
 export default Home;

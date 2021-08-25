@@ -12,7 +12,7 @@ require('dotenv').config();
 
 exports.createAccount = async (req, res) => {
     const {firstname, lastname, email, password} = req.body;
-    console.log(req.body)
+    // console.log(req.body)
     try {
         const hashPassword = await bcrypt.hash(password, 10);
         
