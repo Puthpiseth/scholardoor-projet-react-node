@@ -14,12 +14,12 @@ const useStyles = makeStyles((theme) => ({
         }, 
     },
     profileButtonsContainer : {
-        width : '85%',
+        width : '90%',
         [theme.breakpoints.up("sm")] : {
             width : '82%'
         },
         [theme.breakpoints.up("md")] : {
-            width : '75%',
+            width : '85%',
         },
         [theme.breakpoints.up("lg")] : {
             width : '90%',

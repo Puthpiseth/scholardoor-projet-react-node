@@ -132,14 +132,13 @@ exports.updateProfile = async(req, res) => {
             raw : true
         })
         //set up new token
-        const exp_date = new Date().getTime() + 60 * 60 * 100000000
+        const exp_date = new Date().getTime() + 60 * 60 * 24000
         const token = jwt.sign({id, exp_date}, process.env.SECRET_JWT);
         res.status(200).json({token, user : newUser});
     }
     catch(e){
         console.log(e)
         res.status(500).json({error: 'something went wrong'})
-        
     }
 }
 

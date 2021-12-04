@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
             width : '35%',            
         },
         [theme.breakpoints.up("lg")]: {
-            width : "25%",
+            width : "30%",
             marginLeft: "12%",
         },        
     },
@@ -72,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
         fontSize : '1.4rem',
         flex :1,
         [theme.breakpoints.up("sm")] : {
-            fontSize: "1.6rem",
+            fontSize: "1.4rem",
         }, 
     },
    
