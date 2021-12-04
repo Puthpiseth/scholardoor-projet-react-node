@@ -166,7 +166,7 @@ function Details({articles, author, datasLoading}){
                                 className={classes.menuItemsOption}
                                 onClick = {handleDownloadFile}
                             >
-                                Download
+                                Download PDF
                             </MenuItem>
                             <MenuItem
                                 className={classes.menuItemsOption}

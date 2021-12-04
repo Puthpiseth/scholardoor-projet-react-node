@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
-
 exports.verifyToken = async (req, res, next) => {
     try {
         const bearerHeader = req.headers.authorization;

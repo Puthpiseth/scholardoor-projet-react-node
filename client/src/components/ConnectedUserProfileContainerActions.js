@@ -4,9 +4,9 @@ import {useHistory} from 'react-router-dom'
 
 const useStyle = makeStyles(theme => ({
     profileButtonsContainer : {
-        width : '85%',
+        width : '95%',
         [theme.breakpoints.up("sm")] : {
-            width : '82%'
+            width : '85%'
         },
         [theme.breakpoints.up("md")] : {
             width : '90%',
@@ -27,9 +27,9 @@ function ConnectedUserProfileContainerActions(){
                 onClick = {() => history.push('/upload-article')}
                 size = 'medium'
                 className={classes.uploadArticleButton}
-                style={{background: '#0F6A7D', color: '#fff', 
+                style={{background: '#0F6A7D', color: '#fff',
                         borderRadius: "5px",boxShadow: "0 0 2px #999999",
-                        '&:hover': {opacity: "0.8"}, marginRight: "6px"
+                        '&:hover': {opacity: "0.8"}, marginRight: "4px"
                 }}
             >
                 Upload new article
